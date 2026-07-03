@@ -1,5 +1,5 @@
 // KRNO Product Catalog — U-Pack for Trading
-// 83 product families · 459 total SKUs · 11 categories
+// 89 product families · 465 total SKUs · 12 categories
 
 const KRNO_PRODUCTS = [
   {
@@ -6890,6 +6890,186 @@ const KRNO_PRODUCTS = [
         "description": "Microwave-Safe · Greek Key Pattern"
       }
     ]
+  },
+  {
+    "id": "straws-strawsmxc",
+    "name": "KRNO Large Drinking Straws — Multicolor",
+    "category": "straws",
+    "subcategory": "",
+    "image": "assets/products/StrawsMxc.jpg",
+    "tags": [
+      "straws",
+      "drinking",
+      "plastic",
+      "paper",
+      "party",
+      "beverage",
+      "disposable"
+    ],
+    "variant_count": 1,
+    "variants": [
+      {
+        "sku": "StrawsMxc",
+        "asin": "B0GY9KY2RL",
+        "label": "100 × Multicolor",
+        "image": "assets/products/StrawsMxc.jpg",
+        "images": [
+          "assets/products/StrawsMxc.jpg"
+        ],
+        "amazon_link": "https://www.amazon.eg/dp/B0GY9KY2RL",
+        "description": "KRNO Large Drinking Straws — Multicolor Plastic Disposable Straws for Juice, Soda & Daily Use · Pack of 100"
+      }
+    ]
+  },
+  {
+    "id": "straws-strawsxlxblue",
+    "name": "KRNO Multi-Purpose Plastic Straws — Blue",
+    "category": "straws",
+    "subcategory": "",
+    "image": "assets/products/strawsxLxBlue.jpg",
+    "tags": [
+      "straws",
+      "drinking",
+      "plastic",
+      "paper",
+      "party",
+      "beverage",
+      "disposable"
+    ],
+    "variant_count": 1,
+    "variants": [
+      {
+        "sku": "strawsxLxBlue",
+        "asin": "B0H5CS5W6N",
+        "label": "100 × Blue, 12mm",
+        "image": "assets/products/strawsxLxBlue.jpg",
+        "images": [
+          "assets/products/strawsxLxBlue.jpg"
+        ],
+        "amazon_link": "https://www.amazon.eg/dp/B0H5CS5W6N",
+        "description": "KRNO Multi-Purpose Blue Plastic Straws · Durable Disposable Drinking Straws for Juice, Soda & Cold Beverages · Ideal for Arts, Crafts, DIY Decor & Party Snacks (12mm) · Pack of 100"
+      }
+    ]
+  },
+  {
+    "id": "straws-strawsxlxb",
+    "name": "KRNO Large Drinking Straws — Black",
+    "category": "straws",
+    "subcategory": "",
+    "image": "assets/products/StrawsxLxB.jpg",
+    "tags": [
+      "straws",
+      "drinking",
+      "plastic",
+      "paper",
+      "party",
+      "beverage",
+      "disposable"
+    ],
+    "variant_count": 1,
+    "variants": [
+      {
+        "sku": "StrawsxLxB",
+        "asin": "",
+        "label": "50 × Black, Large",
+        "image": "assets/products/StrawsxLxB.jpg",
+        "images": [
+          "assets/products/StrawsxLxB.jpg"
+        ],
+        "amazon_link": "",
+        "description": "KRNO Large Drinking Straws — Black · Durable Plastic Disposable Straws for Juice, Smoothies & Party Use"
+      }
+    ]
+  },
+  {
+    "id": "straws-strawslxc",
+    "name": "KRNO Small Paper Drinking Straws",
+    "category": "straws",
+    "subcategory": "",
+    "image": "assets/products/StrawsLxC.jpg",
+    "tags": [
+      "straws",
+      "drinking",
+      "plastic",
+      "paper",
+      "party",
+      "beverage",
+      "disposable"
+    ],
+    "variant_count": 1,
+    "variants": [
+      {
+        "sku": "StrawsLxC",
+        "asin": "",
+        "label": "25 × Paper",
+        "image": "assets/products/StrawsLxC.jpg",
+        "images": [
+          "assets/products/StrawsLxC.jpg"
+        ],
+        "amazon_link": "",
+        "description": "KRNO Small Paper Drinking Straws — Disposable Eco-Friendly Party Straws"
+      }
+    ]
+  },
+  {
+    "id": "straws-bluex8mm",
+    "name": "KRNO Premium Smoothie & Beverage Straws — Blue, 8mm",
+    "category": "straws",
+    "subcategory": "",
+    "image": "assets/products/BLuex8mm.jpg",
+    "tags": [
+      "straws",
+      "drinking",
+      "plastic",
+      "paper",
+      "party",
+      "beverage",
+      "disposable"
+    ],
+    "variant_count": 1,
+    "variants": [
+      {
+        "sku": "BLuex8mm",
+        "asin": "",
+        "label": "12 × Blue, 8mm",
+        "image": "assets/products/BLuex8mm.jpg",
+        "images": [
+          "assets/products/BLuex8mm.jpg"
+        ],
+        "amazon_link": "",
+        "description": "KRNO Premium Smoothie & Beverage Straws — 8mm, Blue · 12 Pack"
+      }
+    ]
+  },
+  {
+    "id": "straws-pinkx8mm",
+    "name": "KRNO Premium Smoothie & Beverage Straws — Pink, 8mm",
+    "category": "straws",
+    "subcategory": "",
+    "image": "assets/products/Pinkx8mm.jpg",
+    "tags": [
+      "straws",
+      "drinking",
+      "plastic",
+      "paper",
+      "party",
+      "beverage",
+      "disposable"
+    ],
+    "variant_count": 1,
+    "variants": [
+      {
+        "sku": "Pinkx8mm",
+        "asin": "",
+        "label": "12 × Pink, 8mm",
+        "image": "assets/products/Pinkx8mm.jpg",
+        "images": [
+          "assets/products/Pinkx8mm.jpg"
+        ],
+        "amazon_link": "",
+        "description": "KRNO Premium Smoothie & Beverage Straws — 8mm, Pink · 12 Pack"
+      }
+    ]
   }
 ];
 
@@ -6935,6 +7115,12 @@ const KRNO_CATEGORIES = [
     "label": "Cutlery & Utensils",
     "icon": "fa-utensils",
     "color": "#10B981"
+  },
+  {
+    "id": "straws",
+    "label": "Straws",
+    "icon": "fa-martini-glass-citrus",
+    "color": "#0EA5E9"
   },
   {
     "id": "map-trays",
