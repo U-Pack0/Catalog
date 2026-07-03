@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="U-Pack Product Catalog 2026 — official distributor catalog for KRNO disposable food service products. Browse 475 products across cups, dessert, containers, bowls, sauce cups, trays and more." />
+  <meta name="theme-color" content="#1A2340" />
+  <meta property="og:title" content="U-Pack Product Catalog 2026" />
+  <meta property="og:description" content="Official U-Pack catalog for KRNO disposable food service products." />
+  <meta property="og:type" content="website" />
+  <title>U-Pack Product Catalog 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Sticky Header ── -->
+  <header id="sticky-header" class="sticky-header">
+    <div class="header-inner">
+      <div class="brand">
+        <img src="assets/upack-logo.jpg" alt="U-Pack Logo" class="brand-logo" onerror="this.style.display='none'" />
+        <span class="brand-name">U-Pack <span class="brand-sub">for Trading</span></span>
+      </div>
+      <div class="header-search">
+        <span class="search-icon">🔍</span>
+        <input
+          id="search-input"
+          type="search"
+          placeholder="Search products, SKU, category…"
+          autocomplete="off"
+          spellcheck="false"
+        />
+      </div>
+      <div class="header-stats">
+        <span><strong id="stat-products">83</strong> Product Families</span>
+        <span><strong id="stat-categories">11</strong> Categories</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Category Nav ── -->
+  <nav id="category-nav" class="category-nav" aria-label="Product categories">
+    <button class="cat-btn active" data-cat="all">All Products</button>
+    <button class="cat-btn" data-cat="cups">Cups</button>
+    <button class="cat-btn" data-cat="dessert">Dessert</button>
+    <button class="cat-btn" data-cat="food-containers">Containers</button>
+    <button class="cat-btn" data-cat="bowls">Bowls</button>
+    <button class="cat-btn" data-cat="sauce-cups">Sauce Cups</button>
+    <button class="cat-btn" data-cat="cutlery">Cutlery</button>
+    <button class="cat-btn" data-cat="map-trays">MAP Trays</button>
+    <button class="cat-btn" data-cat="plates">Plates</button>
+    <button class="cat-btn" data-cat="rizo">Rizo</button>
+    <button class="cat-btn" data-cat="wooden">Wooden</button>
+    <button class="cat-btn" data-cat="bundle">🎁 Bundles</button>
+  </nav>
+
+  <!-- ── Main Content ── -->
+  <main id="main-content">
+    <div class="results-bar">
+      <p id="results-meta" class="results-meta">Loading products…</p>
+    </div>
+
+    <div id="products-grid" class="products-grid" role="list"></div>
+
+    <div id="empty-state" class="empty-state" hidden>
+      <div class="empty-icon">🔍</div>
+      <h3>No products found</h3>
+      <p>Try a different search term or category.</p>
+    </div>
+  </main>
+
+  <!-- ── Back to Top ── -->
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top" hidden>↑</button>
+
+  <!-- ── Toast ── -->
+  <div id="toast" class="toast" role="alert" aria-live="polite"></div>
+
+  <!-- ── Product Modal ── -->
+  <div id="modal-overlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div id="modal-box" class="modal-box">
+      <button id="modal-close" class="modal-close" aria-label="Close modal">✕</button>
+      <div id="modal-content" class="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- ── Cover / Splash ── -->
+  <div id="cover" class="cover">
+    <div class="cover-inner">
+      <img src="assets/upack-logo.jpg" alt="U-Pack" class="cover-logo" onerror="this.style.display='none'" />
+      <h1 class="cover-title">U-Pack Product Catalog</h1>
+      <p class="cover-subtitle">KRNO Disposable Food Service Products — 2026</p>
+      <div class="cover-loader">
+        <div class="loader-bar"><div id="loader-fill" class="loader-fill"></div></div>
+        <p id="loader-text" class="loader-text">Loading products…</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="products.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
