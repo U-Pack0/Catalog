@@ -111,7 +111,6 @@ function renderProducts(products) {
     const variant = hasVariants ? getActiveVariant(product) : null;
     const url = hasVariants ? getVariantImageUrl(variant) : getImageUrl(product);
     const sku = hasVariants ? variant.sku : product.sku;
-    const amazonLink = hasVariants ? variant.amazon_link : product.amazon_link;
 
     const card = document.createElement('article');
     card.className = 'product-card';
@@ -139,6 +138,7 @@ function renderProducts(products) {
         ${url ? `<img class="card-img" alt="${escHtml(product.name)}" src="${escHtml(url)}" loading="lazy" decoding="async" />` : ''}
         <span class="card-badge">${escHtml(product.category || '')}</span>
         ${variantBadgeHtml}
+        <span class="tap-hint">Tap for details</span>
       </div>
       <div class="card-body">
         <p class="card-name">${escHtml(product.name)}</p>
@@ -147,9 +147,6 @@ function renderProducts(products) {
         ${variantSelectHtml}
         <div class="card-actions">
           <button class="btn-details" data-id="${escHtml(product.id)}">Details</button>
-          ${amazonLink
-            ? `<a class="btn-amazon" href="${escHtml(amazonLink)}" target="_blank" rel="noopener">Amazon ↗</a>`
-            : ''}
         </div>
       </div>
     `;
@@ -250,6 +247,7 @@ function openModal(productId) {
   const activeVar = variants ? variants[activeIdx] : null;
   const mainImg = activeVar ? getVariantImageUrl(activeVar) : getImageUrl(product);
   const desc = activeVar ? activeVar.description : product.description;
+  const amazonTitle = activeVar ? activeVar.amazon_title : product.amazon_title;
 
   // Build variants table if multiple
   const variantsHtml = variants && variants.length > 1
@@ -260,15 +258,10 @@ function openModal(productId) {
             <div class="variant-row${i === activeIdx ? ' active-variant' : ''}">
               <span class="variant-label">${escHtml(v.label || v.sku || `Option ${i+1}`)}</span>
               <span class="variant-sku">${escHtml(v.sku || '')}</span>
-              ${v.amazon_link
-                ? `<a class="variant-amazon" href="${escHtml(v.amazon_link)}" target="_blank" rel="noopener">Amazon ↗</a>`
-                : '<span class="variant-no-link">—</span>'}
             </div>`).join('')}
         </div>
       </div>`
     : '';
-
-  const amazonLink = activeVar ? activeVar.amazon_link : product.amazon_link;
 
   DOM.modalContent.innerHTML = `
     ${mainImg ? `<img class="modal-img-main" src="${escHtml(mainImg)}" alt="${escHtml(product.name)}" onerror="this.style.display='none';" />` : ''}
@@ -279,16 +272,12 @@ function openModal(productId) {
       ${activeVar ? `<span class="meta-chip chip-sku">SKU: ${escHtml(activeVar.sku || '')}</span>` : `<span class="meta-chip chip-sku">SKU: ${escHtml(product.sku || '')}</span>`}
       ${variants ? `<span class="meta-chip chip-unit">${variants.length} variant${variants.length !== 1 ? 's' : ''}</span>` : ''}
     </div>
+    ${amazonTitle ? `<div class="modal-amazon-title"><span class="modal-amazon-title-label">Description</span><p>${escHtml(amazonTitle)}</p></div>` : ''}
     ${desc ? `<p class="modal-desc">${escHtml(desc)}</p>` : ''}
     ${variantsHtml}
     ${product.tags && product.tags.length
       ? `<div class="modal-tags">${product.tags.map(t => `<span class="tag">${escHtml(t)}</span>`).join('')}</div>`
       : ''}
-    <div class="modal-actions">
-      ${amazonLink
-        ? `<a class="modal-btn-amazon" href="${escHtml(amazonLink)}" target="_blank" rel="noopener">🛒 View on Amazon</a>`
-        : ''}
-    </div>
   `;
 
   DOM.modalOverlay.hidden = false;
@@ -403,12 +392,12 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     const card = e.target.closest('.product-card');
-    if (card && !e.target.closest('.btn-amazon') && !e.target.closest('.btn-details') && !e.target.closest('.variant-select')) {
+    if (card && !e.target.closest('.btn-details') && !e.target.closest('.variant-select')) {
       openModal(card.dataset.id);
     }
   });
 
-  // ── Variant dropdown changes → update card image + SKU + Amazon link live ──
+  // ── Variant dropdown changes → update card image + SKU live ──
   DOM.grid.addEventListener('change', e => {
     const sel = e.target.closest('.variant-select');
     if (!sel) return;
@@ -427,15 +416,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update SKU text
     const skuEl = card.querySelector('.card-sku');
     if (skuEl) skuEl.textContent = 'SKU: ' + (variant.sku || '');
-
-    // Update Amazon link
-    const amazonEl = card.querySelector('.btn-amazon');
-    if (amazonEl && variant.amazon_link) {
-      amazonEl.href = variant.amazon_link;
-      amazonEl.style.display = '';
-    } else if (amazonEl && !variant.amazon_link) {
-      amazonEl.style.display = 'none';
-    }
 
     // Update card image if different
     const newUrl = getVariantImageUrl(variant);

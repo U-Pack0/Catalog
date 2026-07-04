@@ -248,16 +248,23 @@ body {
   position: relative;
 }
 .product-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px) scale(1.015);
   box-shadow: var(--shadow-hover);
   border-color: var(--orange);
+}
+.product-card:hover .card-img {
+  transform: scale(1.06);
+}
+.product-card:hover .tap-hint {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ── Product Image Wrapper ────────────────────── */
 .card-img-wrap {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  background: #f8f9fb;
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(160deg, #f8f9fb 0%, #eef1f6 100%);
   overflow: hidden;
   position: relative;
   display: flex;
@@ -299,15 +306,35 @@ body {
   height: 100%;
   object-fit: contain;
   object-position: center;
-  padding: 6px;
+  padding: 10px;
   display: block;
   position: relative;
   z-index: 2;
   opacity: 0;
-  transition: opacity .4s ease;
+  transition: opacity .4s ease, transform .35s cubic-bezier(.4,0,.2,1);
 }
 .card-img.loaded {
   opacity: 1;
+}
+
+/* ── Tap-to-view hint (appears on hover / focus) ── */
+.tap-hint {
+  position: absolute;
+  bottom: .55rem;
+  left: 50%;
+  transform: translate(-50%, 6px);
+  background: rgba(26,35,64,.85);
+  color: var(--white);
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  padding: .3rem .7rem;
+  border-radius: 999px;
+  opacity: 0;
+  transition: opacity .2s ease, transform .2s ease;
+  z-index: 3;
+  pointer-events: none;
+  white-space: nowrap;
 }
 
 /* ── Card Badge ───────────────────────────────── */
@@ -328,25 +355,27 @@ body {
 
 /* ── Card Body ────────────────────────────────── */
 .card-body {
-  padding: .85rem;
+  padding: .95rem 1rem 1rem;
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: .35rem;
+  gap: .4rem;
 }
 .card-name {
-  font-size: .88rem;
-  font-weight: 600;
+  font-size: .9rem;
+  font-weight: 650;
   color: var(--text);
-  line-height: 1.4;
+  line-height: 1.42;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  letter-spacing: -.005em;
 }
 .card-sku {
-  font-size: .75rem;
+  font-size: .74rem;
   color: var(--muted);
+  font-variant-numeric: tabular-nums;
 }
 .card-unit {
   font-size: .78rem;
@@ -355,7 +384,7 @@ body {
 }
 .card-actions {
   margin-top: auto;
-  padding-top: .65rem;
+  padding-top: .7rem;
   display: flex;
   gap: .5rem;
 }
@@ -373,23 +402,6 @@ body {
   transition: background .2s;
 }
 .btn-details:hover { background: var(--orange); }
-.btn-amazon {
-  padding: .48rem .75rem;
-  background: var(--gold);
-  color: var(--navy);
-  border: none;
-  border-radius: 7px;
-  font-size: .8rem;
-  font-weight: 700;
-  font-family: inherit;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  transition: background .2s;
-  white-space: nowrap;
-}
-.btn-amazon:hover { background: #e09a1a; }
 
 /* ── Empty State ──────────────────────────────── */
 .empty-state {
@@ -499,21 +511,23 @@ body {
 }
 .modal-img-main {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
   object-fit: contain;
   object-position: center;
-  border-radius: 10px;
-  background: #f8f9fb;
+  border-radius: 12px;
+  background: linear-gradient(160deg, #f8f9fb 0%, #eef1f6 100%);
   display: block;
-  margin-bottom: 1rem;
-  padding: 8px;
+  margin-bottom: 1.1rem;
+  padding: 14px;
+  border: 1px solid var(--border);
 }
 .modal-title {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 700;
   line-height: 1.45;
   margin-bottom: .75rem;
   color: var(--text);
+  letter-spacing: -.01em;
 }
 .modal-meta {
   display: flex;
@@ -530,6 +544,27 @@ body {
 .chip-cat  { background: rgba(0,166,160,.12); color: var(--teal); }
 .chip-sku  { background: var(--gray); color: var(--muted); }
 .chip-unit { background: rgba(245,166,35,.12); color: #c87f00; }
+.modal-amazon-title {
+  background: linear-gradient(135deg, rgba(245,166,35,.10), rgba(245,166,35,.04));
+  border: 1px solid rgba(245,166,35,.3);
+  border-radius: 10px;
+  padding: .75rem .9rem;
+  margin-bottom: 1.1rem;
+}
+.modal-amazon-title-label {
+  display: block;
+  font-size: .68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: #c87f00;
+  margin-bottom: .3rem;
+}
+.modal-amazon-title p {
+  font-size: .86rem;
+  line-height: 1.55;
+  color: var(--text);
+}
 .modal-desc {
   font-size: .9rem;
   color: var(--muted);
@@ -549,26 +584,6 @@ body {
   font-size: .72rem;
   color: var(--muted);
 }
-.modal-actions {
-  display: flex;
-  gap: .75rem;
-  flex-wrap: wrap;
-}
-.modal-btn-amazon {
-  display: inline-flex;
-  align-items: center;
-  gap: .4rem;
-  padding: .65rem 1.4rem;
-  background: var(--gold);
-  color: var(--navy);
-  border-radius: 9px;
-  font-weight: 700;
-  font-size: .9rem;
-  text-decoration: none;
-  transition: background .2s;
-}
-.modal-btn-amazon:hover { background: #e09a1a; }
-
 /* ── Variation sign on card ───────────────────── */
 .card-variation-sign {
   font-size: .72rem;
@@ -641,19 +656,6 @@ body {
 }
 .variant-label { font-weight: 500; color: var(--text); }
 .variant-sku   { font-size: .72rem; color: var(--muted); white-space: nowrap; }
-.variant-amazon {
-  font-size: .76rem;
-  font-weight: 700;
-  color: #c87f00;
-  text-decoration: none;
-  white-space: nowrap;
-  padding: .2rem .5rem;
-  background: rgba(245,166,35,.15);
-  border-radius: 4px;
-  transition: background .2s;
-}
-.variant-amazon:hover { background: rgba(245,166,35,.3); }
-.variant-no-link { font-size: .75rem; color: var(--border); }
 
 /* ── Rizo category badge ──────────────────────── */
 .cat-btn[data-cat="rizo"].active {
