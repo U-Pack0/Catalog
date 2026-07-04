@@ -1629,7 +1629,7 @@ const KRNO_PRODUCTS = [
     "name": "KRNO Chicken Trays with Dome Lids — White",
     "category": "food-containers",
     "subcategory": "",
-    "image": "assets/products/B0FR2BK969.jpg",
+    "image": "assets/products/CHT-10XWhite.jpg",
     "tags": [
       "food",
       "containers",
@@ -1646,11 +1646,9 @@ const KRNO_PRODUCTS = [
         "sku": "CHT-10XWhite",
         "asin": "B0FR29F99X",
         "label": "",
-        "image": "https://m.media-amazon.com/images/I/B0FR29F99X._AC_SL300_.jpg",
+        "image": "assets/products/CHT-10XWhite.jpg",
         "images": [
-          "https://m.media-amazon.com/images/I/B0FR29F99X._AC_SL300_.jpg",
-          "https://images-na.ssl-images-amazon.com/images/P/B0FR29F99X.jpg",
-          "https://images-eu.ssl-images-amazon.com/images/P/B0FR29F99X.jpg"
+          "assets/products/CHT-10XWhite.jpg"
         ],
         "amazon_link": "https://www.amazon.eg/dp/B0FR29F99X",
         "description": "Oval Shape, Clear, Durable PP/PET · Food Containers for Restaurants, Catering & Takeaway",
