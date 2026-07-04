@@ -415,7 +415,7 @@ body {
 /* ── Back to Top ──────────────────────────────── */
 .back-to-top {
   position: fixed;
-  bottom: 2rem;
+  bottom: 6.25rem;
   right: 1.5rem;
   width: 44px;
   height: 44px;
@@ -683,4 +683,87 @@ body {
 }
 @media (max-width: 400px) {
   .products-grid { grid-template-columns: 1fr 1fr; gap: .6rem; }
+}
+
+/* ── Site Footer ──────────────────────────────── */
+.site-footer {
+  margin-top: 2.5rem;
+  background: var(--navy);
+  color: rgba(255,255,255,.85);
+  padding: 2rem 1rem 1.5rem;
+}
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+.footer-heading {
+  font-size: .8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--orange);
+  margin-bottom: .6rem;
+}
+.footer-line {
+  font-size: .88rem;
+  line-height: 1.7;
+}
+.footer-label {
+  font-weight: 600;
+  color: var(--white);
+}
+.footer-line a {
+  color: rgba(255,255,255,.85);
+  text-decoration: none;
+  transition: color .2s;
+}
+.footer-line a:hover {
+  color: var(--orange);
+}
+.footer-copyright {
+  font-size: .8rem;
+  color: rgba(255,255,255,.55);
+  align-self: flex-end;
+}
+@media (max-width: 600px) {
+  .footer-inner { flex-direction: column; }
+  .footer-copyright { align-self: flex-start; }
+}
+.footer-col {
+  min-width: 180px;
+}
+
+/* ── Floating WhatsApp Button ─────────────────── */
+.whatsapp-float {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  width: 58px;
+  height: 58px;
+  background: #25D366;
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(37,211,102,.45), 0 2px 6px rgba(0,0,0,.15);
+  z-index: 500;
+  transition: transform .2s ease, box-shadow .2s ease;
+  animation: whatsapp-pulse 2.4s ease-in-out infinite;
+}
+.whatsapp-float:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 22px rgba(37,211,102,.55), 0 3px 8px rgba(0,0,0,.2);
+}
+@keyframes whatsapp-pulse {
+  0%, 100% { box-shadow: 0 6px 18px rgba(37,211,102,.45), 0 0 0 0 rgba(37,211,102,.4); }
+  50%      { box-shadow: 0 6px 18px rgba(37,211,102,.45), 0 0 0 10px rgba(37,211,102,0); }
+}
+@media (max-width: 600px) {
+  .whatsapp-float { right: 1rem; bottom: 1rem; width: 52px; height: 52px; }
 }
