@@ -824,6 +824,8 @@ body {
 /* ── Floating WhatsApp Button ─────────────────── */
 .whatsapp-float {
   position: fixed;
+  top: auto;
+  left: auto;
   right: 1.25rem;
   bottom: 1.25rem;
   width: 58px;
@@ -854,6 +856,8 @@ body {
 /* ── Floating Call Button ─────────────────── */
 .call-float {
   position: fixed;
+  top: auto;
+  left: auto;
   right: 1.25rem;
   bottom: 6.25rem;
   width: 58px;
