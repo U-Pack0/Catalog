@@ -1,0 +1,387 @@
+---
+import type { ProductFamily } from '../../data/catalog.schema';
+import { formatShortBox, formatSoldByBox, getUI } from '../../lib/i18n';
+import { absUrl, localePath, withBase, type Lang } from '../../lib/url';
+import { buildProductWhatsAppUrl } from '../../lib/whatsapp';
+import Icon from '../icons/Icon.astro';
+
+export interface Props {
+  product: ProductFamily;
+  lang: Lang;
+  categoryName?: string;
+}
+
+const { product, lang, categoryName } = Astro.props;
+const ui = getUI(lang);
+
+const v0 = product.variants[0] || {
+  sku: product.slug.toUpperCase(),
+  isSyntheticSku: true,
+  label: product.name,
+  orderUnit: 'box' as const,
+};
+
+const v0Image = v0.image || product.image;
+const v0Backdrop = v0.photoBackdrop || product.photoBackdrop;
+const productRelPath = localePath(lang, `product/${product.slug}`);
+const productAbsUrl = absUrl(productRelPath, Astro.site);
+
+const initialWaHref = buildProductWhatsAppUrl({
+  lang,
+  productName: product.name[lang],
+  variantLabel: v0.label[lang],
+  sku: v0.sku,
+  isSyntheticSku: v0.isSyntheticSku,
+  lidPolicy: product.lidPolicy,
+  selectedLidSku: v0.lidSku,
+  pcsPerBox: v0.pcsPerBox,
+  packUnit: v0.packUnit,
+  orderUnit: v0.orderUnit,
+  productUrl: productAbsUrl,
+});
+
+const searchParts: string[] = [
+  product.name.en,
+  product.name.ar,
+  product.subtitle.en,
+  product.subtitle.ar,
+  product.description.en,
+  product.description.ar,
+  product.category,
+  categoryName || '',
+  product.material.join(' '),
+  product.tags.join(' '),
+  ...product.variants.flatMap((v) => [
+    v.sku && !v.isSyntheticSku ? v.sku : '',
+    ...(v.altSkus || []),
+    v.label.en,
+    v.label.ar,
+    v.capacity || '',
+    v.dimensionsMm || '',
+    v.lidSku || '',
+  ]),
+  ...(product.separateLidOptions || []).flatMap((l) => [
+    l.sku,
+    l.label.en,
+    l.label.ar,
+    l.dimensionsMm || '',
+  ]),
+];
+
+const searchHaystack = searchParts.filter(Boolean).join(' ');
+const maxVisibleVariants = 6;
+const visibleVariants = product.variants.slice(0, maxVisibleVariants);
+const extraVariantsCount = Math.max(0, product.variants.length - maxVisibleVariants);
+
+const firstSeparateLid = product.separateLidOptions?.[0];
+
+const lidBadgeStyle =
+  product.lidPolicy === 'cups-no-lid-separate'
+    ? 'border-amber-500/40 bg-amber-500/12 text-amber-900'
+    : product.lidPolicy === 'built-in-hinged' || product.lidPolicy === 'included-set'
+      ? 'border-wa/30 bg-wa/10 text-wa'
+      : 'border-hairline-strong bg-surface-muted text-ink-secondary';
+
+const v0Dims = v0.dimensionsMm || v0.capacity || '';
+const showV0Sku = Boolean(v0.sku && !v0.isSyntheticSku);
+const hasAnyPairedLid = product.variants.some((v) => Boolean(v.lidSku));
+---
+
+<article
+  class="card-3d-trick group relative flex flex-col justify-between overflow-hidden rounded-3xl p-4 sm:p-5"
+  data-trick-card
+  data-reveal-card
+  data-product-card
+  data-slug={product.slug}
+  data-name-en={product.name.en}
+  data-name-ar={product.name.ar}
+  data-category={product.category}
+  data-materials={product.material.join(',')}
+  data-lid-policy={product.lidPolicy}
+  data-dessert-group={product.dessertGroup || ''}
+  data-default-image={product.image}
+  data-default-backdrop={product.photoBackdrop}
+  data-search={searchHaystack}
+  data-variants={JSON.stringify(product.variants)}
+>
+  <div>
+    <!-- Adaptive Dark / Light Product Plinth -->
+    <div
+      class={`relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-2xl p-4 transition-colors ${
+        v0Backdrop === 'dark' ? 'plinth-dark' : 'plinth-light'
+      }`}
+      data-card-media
+      data-backdrop={v0Backdrop}
+    >
+      <div class="card-sheen-layer" aria-hidden="true"></div>
+
+      <!-- Top Floating Bar: Material Badges + Optional 3D Peek Inside Button -->
+      <div class="absolute inset-x-3 top-3 z-10 flex items-center justify-between gap-2">
+        <div class="flex flex-wrap items-center gap-1.5">
+          {
+            product.material.map((mat) => (
+              <span class="inline-flex items-center rounded-full border border-white/20 bg-obsidian/80 px-2.5 py-0.5 font-mono text-[11px] font-bold tracking-wide text-white backdrop-blur-md">
+                <bdi dir="ltr">{mat}</bdi>
+              </span>
+            ))
+          }
+          {
+            categoryName && (
+              <span class="hidden rounded-full border border-hairline bg-surface/90 px-2.5 py-0.5 text-[11px] font-semibold text-ink-secondary backdrop-blur-md sm:inline-flex">
+                {categoryName}
+              </span>
+            )
+          }
+        </div>
+
+        {
+          product.openImage && (
+            <button
+              type="button"
+              class="inline-flex items-center gap-1.5 rounded-full border border-hairline-strong bg-surface/95 px-2.5 py-1 text-[11px] font-bold text-ink shadow-xs backdrop-blur-md transition-colors hover:border-crimson hover:text-crimson"
+              data-peek-btn
+              aria-pressed="false"
+            >
+              <Icon name="flip" size={13} />
+              <span data-peek-label>{ui.actions.peekInside}</span>
+            </button>
+          )
+        }
+      </div>
+
+      <!-- Main Product Photo -->
+      <a
+        href={productRelPath}
+        class="relative z-0 flex h-full w-full items-center justify-center focus:outline-none"
+        tabindex="-1"
+        aria-label={product.name[lang]}
+      >
+        <img
+          src={withBase(v0Image)}
+          alt={product.name[lang]}
+          width="400"
+          height="300"
+          loading="lazy"
+          decoding="async"
+          class="card-media-pop max-h-44 w-auto object-contain select-none sm:max-h-48"
+          data-card-img
+          data-peek-img={product.openImage ? '' : undefined}
+          data-front-src={product.openImage ? withBase(v0Image) : undefined}
+          data-back-src={product.openImage ? withBase(product.openImage) : undefined}
+          data-front-backdrop={product.openImage ? v0Backdrop : undefined}
+          data-back-backdrop={
+            product.openImage
+              ? product.openImageBackdrop || product.photoBackdrop
+              : undefined
+          }
+          data-label-open={product.openImage ? ui.actions.viewClosed : undefined}
+          data-label-closed={product.openImage ? ui.actions.peekInside : undefined}
+        />
+      </a>
+
+      <!-- Bottom Floating Bar: Sold by Box Count -->
+      <div class="absolute inset-x-3 bottom-2.5 z-10 flex items-center justify-between gap-2">
+        <span
+          class="inline-flex items-center gap-1.5 rounded-full border border-hairline bg-surface/95 px-2.5 py-1 font-mono text-[11px] font-bold text-ink shadow-xs backdrop-blur-md"
+        >
+          <Icon name="box" size={13} class="text-crimson" />
+          <span data-card-box-badge>
+            {formatSoldByBox(lang, v0.pcsPerBox, v0.orderUnit, v0.packUnit)}
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <!-- Card Metadata Body -->
+    <div class="card-meta-pop mt-4 flex flex-col">
+      <!-- Strict Lid Policy Badge -->
+      <div class="flex flex-wrap items-center gap-1.5">
+        <span
+          class={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[11px] font-bold ${lidBadgeStyle}`}
+        >
+          <Icon
+            name={product.lidPolicy === 'cups-no-lid-separate' ? 'info' : 'layers'}
+            size={12}
+          />
+          <span>{ui.lidBadges[product.lidPolicy]}</span>
+        </span>
+      </div>
+
+      <!-- Product Family Name & Subtitle -->
+      <h3 class="mt-2.5 font-display text-lg font-bold leading-snug text-ink">
+        <a
+          href={productRelPath}
+          class="transition-colors hover:text-crimson focus:outline-none"
+        >
+          {product.name[lang]}
+        </a>
+      </h3>
+      <p class="mt-1 line-clamp-2 text-xs leading-relaxed text-ink-muted">
+        {product.subtitle[lang]}
+      </p>
+
+      <!-- Live Technical Spec Chips (SKU + Paired Lid SKU + Dimensions) -->
+      <div class="mt-3 flex flex-wrap items-center gap-1.5 text-[11px]">
+        <span
+          class="inline-flex items-center gap-1 rounded-md border border-hairline bg-surface-muted px-2 py-0.5 font-mono font-semibold text-ink"
+          hidden={!showV0Sku}
+          data-card-sku-wrap
+        >
+          <span class="text-ink-subtle">{ui.catalog.skuLabel}:</span>
+          <bdi dir="ltr" data-card-sku>{v0.sku}</bdi>
+        </span>
+
+        {
+          hasAnyPairedLid && (
+            <span
+              class="inline-flex items-center gap-1 rounded-md border border-hairline bg-surface-muted px-2 py-0.5 font-mono font-semibold text-ink-secondary"
+              hidden={!v0.lidSku}
+              data-card-lid-wrap
+            >
+              <span class="text-ink-subtle">{ui.catalog.lidSkuLabel}:</span>
+              <bdi dir="ltr" data-card-lid-sku>{v0.lidSku || ''}</bdi>
+            </span>
+          )
+        }
+
+        <span
+          class="inline-flex items-center gap-1 rounded-md border border-hairline bg-surface-muted px-2 py-0.5 font-mono text-ink-muted"
+          hidden={!v0Dims}
+          data-card-dims-wrap
+        >
+          <bdi dir="ltr" data-card-dims>{v0Dims}</bdi>
+        </span>
+      </div>
+
+      <!-- 1-Tap Variant Pill Selector -->
+      {
+        product.variants.length > 1 && (
+          <div
+            class="mt-3 flex flex-wrap items-center gap-1.5"
+            role="group"
+            aria-label={ui.catalog.chooseVariant}
+          >
+            {visibleVariants.map((variant, idx) => (
+              <button
+                type="button"
+                class={`inline-flex items-center rounded-lg border px-2.5 py-1 text-xs font-semibold transition-colors ${
+                  idx === 0
+                    ? 'border-obsidian bg-obsidian text-white'
+                    : 'border-hairline bg-surface-muted text-ink-secondary hover:border-hairline-strong hover:text-ink'
+                }`}
+                data-variant-pill
+                data-variant-index={idx}
+                aria-pressed={idx === 0 ? 'true' : 'false'}
+              >
+                {variant.label[lang]}
+              </button>
+            ))}
+            {extraVariantsCount > 0 && (
+              <a
+                href={productRelPath}
+                class="inline-flex items-center rounded-lg border border-hairline bg-surface px-2 py-1 font-mono text-[11px] font-bold text-crimson hover:border-crimson"
+              >
+                +{extraVariantsCount}
+              </a>
+            )}
+          </div>
+        )
+      }
+
+      <!-- Separate Lid Quick-Add Strip (for Cups with Lids Sold in Separate Boxes) -->
+      {
+        firstSeparateLid && (
+          <div class="mt-3 flex items-center justify-between gap-2 rounded-xl border border-amber-500/30 bg-amber-500/8 px-3 py-2">
+            <div class="min-w-0">
+              <p class="truncate text-[11px] font-bold text-ink">
+                {firstSeparateLid.label[lang]}
+              </p>
+              <p class="font-mono text-[10px] text-ink-muted">
+                <bdi dir="ltr">{firstSeparateLid.sku}</bdi>
+                {firstSeparateLid.pcsPerBox
+                  ? ` · ${formatShortBox(lang, firstSeparateLid.pcsPerBox, 'box')}`
+                  : ''}
+              </p>
+            </div>
+            <button
+              type="button"
+              class="inline-flex shrink-0 items-center gap-1 rounded-lg border border-crimson/30 bg-surface px-2.5 py-1 text-[11px] font-bold text-crimson shadow-2xs transition-colors hover:bg-crimson hover:text-white"
+              data-add-lid-bag
+              data-slug={`${product.slug}-lid-${firstSeparateLid.sku.toLowerCase()}`}
+              data-name-en={`${firstSeparateLid.label.en} (${product.name.en})`}
+              data-name-ar={`${firstSeparateLid.label.ar} (${product.name.ar})`}
+              data-variant-en={firstSeparateLid.sku}
+              data-variant-ar={firstSeparateLid.sku}
+              data-sku={firstSeparateLid.sku}
+              data-synthetic-sku="false"
+              data-lid-policy="standalone-lid"
+              data-pcs-per-box={
+                firstSeparateLid.pcsPerBox != null ? String(firstSeparateLid.pcsPerBox) : ''
+              }
+              data-order-unit="box"
+              data-image={firstSeparateLid.image || product.image}
+              data-backdrop={firstSeparateLid.photoBackdrop || product.photoBackdrop}
+              data-path-en={`en/product/${product.slug}/`}
+              data-path-ar={`ar/product/${product.slug}/`}
+            >
+              <span>{ui.actions.addLidBox}</span>
+            </button>
+          </div>
+        )
+      }
+    </div>
+  </div>
+
+  <!-- Card Footer CTA Row -->
+  <div class="card-cta-pop mt-4 flex items-center gap-2 border-t border-hairline pt-3.5">
+    <a
+      href={initialWaHref}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-wa px-3 py-2.5 text-xs font-bold text-white shadow-xs transition-colors hover:bg-wa-hover"
+      data-card-wa
+    >
+      <Icon name="whatsapp" size={16} />
+      <span class="truncate">{ui.actions.orderWhatsApp}</span>
+    </a>
+
+    <button
+      type="button"
+      class="inline-flex shrink-0 items-center justify-center gap-1 rounded-xl border border-hairline-strong bg-surface px-3 py-2.5 text-xs font-bold text-ink transition-colors hover:border-obsidian hover:bg-obsidian hover:text-white"
+      data-add-bag
+      data-slug={product.slug}
+      data-name-en={product.name.en}
+      data-name-ar={product.name.ar}
+      data-variant-en={v0.label.en}
+      data-variant-ar={v0.label.ar}
+      data-sku={v0.sku || ''}
+      data-synthetic-sku={v0.isSyntheticSku ? 'true' : 'false'}
+      data-lid-policy={product.lidPolicy}
+      data-selected-lid-sku={v0.lidSku || ''}
+      data-pcs-per-box={v0.pcsPerBox != null ? String(v0.pcsPerBox) : ''}
+      data-pack-unit={v0.packUnit || ''}
+      data-order-unit={v0.orderUnit || 'box'}
+      data-image={v0Image}
+      data-backdrop={v0Backdrop}
+      data-path-en={`en/product/${product.slug}/`}
+      data-path-ar={`ar/product/${product.slug}/`}
+    >
+      <span data-add-bag-label>
+        {v0.orderUnit === 'pack' ? ui.actions.addPack : ui.actions.addBox}
+      </span>
+    </button>
+
+    <a
+      href={productRelPath}
+      class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-hairline bg-surface-muted text-ink-secondary transition-colors hover:border-hairline-strong hover:text-ink"
+      aria-label={`${ui.actions.viewDetails}: ${product.name[lang]}`}
+      title={ui.actions.viewDetails}
+    >
+      <Icon name="arrow-up-right" size={16} />
+    </a>
+  </div>
+</article>
+
+<script>
+  import '../../scripts/catalog-filter';
+</script>

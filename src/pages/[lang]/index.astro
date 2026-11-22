@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroShowcase from '../../components/hero/HeroShowcase.astro';
+import DessertSpotlight from '../../components/home/DessertSpotlight.astro';
+import CategoryBento from '../../components/home/CategoryBento.astro';
+import MaterialShowcase from '../../components/home/MaterialShowcase.astro';
+import ClientsWall from '../../components/home/ClientsWall.astro';
+import WholesaleBanner from '../../components/home/WholesaleBanner.astro';
+import QuoteBagDrawer from '../../components/catalog/QuoteBagDrawer.astro';
+
+import rawCatalog from '../../data/catalog.json';
+import type { CatalogData } from '../../data/catalog.schema';
+import { localePath, withBase, type Lang } from '../../lib/url';
+import { getUI } from '../../lib/i18n';
+import { buildGeneralWhatsAppUrl } from '../../lib/whatsapp';
+import { EGYPT_SEO_KEYWORDS } from '../../lib/seo';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'ar' } }];
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const ui = getUI(lang);
+const catalogData = rawCatalog as unknown as CatalogData;
+
+const showcaseItems = (catalogData.heroShowcase || []).map((item) => {
+  const matchedProduct = catalogData.products.find((p) => p.slug === item.slug);
+  const href = matchedProduct
+    ? localePath(lang, `product/${item.slug}`)
+    : localePath(lang, `category/${item.category}`);
+  return {
+    slug: item.slug,
+    name: item.name[lang],
+    tag: item.tag[lang],
+    boxCount: item.boxCount[lang],
+    image: withBase(item.image),
+    photoBackdrop: item.photoBackdrop,
+    href
+  };
+});
+---
+
+<BaseLayout
+  lang={lang}
+  title={ui.seo.homeTitle}
+  description={ui.seo.defaultDescription}
+  canonicalPath={localePath(lang)}
+  keywords={EGYPT_SEO_KEYWORDS[lang]}
+>
+  <HeroShowcase
+    lang={lang}
+    stats={{
+      categories: catalogData.stats.categories,
+      families: catalogData.stats.families,
+      totalUniqueSkus: catalogData.stats.totalUniqueSkus
+    }}
+    catalogHref={localePath(lang, 'catalog')}
+    dessertHref="#most-requested"
+    whatsappHref={buildGeneralWhatsAppUrl(lang)}
+    showcaseItems={showcaseItems}
+  />
+
+  <!-- Most Requested Products (PS Items, Microwave Meals/Rizo/Soup, U-Shape Cups, Meal Cutlery) -->
+  <DessertSpotlight lang={lang} products={catalogData.products} />
+
+  <!-- All 9 Specialized Categories in an Asymmetric Bento Grid -->
+  <CategoryBento lang={lang} categories={catalogData.categories} />
+
+  <!-- Asymmetric Editorial Material & Lid-System Engineering Showcase -->
+  <MaterialShowcase lang={lang} />
+
+  <!-- Proud Intact 9-Brand "Our Clients / عملاؤنا" Porcelain Wall -->
+  <ClientsWall lang={lang} clients={catalogData.clients} />
+
+  <!-- High-Contrast Obsidian & Crimson Wholesale CTA Band -->
+  <WholesaleBanner lang={lang} />
+
+  <QuoteBagDrawer slot="drawer" lang={lang} />
+</BaseLayout>

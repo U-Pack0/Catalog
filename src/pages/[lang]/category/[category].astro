@@ -1,0 +1,404 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import CatalogToolbar from '../../../components/catalog/CatalogToolbar.astro';
+import ProductCard from '../../../components/catalog/ProductCard.astro';
+import QuoteBagDrawer from '../../../components/catalog/QuoteBagDrawer.astro';
+import WholesaleBanner from '../../../components/home/WholesaleBanner.astro';
+import Icon from '../../../components/icons/Icon.astro';
+
+import rawCatalog from '../../../data/catalog.json';
+import type { CatalogData, Category } from '../../../data/catalog.schema';
+import { absUrl, localePath, withBase, type Lang } from '../../../lib/url';
+import { getUI } from '../../../lib/i18n';
+import { buildBreadcrumbJsonLd, buildItemListJsonLd } from '../../../lib/seo';
+
+export function getStaticPaths() {
+  const data = rawCatalog as unknown as CatalogData;
+  const langs: Lang[] = ['en', 'ar'];
+
+  return langs.flatMap((lang) =>
+    data.categories.map((cat) => ({
+      params: { lang, category: cat.slug },
+      props: { category: cat }
+    }))
+  );
+}
+
+export interface Props {
+  category: Category;
+}
+
+const { lang } = Astro.params as { lang: Lang; category: string };
+const { category } = Astro.props;
+const isAr = lang === 'ar';
+const ui = getUI(lang);
+const catalogData = rawCatalog as unknown as CatalogData;
+
+const categoryProducts = catalogData.products.filter(
+  (p) => p.category === category.slug
+);
+
+const otherCategories = [...catalogData.categories]
+  .filter((c) => c.slug !== category.slug)
+  .sort((a, b) => a.order - b.order);
+
+const canonicalPath = localePath(lang, `category/${category.slug}`);
+const pageTitle = isAr
+  ? `${category.name.ar} بالجملة | ${ui.brandName} — ${ui.krnoDistributor}`
+  : `${category.name.en} Wholesale | ${ui.brandName} — ${ui.krnoDistributor}`;
+
+const breadcrumbLd = buildBreadcrumbJsonLd([
+  { name: ui.nav.home, url: absUrl(localePath(lang), Astro.site) },
+  { name: ui.nav.catalog, url: absUrl(localePath(lang, 'catalog'), Astro.site) },
+  { name: category.name[lang], url: absUrl(canonicalPath, Astro.site) }
+]);
+
+const itemListLd = buildItemListJsonLd(
+  category.name[lang],
+  categoryProducts.map((p) => ({
+    name: p.name[lang],
+    url: absUrl(localePath(lang, `product/${p.slug}`), Astro.site),
+    image: absUrl(p.ogImage, Astro.site)
+  }))
+);
+
+const copy = isAr
+  ? {
+      familiesLabel: 'خط منتج',
+      variantsLabel: 'مقاس/صنف',
+      otherHeading: 'تصفح تصنيفات أخرى',
+      backAll: 'عرض الكتالوج الكامل'
+    }
+  : {
+      familiesLabel: 'Product Lines',
+      variantsLabel: 'Variants',
+      otherHeading: 'Explore Other Categories',
+      backAll: 'View Full Catalog'
+    };
+---
+
+<BaseLayout
+  lang={lang}
+  title={pageTitle}
+  description={category.description[lang]}
+  canonicalPath={canonicalPath}
+  ogImage={category.image}
+  keywords={category.seoKeywords?.[lang]}
+  jsonLd={[breadcrumbLd, itemListLd]}
+>
+  <section class="cat-hero-band">
+    <div class="cat-container">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <a href={localePath(lang)} class="breadcrumb-link">{ui.nav.home}</a>
+        <span aria-hidden="true">/</span>
+        <a href={localePath(lang, 'catalog')} class="breadcrumb-link">{ui.nav.catalog}</a>
+        <span aria-hidden="true">/</span>
+        <span class="breadcrumb-current" aria-current="page">{category.name[lang]}</span>
+      </nav>
+
+      <div class="cat-hero-grid">
+        <div class="cat-hero-copy">
+          <div class="cat-pill-row">
+            <span class="cat-badge is-crimson">{ui.krnoDistributor}</span>
+            <span class="cat-badge">
+              {category.count} {copy.familiesLabel} · {category.variantCount} {copy.variantsLabel}
+            </span>
+          </div>
+
+          <h1 class="cat-h1">{category.name[lang]}</h1>
+          <p class="cat-desc">{category.description[lang]}</p>
+        </div>
+
+        <div
+          class:list={[
+            'cat-hero-thumb',
+            category.photoBackdrop === 'dark' ? 'plinth-dark' : 'plinth-light'
+          ]}
+        >
+          <img
+            src={withBase(category.image)}
+            alt={category.name[lang]}
+            width="180"
+            height="140"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cat-products-section" aria-label={category.name[lang]}>
+    <div class="cat-container">
+      <CatalogToolbar
+        lang={lang}
+        categories={catalogData.categories}
+        totalProducts={categoryProducts.length}
+        activeCategory={category.slug}
+        showCategoryPills={false}
+      />
+
+      <div class="cat-products-grid" id="catalog-products-grid" data-catalog-grid>
+        {categoryProducts.map((product) => (
+          <ProductCard
+            product={product}
+            lang={lang}
+            categoryName={category.name[lang]}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Cross-Links to Sibling Categories -->
+  <section class="sibling-cats-section">
+    <div class="cat-container">
+      <div class="sibling-header">
+        <h2 class="sibling-h2">{copy.otherHeading}</h2>
+        <a href={localePath(lang, 'catalog')} class="sibling-all-link">
+          <span>{copy.backAll}</span>
+          <Icon name="arrow-right" size={15} />
+        </a>
+      </div>
+
+      <div class="sibling-pills">
+        {otherCategories.map((sib) => (
+          <a href={localePath(lang, `category/${sib.slug}`)} class="sibling-pill">
+            <span>{sib.name[lang]}</span>
+            <span class="sibling-count">({sib.count})</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <WholesaleBanner lang={lang} />
+
+  <QuoteBagDrawer slot="drawer" lang={lang} />
+</BaseLayout>
+
+<style>
+  .cat-hero-band {
+    padding: 32px 20px 44px;
+    background-color: var(--color-surface, #FFFFFF);
+    border-bottom: 1px solid var(--color-hairline, #E2E6EF);
+  }
+
+  @media (min-width: 1024px) {
+    .cat-hero-band {
+      padding: 44px 28px 56px;
+    }
+  }
+
+  .cat-products-section {
+    padding: 36px 20px 72px;
+    background-color: var(--color-gallery, #F5F7FA);
+    border-bottom: 1px solid var(--color-hairline, #E2E6EF);
+  }
+
+  @media (min-width: 1024px) {
+    .cat-products-section {
+      padding: 48px 28px 88px;
+    }
+  }
+
+  .cat-container {
+    width: 100%;
+    max-width: 1320px;
+    margin-inline: auto;
+    padding-inline: 4px;
+  }
+
+  .breadcrumb-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--color-ink-muted, #4B5366);
+    margin-bottom: 18px;
+  }
+
+  .breadcrumb-link {
+    color: var(--color-ink-secondary, #374051);
+    text-decoration: none;
+  }
+
+  .breadcrumb-link:hover {
+    color: var(--color-crimson, #C61D2A);
+  }
+
+  .breadcrumb-current {
+    color: var(--color-ink, #0D0F14);
+    font-weight: 700;
+  }
+
+  .cat-hero-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .cat-hero-copy {
+    flex: 1 1 540px;
+    max-width: 740px;
+  }
+
+  .cat-pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .cat-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    background-color: var(--color-gallery, #F5F7FA);
+    border: 1px solid var(--color-hairline, #E2E6EF);
+    color: var(--color-ink-secondary, #374051);
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  .cat-badge.is-crimson {
+    background-color: var(--color-crimson-soft, #FDECEE);
+    border-color: rgba(198, 29, 42, 0.25);
+    color: var(--color-crimson, #C61D2A);
+    font-weight: 800;
+  }
+
+  .cat-h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.85rem, 3.4vw, 2.75rem);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+    color: var(--color-ink, #0D0F14);
+    margin: 0;
+  }
+
+  :global(html[dir='rtl']) .cat-h1 {
+    letter-spacing: 0;
+    line-height: 1.26;
+  }
+
+  .cat-desc {
+    margin: 12px 0 0;
+    font-size: 1rem;
+    color: var(--color-ink-muted, #4B5366);
+    line-height: 1.62;
+  }
+
+  .cat-hero-thumb {
+    width: 156px;
+    height: 124px;
+    border-radius: 16px;
+    border: 1px solid var(--color-hairline, #E2E6EF);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    flex-shrink: 0;
+  }
+
+  .cat-hero-thumb img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .cat-products-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 24px;
+  }
+
+  @media (min-width: 680px) {
+    .cat-products-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1080px) {
+    .cat-products-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .sibling-cats-section {
+    padding: 44px 20px;
+    background-color: var(--color-surface, #FFFFFF);
+    border-bottom: 1px solid var(--color-hairline, #E2E6EF);
+  }
+
+  .sibling-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .sibling-h2 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--color-ink, #0D0F14);
+    margin: 0;
+  }
+
+  .sibling-all-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--color-crimson, #C61D2A);
+    text-decoration: none;
+  }
+
+  .sibling-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .sibling-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 40px;
+    padding: 0 15px;
+    border-radius: 9999px;
+    background-color: var(--color-gallery, #F5F7FA);
+    border: 1px solid var(--color-hairline, #E2E6EF);
+    color: var(--color-ink, #0D0F14);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease;
+  }
+
+  .sibling-pill:hover {
+    background-color: var(--color-obsidian, #0D0F14);
+    border-color: var(--color-obsidian, #0D0F14);
+    color: #FFFFFF;
+  }
+
+  .sibling-count {
+    font-size: 0.76rem;
+    opacity: 0.72;
+  }
+</style>

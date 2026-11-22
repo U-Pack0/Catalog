@@ -1,0 +1,123 @@
+---
+import Icon from '../icons/Icon.astro';
+import { localePath, withBase, type Lang } from '../../lib/url';
+import { getUI, UPACK_CONTACT } from '../../lib/i18n';
+import { buildGeneralWhatsAppUrl } from '../../lib/whatsapp';
+
+export interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const ui = getUI(lang);
+const waHref = buildGeneralWhatsAppUrl(lang);
+---
+
+<footer class="dark-surface border-t border-dark-border bg-obsidian text-white">
+  <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 gap-10 border-b border-dark-border pb-10 md:grid-cols-12">
+      <!-- Brand + KRNO Distributor Lockup -->
+      <div class="md:col-span-5">
+        <a href={localePath(lang)} class="inline-flex items-center gap-3">
+          <span class="size-11 shrink-0 overflow-hidden rounded-full border border-white/25 bg-black">
+            <img
+              src={withBase('/images/brand/upack-logo.webp')}
+              alt={ui.brandName}
+              width="44"
+              height="44"
+              loading="lazy"
+              class="size-full object-cover"
+            />
+          </span>
+          <span class="flex flex-col leading-tight">
+            <span class="font-display text-lg font-extrabold tracking-tight text-white">
+              <span class="text-crimson-dark">U</span>-PACK
+            </span>
+            <span class="text-xs font-semibold text-silver">{ui.brandName}</span>
+          </span>
+        </a>
+
+        <p class="mt-4 max-w-md text-sm leading-relaxed text-silver">
+          {ui.footer.description}
+        </p>
+
+        <div class="mt-5 inline-flex items-center gap-2.5 rounded-full bg-white px-4 py-1.5 text-xs font-extrabold text-ink">
+          <img
+            src={withBase('/images/brand/krno-logo.webp')}
+            alt="KRNO"
+            width="62"
+            height="17"
+            loading="lazy"
+            class="h-[17px] w-auto object-contain"
+          />
+          <span>{ui.krnoDistributor}</span>
+        </div>
+      </div>
+
+      <!-- Explore Links -->
+      <div class="md:col-span-2">
+        <h3 class="font-display text-sm font-bold text-white">{ui.footer.navigationTitle}</h3>
+        <ul class="mt-4 flex flex-col gap-2.5 text-sm text-silver">
+          <li>
+            <a href={localePath(lang)} class="transition-colors hover:text-white">{ui.nav.home}</a>
+          </li>
+          <li>
+            <a href={localePath(lang, 'catalog')} class="transition-colors hover:text-white">{ui.nav.catalog}</a>
+          </li>
+          <li>
+            <a href={localePath(lang, 'about')} class="transition-colors hover:text-white">{ui.nav.about}</a>
+          </li>
+          <li>
+            <a href={localePath(lang, 'contact')} class="transition-colors hover:text-white">{ui.nav.contact}</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Unified Sales & WhatsApp -->
+      <div class="md:col-span-3">
+        <h3 class="font-display text-sm font-bold text-white">{ui.footer.salesTitle}</h3>
+        <ul class="mt-4 flex flex-col gap-3 text-sm text-silver">
+          <li>
+            <a href={UPACK_CONTACT.telHref} class="inline-flex items-center gap-2.5 transition-colors hover:text-white">
+              <Icon name="phone" size={16} class="text-crimson-dark" />
+              <bdi dir="ltr" class="font-semibold text-white">{UPACK_CONTACT.phone}</bdi>
+            </a>
+          </li>
+          <li>
+            <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center gap-2.5 transition-colors hover:text-white">
+              <Icon name="whatsapp" size={16} class="text-wa-vivid" />
+              <span>WhatsApp: <bdi dir="ltr" class="font-semibold text-white">{UPACK_CONTACT.phone}</bdi></span>
+            </a>
+          </li>
+          <li class="inline-flex items-center gap-2.5 text-silver">
+            <Icon name="truck" size={16} class="text-crimson-dark" />
+            <span>{ui.deliveryNationwide}</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Company Emails -->
+      <div class="md:col-span-2">
+        <h3 class="font-display text-sm font-bold text-white">{ui.footer.emailsTitle}</h3>
+        <ul class="mt-4 flex flex-col gap-2.5 text-sm text-silver">
+          {UPACK_CONTACT.emails.map((email) => (
+            <li>
+              <a
+                href={`mailto:${email}`}
+                class="inline-flex items-start gap-2 wrap-anywhere transition-colors hover:text-white"
+              >
+                <Icon name="mail" size={15} class="mt-0.5 text-crimson-dark" />
+                <bdi dir="ltr">{email}</bdi>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-between gap-3 pt-6 text-xs text-silver">
+      <p>{ui.footer.copyright}</p>
+      <p>{ui.krnoDistributor} · {ui.deliveryNationwide}</p>
+    </div>
+  </div>
+</footer>

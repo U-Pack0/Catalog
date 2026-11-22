@@ -1,0 +1,1122 @@
+{
+  "categories": [
+    {
+      "slug": "cake-dessert-trays",
+      "order": 1,
+      "isDessertPriority": true,
+      "heroFamily": "square-cake-gt",
+      "name": {
+        "en": "Cake & Pastry Trays",
+        "ar": "علب وصواني الكيك والحلويات"
+      },
+      "description": {
+        "en": "Crystal-clear square cake boxes with 3 dome heights, hinged cheesecake slice packs, and rigid PS Turkish, Duet, Oval, and Rectangular patisserie trays with lids.",
+        "ar": "علب التورتة والكيك المربعة بغطاء بومبيه كريستال بثلاثة ارتفاعات، وعلب شرائح التشيز كيك، وصواني الحلويات التركي والدويت والبيضاوية والمستطيلة بالغطاء."
+      },
+      "seoKeywords": {
+        "en": [
+          "square cake boxes Egypt",
+          "clear dome cake container",
+          "cheesecake slice box",
+          "PS Turkish dessert trays",
+          "patisserie packaging wholesale Egypt"
+        ],
+        "ar": [
+          "علب تورتة شفافة بالجملة",
+          "علب كيك بغطاء بومبيه",
+          "علب تشيز كيك مثلثة",
+          "صواني حلويات تركي بالغطاء",
+          "عبوات حلويات جملة مصر"
+        ]
+      }
+    },
+    {
+      "slug": "dessert-cups-bowls",
+      "order": 2,
+      "isDessertPriority": true,
+      "heroFamily": "ps-crystal-bowl-200",
+      "name": {
+        "en": "Dessert Cups & Crystal Bowls",
+        "ar": "أكواب وبولات الحلويات والآيس كريم"
+      },
+      "description": {
+        "en": "Glass-clarity PS crystal bowls (DC-200, PC & SPC series), VIP ice cream cups, square dessert cups, jelly cups, and 92mm/95mm sweet & yogurt cups sold by the box.",
+        "ar": "بولات الحلويات الكريستال فائقة الشفافية (DC-200 وPC وSPC)، وأكواب الآيس كريم VIP، وأكواب الحلويات المربعة والجيلي والزبادي بالكرتونة."
+      },
+      "seoKeywords": {
+        "en": [
+          "crystal dessert bowls Egypt",
+          "DC-200 dessert cup",
+          "tiramisu mousse cups wholesale",
+          "square dessert cups",
+          "ice cream cups wholesale Egypt"
+        ],
+        "ar": [
+          "بولات حلويات كريستال",
+          "علب تيراميسو وموس بالجملة",
+          "أكواب حلويات مربعة",
+          "أكواب آيس كريم وزبادي جملة",
+          "بولات قشطوطة ورز بلبن"
+        ]
+      }
+    },
+    {
+      "slug": "cold-cups",
+      "order": 3,
+      "isDessertPriority": false,
+      "heroFamily": "ushape-cups-92",
+      "name": {
+        "en": "Cold Beverage Cups & Lids",
+        "ar": "أكواب المشروبات الباردة والأغطية"
+      },
+      "description": {
+        "en": "High-clarity 92mm & 82mm PET cold cups (Standard, Smart, U-Shape, Tornado) and 70/73mm PP cups. Cups are sold by the box without lids; compatible flat, dome, and sipper lids are ordered separately by the box.",
+        "ar": "أكواب المشروبات الباردة PET فائقة الشفافية (قياسية، سمارت، U-Shape، تورنادو) وأكواب PP. تُباع الأكواب بالكرتونة بدون غطاء، وتُطلب كراتين الأغطية المسطحة والبومبيه منفصلة."
+      },
+      "seoKeywords": {
+        "en": [
+          "PET cold cups Egypt",
+          "U-shape juice cups 92mm",
+          "cafe plastic cups wholesale Cairo",
+          "cup dome lids 92mm"
+        ],
+        "ar": [
+          "أكواب عصير وكافيهات PET بالجملة",
+          "أكواب يو شيب شفافة",
+          "أغطية أكواب بومبيه ومسطحة",
+          "تجهيز كافيهات أكواب بلاستيك مصر"
+        ]
+      }
+    },
+    {
+      "slug": "sauce-cups",
+      "order": 4,
+      "isDessertPriority": false,
+      "heroFamily": "oval-hinged-sauce-hst",
+      "name": {
+        "en": "Sauce & Portion Cups",
+        "ar": "أكواب وعلب الصوصات"
+      },
+      "description": {
+        "en": "One-piece leak-resistant hinged sauce cups (Oval HST & Rectangular RST) plus 62mm, 70mm, and 73mm portion cups with compatible snap-fit lids.",
+        "ar": "علب صوص بغطاء متصل محكم الغلق (بيضاوية HST ومستطيلة RST) بالإضافة إلى أكواب الصوص الدائرية مقاس 62 و70 و73 مم وأغطيتها المتوافقة."
+      },
+      "seoKeywords": {
+        "en": [
+          "plastic sauce cups Egypt",
+          "hinged portion cups",
+          "takeaway dip containers wholesale"
+        ],
+        "ar": [
+          "علب صوص بلاستيك بالجملة",
+          "علب صوص بمفصلة",
+          "أكواب صوص وتومية للمطاعم"
+        ]
+      }
+    },
+    {
+      "slug": "hinged-containers",
+      "order": 5,
+      "isDessertPriority": false,
+      "heroFamily": "smart-hinged-shrec",
+      "name": {
+        "en": "Hinged PET Containers",
+        "ar": "علب شفافة بمفصلة (Hinged PET)"
+      },
+      "description": {
+        "en": "One-piece crystal PET clamshell containers with built-in hinged lids: Salad (HAT), Rectangular (HREC, HCT, HXCT, SHREC), Square (SH), Round (RH), Lotus/Turkish, Tamper-Evident Safety (SCH, SBT), and Ventilated Produce boxes.",
+        "ar": "علب PET شفافة قطعة واحدة بغطاء متصل: علب السلطة والمخبوزات، والعلب المستطيلة والمربعة والدائرية، وعلب لوتس وتركي، وعلب الأمان محكمة الغلق، وعلب الخضروات والفواكه."
+      },
+      "seoKeywords": {
+        "en": [
+          "hinged PET containers Egypt",
+          "clear bakery clamshell boxes",
+          "tamper evident food containers",
+          "salad takeaway containers"
+        ],
+        "ar": [
+          "علب بلاستيك شفافة بمفصلة",
+          "علب مخبوزات وسلطة شفافة",
+          "علب أمان محكمة الغلق PET",
+          "علب فواكه وخضروات مثقبة"
+        ]
+      }
+    },
+    {
+      "slug": "meal-containers",
+      "order": 6,
+      "isDessertPriority": false,
+      "heroFamily": "meal-tray-rlb",
+      "name": {
+        "en": "Microwave & Meal Trays",
+        "ar": "علب الوجبات والمايكروويف"
+      },
+      "description": {
+        "en": "Heavy-duty PP microwaveable meal prep and takeaway trays (1 to 4 compartments): RLB, Jumbo FXMC, Small KSLB, Medium SLB, VIP ILB, OMW, Rectangular MC, Fridge MW, Square Pasta SMW, and Oval Chicken Trays with dome lids.",
+        "ar": "علب وجبات PP تتحمل المايكروويف والحرارة (من قسم حتى 4 أقسام): علب RLB وجامبو FXMC وكرنو KSLB/SLB وVIP وعلب الثلاجة والباستا وعلب الدجاج بالغطاء البومبيه."
+      },
+      "seoKeywords": {
+        "en": [
+          "microwave meal prep containers Egypt",
+          "divided meal trays with lid",
+          "PP takeaway containers wholesale",
+          "pasta containers SMW"
+        ],
+        "ar": [
+          "علب وجبات مايكروويف بالجملة",
+          "علب وجبات مقسمة بالغطاء",
+          "علب باستا وثلاجة PP",
+          "علب فراخ مشوية بغطاء بومبيه"
+        ]
+      }
+    },
+    {
+      "slug": "deli-sushi-containers",
+      "order": 7,
+      "isDessertPriority": false,
+      "heroFamily": "sushi-trays-ct",
+      "name": {
+        "en": "Deli, Dairy & Sushi Trays",
+        "ar": "علب السوشي والألبان والدلي"
+      },
+      "description": {
+        "en": "Black sushi trays with anti-fog clear dome lids (CT / KDR), rectangular & octal crystal PET deli containers (REC, REC-A, BRT), and square dairy containers (DT in PET & PP).",
+        "ar": "علب السوشي السوداء بغطاء كريستال شفاف (CT / KDR)، وعلب الدلي والأجبان المستطيلة وثمانية الأضلاع (REC وREC-A وBRT)، وعلب الألبان المربعة (DT)."
+      },
+      "seoKeywords": {
+        "en": [
+          "sushi trays wholesale Egypt",
+          "PET deli containers with lids",
+          "cheese and halawa containers",
+          "dairy containers PP PET"
+        ],
+        "ar": [
+          "علب سوشي بالجملة مصر",
+          "علب دلي وأجبان شفافة بالغطاء",
+          "علب حلاوة وألبان مربعة",
+          "عبوات سوبر ماركت وهايبر"
+        ]
+      }
+    },
+    {
+      "slug": "rizo-soup-bowls",
+      "order": 8,
+      "isDessertPriority": false,
+      "heroFamily": "rizo-bowls-rk",
+      "name": {
+        "en": "Rizo & Hot Soup Bowls",
+        "ar": "بولات الريزو والشوربة"
+      },
+      "description": {
+        "en": "Heat-resistant PP & PET round bowls with tight-sealing lids: Standard Rizo (RK), Versace Pattern (RKV), Export Rizo (TRK), Lotus Rizo (CRB/HRB), Hot Soup Bowls (SB), and Rondo Bowls (K-115).",
+        "ar": "بولات ريزو وشوربة دائرية محكمة الغلق: بولات ريزو القياسية (RK)، ونقشة فيرساتشي، وريزو التصدير (TRK)، وريزو لوتس، وبولات الشوربة الساخنة (SB)، وبولات روندو (K-115)."
+      },
+      "seoKeywords": {
+        "en": [
+          "rizo bowls Egypt",
+          "plastic soup bowls with lids wholesale",
+          "rondo bowls K-115",
+          "Versace meal bowls"
+        ],
+        "ar": [
+          "بولات ريزو بالغطاء جملة",
+          "بولات شوربة بلاستيك مايكروويف",
+          "بولات روندو وريزو للمطاعم",
+          "بولات فيرساتشي"
+        ]
+      }
+    },
+    {
+      "slug": "plates-serving-trays",
+      "order": 9,
+      "isDessertPriority": false,
+      "heroFamily": "ps-oriental-round-trays",
+      "name": {
+        "en": "Plates, MAP & Serving Trays",
+        "ar": "الأطباق وصواني التقديم الشرقي"
+      },
+      "description": {
+        "en": "Oriental & Lotus embossed PS round serving trays (Gold, Black, White, Transparent), Seasonal divided sweet platters, PET weight plates (⅛ to 2 kg), ultra-absorbent MAP meat trays, and party plates.",
+        "ar": "صواني التقديم الشرقي واللوتس الدائرية (ذهبي، أسود، أبيض، شفاف)، وصواني المواسم المقسمة للحلويات الشرقية، وأطباق الوزن PET (من ثمن إلى 2 كيلو)، وأطباق امتصاص السوائل MAP."
+      },
+      "seoKeywords": {
+        "en": [
+          "oriental sweet serving trays Egypt",
+          "gold plastic pastry trays",
+          "MAP absorbent meat trays",
+          "PET weight plates 1kg 500g"
+        ],
+        "ar": [
+          "صواني حلويات شرقية ذهبي وأسود",
+          "صواني تقديم لوتس وموسمية",
+          "أطباق PET بالوزن كيلو ونصف كيلو",
+          "أطباق لحوم ماصة للسوائل MAP"
+        ]
+      }
+    },
+    {
+      "slug": "cutlery",
+      "order": 10,
+      "isDessertPriority": false,
+      "heroFamily": "souvenir-cutlery",
+      "name": {
+        "en": "Tableware & Dessert Cutlery",
+        "ar": "أدوات المائدة وملاعق الحلويات"
+      },
+      "description": {
+        "en": "Heavy-duty Turkish, German, Souvenir, and Lotus spoons, forks, and knives in PS & PP, crystal cake servers (PTSH), ice cream & dessert spoons, and individually wrapped hygienic cutlery sets with napkin.",
+        "ar": "ملاعق وشوك وسكاكين فاخرة (تركي، ألماني، سوفنير، لوتس) من خامات PS وPP، وسكين تقطيع وتقديم الكيك الكريستال، وملاعق الحلويات والآيس كريم، وأطقم أدوات مائدة مغلفة مع منديل."
+      },
+      "seoKeywords": {
+        "en": [
+          "disposable cutlery wholesale Egypt",
+          "heavy duty plastic spoons forks",
+          "wrapped cutlery set with napkin",
+          "crystal cake server knife"
+        ],
+        "ar": [
+          "ملاعق وشوك بلاستيك بالجملة",
+          "أدوات مائدة مغلفة للمطاعم",
+          "ملاعق حلويات وآيس كريم",
+          "سكين تقطيع تورتة كريستال"
+        ]
+      }
+    },
+    {
+      "slug": "straws-accessories-bundles",
+      "order": 11,
+      "isDessertPriority": false,
+      "heroFamily": "cups-straws-bundles",
+      "name": {
+        "en": "Straws, Stirrers & Value Bundles",
+        "ar": "الشفاطات والإكسسوارات وباقات التوفير"
+      },
+      "description": {
+        "en": "Individually wrapped and bulk smoothie/beverage straws (8mm & standard, plastic & paper), natural birchwood coffee stirrers, all-in-one Cups + Lids + Straws café bundles, and KRNO2GO party packs.",
+        "ar": "شفاطات مشروبات وعصائر وسموذي (بلاستيك وورق بمقاسات متعددة)، ومقلبات قهوة خشبية طبيعية، وباقات الكافيهات المتكاملة (أكواب + أغطية + شفاطات)، وشنط الحفلات KRNO2GO."
+      },
+      "seoKeywords": {
+        "en": [
+          "drinking straws wholesale Egypt",
+          "8mm smoothie straws",
+          "wooden coffee stirrers",
+          "cups with lids and straws bundle"
+        ],
+        "ar": [
+          "شفاطات عصير وكافيهات بالجملة",
+          "مقلبات قهوة خشب",
+          "باقات أكواب بالغطاء والشفاط",
+          "شنطة حفلات KRNO2GO"
+        ]
+      }
+    }
+  ],
+  "colors": {
+    "Transparent": {
+      "en": "Transparent",
+      "ar": "شفاف كريستال"
+    },
+    "Black": {
+      "en": "Black",
+      "ar": "أسود"
+    },
+    "White": {
+      "en": "White",
+      "ar": "أبيض"
+    },
+    "Gold": {
+      "en": "Gold",
+      "ar": "ذهبي"
+    },
+    "Red & Black": {
+      "en": "Red & Black",
+      "ar": "أحمر × أسود"
+    },
+    "Yellow": {
+      "en": "Yellow",
+      "ar": "أصفر"
+    },
+    "Blue": {
+      "en": "Blue",
+      "ar": "أزرق"
+    },
+    "Pink": {
+      "en": "Pink",
+      "ar": "وردي (بينك)"
+    },
+    "Multicolor": {
+      "en": "Multicolor",
+      "ar": "ألوان متعددة"
+    },
+    "Natural Wood": {
+      "en": "Natural Wood",
+      "ar": "خشب طبيعي"
+    },
+    "Transparent & Black": {
+      "en": "Transparent / Black",
+      "ar": "شفاف / أسود"
+    },
+    "White & Black": {
+      "en": "White / Black",
+      "ar": "أبيض / أسود"
+    },
+    "Transparent, Black & White": {
+      "en": "Transparent / Black / White",
+      "ar": "شفاف / أسود / أبيض"
+    },
+    "Transparent, Black, White & Gold": {
+      "en": "Transparent / Black / White / Gold",
+      "ar": "شفاف / أسود / أبيض / ذهبي"
+    }
+  },
+  "materials": {
+    "PET": {
+      "en": "Crystal PET",
+      "ar": "PET كريستال شفاف"
+    },
+    "PP": {
+      "en": "Microwave-Safe PP",
+      "ar": "PP يتحمل المايكروويف والحرارة"
+    },
+    "PS": {
+      "en": "Rigid Crystal PS",
+      "ar": "PS كريستال صلب"
+    },
+    "Wood": {
+      "en": "Natural Birchwood",
+      "ar": "خشب طبيعي غذائي"
+    },
+    "Mixed": {
+      "en": "Multi-Material Set",
+      "ar": "طقم متكامل متعدد الخامات"
+    }
+  },
+  "families": {
+    "pet-cups-92": {
+      "en": "Standard Clear PET Cups (92mm)",
+      "ar": "أكواب PET شفافة قياسية (قطر 92 مم)",
+      "subEn": "10 to 24 oz Crystal-Clear Cold Beverage Cups · 92mm Rim · Cups Only in Box",
+      "subAr": "أكواب مشروبات باردة فائقة الشفافية من 10 إلى 24 أونصة · قطر الفوهة 92 مم · الكرتونة للأكواب فقط",
+      "descEn": "Heavy-gauge crystal PET cold drink cups with a universal 92mm rim (K-92-10 through K-92-24). Sold by the box (1,000 cups per box, without lids). Compatible 92mm flat, dome, and sipper lids are ordered separately by the box.",
+      "descAr": "أكواب PET شفافة عالية الجودة للمشروبات الباردة والعصائر والآيس كوفي بقطر فوهة موحد 92 مم (من 10 حتى 24 أونصة). تُباع بالكرتونة (1000 كوب في الكرتونة بدون غطاء)، وتُطلب كراتين الأغطية مقاس 92 مم (مسطح أو بومبيه أو سبر) بشكل منفصل.",
+      "featured": true
+    },
+    "smart-cups-92": {
+      "en": "Smart Clear PET Cups (92mm)",
+      "ar": "أكواب سمارت PET شفافة (قطر 92 مم)",
+      "subEn": "7 to 14 oz Ergonomic Smart Profile · 92mm Rim · Cups Only in Box",
+      "subAr": "تصميم سمارت انسيابي من 7 إلى 14 أونصة · قطر الفوهة 92 مم · الكرتونة للأكواب فقط",
+      "descEn": "Sleek tapered Smart PET cold cups (SK-92-7 to SK-92-14) engineered for specialty coffee shops and juice bars. Sold by the box (1,000 cups per box, without lids); pairs with any 92mm KRNO lid box.",
+      "descAr": "أكواب سمارت PET بتصميم عصري انسيابي للكافيهات ومحلات العصائر (من 7 إلى 14 أونصة). تُباع بالكرتونة (1000 كوب بدون غطاء) وتتوافق مع جميع أغطية كرنو مقاس 92 مم التي تُطلب بالكرتونة منفصلة."
+    },
+    "ushape-cups-92": {
+      "en": "U-Shape PET Cups (92mm)",
+      "ar": "أكواب U-Shape شفافة (قطر 92 مم)",
+      "subEn": "12 to 20 oz Rounded U-Base Specialty Café Cups · 92mm Rim · Cups Only in Box",
+      "subAr": "أكواب قاعدة دائرية U-Shape من 12 إلى 20 أونصة · قطر 92 مم · الكرتونة للأكواب فقط",
+      "descEn": "Signature rounded-bottom U-Shape crystal PET cups (UK-92-12 to UK-92-20) favored for boba, frappés, iced lattes, and layered smoothies. Sold by the box (1,000 cups per box, without lids); order 92mm dome, flat, or sipper lids separately by the box.",
+      "descAr": "أكواب U-Shape الشهيرة ذات القاعدة الدائرية للمشروبات المميزة والآيس لاتيه والسموذي والبوبا (12 إلى 20 أونصة). تُباع بالكرتونة (1000 كوب بدون غطاء)، وتُطلب كراتين الأغطية مقاس 92 مم منفصلة.",
+      "featured": true
+    },
+    "tornado-cups-82": {
+      "en": "Tornado PET Cups (82mm)",
+      "ar": "أكواب تورنادو PET شفافة (قطر 82 مم)",
+      "subEn": "7, 9 & 12 oz Spiral-Ribbed PET Cups · 82mm Rim · Cups Only in Box",
+      "subAr": "أكواب تورنادو مضلعة حلزونياً 7 و9 و12 أونصة · قطر 82 مم · الكرتونة للأكواب فقط",
+      "descEn": "Distinctive spiral-fluted Tornado PET cups (TK-82-7, TK-82-9, TK-82-12) offering extra grip and light refraction. Sold by the box (1,000 cups per box, without lids); compatible 82mm flat and dome lids are ordered separately by the box.",
+      "descAr": "أكواب تورنادو PET بتصميم حلزوني مميز يمنح صلابة ومظهراً جذاباً للمشروبات (7 و9 و12 أونصة). تُباع بالكرتونة (1000 كوب بدون غطاء) وتتوافق مع أغطية 82 مم المسطحة والبومبيه التي تُطلب بالكرتونة منفصلة."
+    },
+    "ripple-cups-70": {
+      "en": "Ripple PP Cups (70mm)",
+      "ar": "أكواب ريبل PP مضلعة (قطر 70 مم)",
+      "subEn": "175 to 220 ml Ribbed Polypropylene Cups · Transparent & White · Cups Only in Box",
+      "subAr": "أكواب بولي بروبيلين مضلعة 175 إلى 220 مل · شفاف وأبيض · الكرتونة للأكواب فقط",
+      "descEn": "Durable ribbed PP water and beverage cups with a 70mm rim in Transparent and White finishes (2,000 to 3,000 pcs per box, without lids). Compatible 70mm flat lid (LKF-70) is available separately by the box.",
+      "descAr": "أكواب ريبل PP مضلعة عملية للمياه والمشروبات بقطر 70 مم باللونين الشفاف والأبيض (2000 إلى 3000 كوب في الكرتونة بدون غطاء). يتوفر غطاء مسطح متوافق مقاس 70 مم (LKF-70) يُطلب بالكرتونة منفصلاً."
+    },
+    "chop-cups-73": {
+      "en": "Chop PP Cups (73mm)",
+      "ar": "أكواب شوب PP (قطر 73 مم)",
+      "subEn": "180 & 250 ml Smooth-Wall PP Beverage Cups · 73mm Rim · Cups Only in Box",
+      "subAr": "أكواب شوب بولي بروبيلين 180 و250 مل · قطر 73 مم · الكرتونة للأكواب فقط",
+      "descEn": "Economical smooth-wall polypropylene beverage and water cups with a 73mm rim (K-73-7 and K-73-9). Sold by the box (2,000 to 2,500 cups per box, without lids); compatible 73mm flat and dome lids are ordered separately by the box.",
+      "descAr": "أكواب شوب PP ملساء للمياه والمشروبات السريعة بقطر فوهة 73 مم (سعة 180 و250 مل). تُباع بالكرتونة (2000 إلى 2500 كوب بدون غطاء)، وتُطلب الأغطية المتوافقة مقاس 73 مم بالكرتونة منفصلة."
+    },
+    "pet-cup-lids": {
+      "en": "PET Cup Lids (82 / 92 / 95mm)",
+      "ar": "أغطية أكواب PET (مقاس 82 / 92 / 95 مم)",
+      "subEn": "Flat, Dome & Sipper Lids Sold by the Box · Precision Snap-Fit Seal",
+      "subAr": "أغطية مسطحة وبومبيه وسبر تُباع بالكرتونة · إغلاق محكم مانع للتسريب",
+      "descEn": "Standalone wholesale boxes of crystal-clear and black PET cup lids (1,000 pcs per box): 92mm Flat (LKF-92), 92mm Dome (LKD-92), 92mm Sipper (LKS-92 Clear & Black), 82mm Flat & Dome (LKF-82 / LKD-82), and 95mm Flat & Dome (LKF-95 / LKD-95).",
+      "descAr": "كراتين أغطية أكواب PET مستقلة (1000 غطاء في الكرتونة): أغطية 92 مم (مسطح LKF-92، بومبيه LKD-92، سبر بدون شفاط LKS-92 شفاف وأسود)، وأغطية 82 مم لأكواب تورنادو، وأغطية 95 مم لأكواب الزبادي."
+    },
+    "sweet-cups-92": {
+      "en": "Sweet & Parfait PET Cups (92mm)",
+      "ar": "أكواب الحلويات والبارفيه PET (قطر 92 مم)",
+      "subEn": "4, 5, 8 & 10 oz Wide-Mouth Dessert Cups · 92mm Rim · Cups Only in Box",
+      "subAr": "أكواب حلويات وتشيز كيك وموس 4 و5 و8 و10 أونصة · قطر 92 مم · الكرتونة للأكواب فقط",
+      "descEn": "Crystal-clear wide-profile PET sweet cups (K-92-4 through K-92-10A) ideal for layered cheesecake cups, mousse, fruit salad, and ice cream sundaes. Sold by the box (1,000 cups per box, without lids); compatible 92mm dome and flat lids are ordered separately by the box.",
+      "descAr": "أكواب حلويات PET فائقة الشفافية بفوهة واسعة 92 مم (4 و5 و8 و10 أونصة) مثالية لأكواب التشيز كيك والموس وسلطة الفواكه والآيس كريم. تُباع بالكرتونة (1000 كوب بدون غطاء)، وتُطلب كراتين الأغطية مقاس 92 مم منفصلة.",
+      "isDessertFeatured": true,
+      "dessertGroup": "sweet-yogurt"
+    },
+    "yogurt-cups-95": {
+      "en": "Yogurt & Pudding PP Cups (95mm)",
+      "ar": "أكواب الزبادي والبودينج PP (قطر 95 مم)",
+      "subEn": "140, 190 & 300 ml Food-Grade PP Dairy Cups · 95mm Rim · Cups Only in Box",
+      "subAr": "أكواب زبادي وألبان ورز بلبن 140 و190 و300 مل · قطر 95 مم · الكرتونة للأكواب فقط",
+      "descEn": "Heat-sealable and snap-lid compatible 95mm polypropylene dairy and dessert cups (K-95-140, K-95-190, K-95-300) for yogurt, rice pudding, and Mahalabia. Sold by the box (1,000 to 2,000 cups per box, without lids); compatible 95mm flat and dome PET lids are ordered separately by the box.",
+      "descAr": "أكواب بولي بروبيلين غذائية بقطر 95 مم (سعات 140 و190 و300 مل) للزبادي والرز بلبن والمهلبية. تُباع بالكرتونة (1000 إلى 2000 كوب بدون غطاء)، وتتوافق مع الأغطية المسطحة والبومبيه مقاس 95 مم التي تُطلب بالكرتونة منفصلة.",
+      "isDessertFeatured": true,
+      "dessertGroup": "sweet-yogurt"
+    },
+    "square-dessert-cups-dc": {
+      "en": "Square Dessert Cups (DC Series)",
+      "ar": "أكواب الحلويات المربعة (سلسلة DC)",
+      "subEn": "150, 200 & 300 ml Modern Square Cups in PET & PP · Separate Flat & Dome Lids",
+      "subAr": "أكواب حلويات مربعة عصرية 150 و200 و300 مل (PET وPP) · أغطية مسطحة وبومبيه منفصلة",
+      "descEn": "Architectural square dessert cups (DC-4 150ml, DC-6 200ml, DC-10 300ml) available in crystal PET and heat-resistant PP across Transparent, Black, and White. Cups are sold by the box (1,000 pcs); compatible square flat lids (LDC-F) and square dome lids (LDC-D) are ordered separately by the box.",
+      "descAr": "أكواب حلويات مربعة بتصميم هندسي أنيق (150 و200 و300 مل) متوفرة بخامتي PET الشفافة وPP الحرارية بألوان شفاف وأسود وأبيض. تُباع الأكواب بالكرتونة (1000 كوب)، وتُطلب كراتين الأغطية المربعة المسطحة (LDC-F) أو البومبيه (LDC-D) منفصلة.",
+      "isDessertFeatured": true,
+      "dessertGroup": "cups-bowls",
+      "featured": true
+    },
+    "jelly-cups-jc": {
+      "en": "PP Jelly & Custard Cups (JC Series)",
+      "ar": "أكواب الجيلي والكاسترد PP (سلسلة JC)",
+      "subEn": "100, 120 & 200 ml Ribbed & Smooth Jelly Cups · Separate Flat & Dome Lids",
+      "subAr": "أكواب جيلي وكاسترد وكريم كراميل 100 و120 و200 مل · أغطية مسطحة وبومبيه منفصلة",
+      "descEn": "Food-grade polypropylene jelly, custard, and creme caramel cups (JC-1 100ml, JC-1 200ml, JC-2 120ml). Cups are sold by the box (1,000 to 2,000 pcs); compatible flat lids (LJC) and dome lids (DLJC) are ordered separately by the box.",
+      "descAr": "أكواب PP مخصصة للجيلي والكاسترد والكريم كراميل (سعات 100 و120 و200 مل). تُباع الأكواب بالكرتونة (1000 إلى 2000 كوب)، وتُطلب الأغطية المسطحة (LJC) أو البومبيه (DLJC) بالكرتونة منفصلة.",
+      "isDessertFeatured": true,
+      "dessertGroup": "sweet-yogurt"
+    },
+    "vip-ice-cup-200": {
+      "en": "VIP Ice Cream & Dessert Cup + Lid (ICE-200)",
+      "ar": "كوب VIP للآيس كريم والحلويات بالغطاء (ICE-200)",
+      "subEn": "200 ml Heavy-Gauge PP Cup with Matching Dome Lid Included · 600 Sets/Box",
+      "subAr": "كوب VIP فاخر 200 مل مع الغطاء البومبيه متضمن في الكرتونة · 600 طقم/كرتونة",
+      "descEn": "Complete VIP 200ml dessert and gelato cup paired with its matching dome lid in one wholesale box (ICE-200, 600 complete cup+lid sets per box) in Transparent, Black, and White.",
+      "descAr": "كوب VIP فاخر سعة 200 مل للآيس كريم والجيلاتو والحلويات يأتي كاملاً مع الغطاء البومبيه داخل نفس الكرتونة (600 طقم كوب بالغطاء في الكرتونة) بألوان شفاف وأسود وأبيض.",
+      "isDessertFeatured": true,
+      "dessertGroup": "cups-bowls",
+      "featured": true
+    },
+    "ps-crystal-bowl-200": {
+      "en": "PS Crystal Bowl 200ml + Lid (DC-200)",
+      "ar": "بولة PS كريستال 200 مل بالغطاء (DC-200)",
+      "subEn": "Glass-Like Rigid PS Pastry & Tiramisu Bowl with Snap Lid Included · 720 Sets/Box",
+      "subAr": "بولة حلويات وتيراميسو كريستال صلبة 200 مل بالغطاء متضمن · 720 طقم/كرتونة",
+      "descEn": "Our #1 bestseller for patisseries: glass-clarity rigid PS crystal bowl (DC-200, 200ml, 108×108×48mm) with its flush snap-fit crystal lid included in the same box (720 complete sets per box). Showcases tiramisu, profitrol, cheesecake, and oriental fusion desserts with luxury boutique appeal.",
+      "descAr": "الأكثر مبيعاً لمحلات الحلويات والباتيسري: بولة كريستال PS صلبة فائقة النقاء تشبه الزجاج (DC-200 سعة 200 مل) مع غطائها المحكم داخل نفس الكرتونة (720 طقم كامل/كرتونة). مثالية للتيراميسو والتشيز كيك والبروفيترول والحلويات الفاخرة.",
+      "isDessertFeatured": true,
+      "dessertGroup": "cups-bowls",
+      "featured": true
+    },
+    "ps-crystal-dessert-bowls": {
+      "en": "PS Crystal Dessert Bowls (PC & SPC Series)",
+      "ar": "بولات وأكواب الحلويات الكريستال (سلسلة PC & SPC)",
+      "subEn": "110 to 300 ml Wavy, Mini Cake & Footed Crystal PS Dessert Cups · Sold by the Box",
+      "subAr": "بولات وكاسات حلويات كريستال PS تموج وميني كيك (110 إلى 300 مل) · تُباع بالكرتونة",
+      "descEn": "Rigid glass-clarity polystyrene (PS) single-serve dessert bowls and pedestal cups: Wavy Dessert Bowl 200ml (PC1), Mini Cake Cup 160ml (PC2), Ice Dessert Bowls 170ml & 300ml (PC3 & PC4), and Mini Ice Cream Cup 110ml (SPC-4). Available in Crystal Clear, Black, and White.",
+      "descAr": "تشكيلة بولات وكاسات الحلويات الكريستال الصلبة (PS) بمظهر زجاجي فاخر: بولة الحلويات المموجة 200 مل (PC1)، وكوب الميني كيك 160 مل (PC2)، وبولات الآيس كريم والحلويات 170 و300 مل (PC3 وPC4)، وكوب ميني آيس كريم 110 مل (SPC-4).",
+      "isDessertFeatured": true,
+      "dessertGroup": "cups-bowls",
+      "featured": true
+    },
+    "sauce-cups-62": {
+      "en": "Small Round Sauce Cups (62mm)",
+      "ar": "أكواب صوص دائرية صغيرة (قطر 62 مم)",
+      "subEn": "60 & 80 ml PP Portion Cups · 62mm Rim · Separate Snap-Fit Flat Lid (LK-62)",
+      "subAr": "أكواب صوص PP سعة 60 و80 مل · قطر 62 مم · غطاء مسطح محكم منفصل (LK-62)",
+      "descEn": "Compact 62mm polypropylene portion cups for dips, dressings, and condiments (K-62-60 60ml & K-62-80 80ml; 2,000 cups per box, without lids). Compatible leak-resistant PET flat lid (LK-62, 2,000 pcs/box) is ordered separately by the box.",
+      "descAr": "أكواب صوص دائرية صغيرة من البولي بروبيلين بقطر 62 مم (سعة 60 مل و80 مل؛ 2000 كوب في الكرتونة بدون غطاء). يُطلب الغطاء الشفاف المتوافق (LK-62، عدد 2000 غطاء/كرتونة) بالكرتونة منفصلاً."
+    },
+    "sauce-cups-70": {
+      "en": "Regular & Curved Sauce Cups (70mm)",
+      "ar": "أكواب صوص دائرية وعادية ومنحنية (قطر 70 مم)",
+      "subEn": "60 to 150 ml PP Sauce Cups · 70mm Rim · Separate Flat Lid (LKF-70)",
+      "subAr": "أكواب صوص 60 إلى 150 مل · قطر 70 مم · غطاء مسطح شفاف منفصل (LKF-70)",
+      "descEn": "Versatile 70mm polypropylene sauce and side-dish cups from 60ml to 150ml, including curved-base dipping cups (CK-70-60 / CK-70-85). Sold by the box (2,000 to 2,500 cups per box, without lids); compatible 70mm PET flat lid (LKF-70) is ordered separately by the box.",
+      "descAr": "أكواب صوص وسلطات جانبية PP بقطر موحد 70 مم بسعات من 60 حتى 150 مل شاملة التصميم المنحني للغمس. تُباع بالكرتونة (2000 إلى 2500 كوب بدون غطاء)، ويُطلب الغطاء الشفاف (LKF-70) بالكرتونة منفصلاً."
+    },
+    "sauce-cups-73": {
+      "en": "Round Portion Sauce Cups (73mm — 1.5 to 4 oz)",
+      "ar": "أكواب صوص دائرية بالأونصة (قطر 73 مم — 1.5 إلى 4 أونصة)",
+      "subEn": "50, 80, 100 & 120 ml Portion Cups · 73mm Rim · Separate Flat & Dome Lids",
+      "subAr": "أكواب صوص 50 و80 و100 و120 مل · قطر 73 مم · أغطية مسطحة وبومبيه منفصلة",
+      "descEn": "Standard restaurant portion cups in 1.5 oz (50ml), 2.5 oz (80ml), 3.5 oz (100ml), and 4 oz (120ml) with a 73mm rim (2,000 cups per box, without lids). Compatible 73mm flat lids (LKF-73) and dome lids (LKD-73) are ordered separately by the box.",
+      "descAr": "أكواب الصوص القياسية للمطاعم بمقاسات 1.5 و2.5 و3.5 و4 أونصة (50 إلى 120 مل) بقطر 73 مم (2000 كوب في الكرتونة بدون غطاء). تتوفر أغطية 73 مم المسطحة (LKF-73) والبومبيه (LKD-73) بالكرتونة منفصلة."
+    },
+    "oval-hinged-sauce-hst": {
+      "en": "Oval Hinged Sauce Cups (HST Series)",
+      "ar": "علب صوص بيضاوية بمفصلة (سلسلة HST)",
+      "subEn": "20, 30, 50 & 80 ml One-Piece PET Sauce Cups with Built-In Hinged Lid",
+      "subAr": "علب صوص PET قطعة واحدة بغطاء متصل محكم · سعات 20 و30 و50 و80 مل",
+      "descEn": "One-piece crystal PET oval sauce containers with an attached snap-tight hinged lid (HST-20, HST-30, HST-50, HST-80). Eliminates separate lid inventory and speeds up takeaway packing lines.",
+      "descAr": "علب صوص بيضاوية شفافة من خامة PET بغطاء متصل محكم الغلق (سعات 20 و30 و50 و80 مل). توفر وقت التعبئة في المطاعم وتمنع التسريب دون الحاجة لغطاء منفصل."
+    },
+    "rect-hinged-sauce-rst": {
+      "en": "Rectangular Hinged Sauce Cups (RST Series)",
+      "ar": "علب صوص مستطيلة بمفصلة (سلسلة RST)",
+      "subEn": "25, 30 & 60 ml One-Piece Rectangular PET Portion Cups with Built-In Lid",
+      "subAr": "علب صوص مستطيلة PET بغطاء متصل · سعات 25 و30 و60 مل",
+      "descEn": "Space-saving rectangular crystal PET hinged sauce cups (RST-20 25ml, RST-30 30ml, RST-50 60ml) designed to nest neatly inside meal boxes and sushi trays.",
+      "descAr": "علب صوص مستطيلة شفافة بغطاء متصل (سعات 25 و30 و60 مل) مصممة لتستقر بسهولة داخل علب الوجبات وصواني السوشي بأمان تام."
+    },
+    "salad-hinged-hat": {
+      "en": "Salad Hinged Containers (HAT Series)",
+      "ar": "علب سلطة شفافة بمفصلة (سلسلة HAT)",
+      "subEn": "80 to 375 ml Crystal PET Hinged Salad & Deli Packs · Built-In Lid",
+      "subAr": "علب سلطة ومقبلات PET بغطاء متصل · سعات من 80 إلى 375 مل",
+      "descEn": "Crystal-clear one-piece hinged PET containers (HAT-80 through HAT-375) for fresh salads, coleslaw, pickles, appetizers, and cold deli sides.",
+      "descAr": "علب سلطة ومقبلات شفافة قطعة واحدة بغطاء متصل محكم (من 80 حتى 375 مل) مثالية للسلطات الطازجة والكول سلو والمخللات."
+    },
+    "rect-hinged-hrec": {
+      "en": "Rectangular Hinged Containers (HREC Series)",
+      "ar": "علب مستطيلة شفافة بمفصلة (سلسلة HREC)",
+      "subEn": "250 to 1000 ml Crystal PET Clamshell Food Containers · Built-In Hinged Lid",
+      "subAr": "علب مستطيلة PET بغطاء متصل للحلويات والمخبوزات والدلي · 250 إلى 1000 مل",
+      "descEn": "All-purpose rectangular crystal PET hinged containers (HREC-250 to HREC-1000) for bakeries, patisseries, cold cuts, dates, and takeaway meals.",
+      "descAr": "علب مستطيلة شفافة من خامة PET النقية بغطاء متصل (سعات 250 و375 و500 و750 و1000 مل) للمخبوزات والحلويات والتمور ومشتقات الدلي.",
+      "isDessertFeatured": true,
+      "dessertGroup": "cake-bakery"
+    },
+    "large-rect-hinged-hct": {
+      "en": "Large Rectangular Hinged Bakery Trays (HCT-1 Series)",
+      "ar": "علب مستطيلة كبيرة بمفصلة للمخبوزات والحلويات (HCT-1)",
+      "subEn": "1000 to 2100 ml Deep & Shallow PET Bakery Clamshells · Built-In Lid",
+      "subAr": "علب مخبوزات وحلويات مستطيلة كبيرة بمفصلة · سعات 1000 إلى 2100 مل",
+      "descEn": "High-capacity rectangular hinged PET containers (HCT-1 through HCT-1D, 1000ml to 2100ml) engineered for family-size pastries, croissants, cinnamon rolls, and catering platters.",
+      "descAr": "علب مستطيلة كبيرة من PET الشفاف بغطاء متصل (سعات من 1000 حتى 2100 مل) مثالية للمخبوزات العائلية والكرواسون والسينابون والحلويات الشرقية والغربية.",
+      "isDessertFeatured": true,
+      "dessertGroup": "cake-bakery"
+    },
+    "modified-rect-hinged-hxct": {
+      "en": "Modified Rectangular Hinged Containers (HXCT Series)",
+      "ar": "علب مستطيلة معدلة بمفصلة (سلسلة HXCT)",
+      "subEn": "1200 to 2500 ml Reinforced Ribbed PET Hinged Trays · Built-In Lid",
+      "subAr": "علب مستطيلة مقواة بمفصلة للأحجام الكبيرة · سعات 1200 إلى 2500 مل",
+      "descEn": "Extra-rigid modified rectangular hinged PET containers (HXCT-1200 to HXCT-2500) with structural corner ribbing for heavy baked goods, kunafa, basbousa, and family takeaway packs.",
+      "descAr": "علب مستطيلة معدلة ومقواة بغطاء متصل (سعات 1200 حتى 2500 مل) بتدعيم جانبي لتحمل الأوزان العالية من المخبوزات والكنافة والبسبوسة والوجبات العائلية."
+    },
+    "square-hinged-sh": {
+      "en": "Square Hinged Containers (SH Series)",
+      "ar": "علب مربعة شفافة بمفصلة (سلسلة SH)",
+      "subEn": "150 to 750 ml Square Clamshell Containers in PET & PP · Built-In Lid",
+      "subAr": "علب مربعة بغطاء متصل بخامتي PET وPP · سعات 150 إلى 750 مل",
+      "descEn": "Compact to medium square hinged containers (SH-100 150ml, SH-1 350ml, SH-1A 500ml, SH-3A 750ml) for brownies, single cakes, salads, and cold sides.",
+      "descAr": "علب مربعة عملية بغطاء متصل (من 150 حتى 750 مل) متوفرة بخامتي PET وPP للبراونيز وقطع الكيك الفردية والسلطات."
+    },
+    "large-square-hinged-hct": {
+      "en": "Large Square Hinged Bakery Containers (HCT-3 / HCT-4 Series)",
+      "ar": "علب مربعة كبيرة بمفصلة للمخبوزات (HCT-3 / HCT-4)",
+      "subEn": "750 to 1900 ml Large Square PET Clamshells for Cakes & Pastries · Built-In Lid",
+      "subAr": "علب مربعة كبيرة PET بغطاء متصل للكيك والمعجنات · سعات 750 إلى 1900 مل",
+      "descEn": "Large square crystal PET hinged containers (HCT-3 750ml, HCT-3A 1100ml, HCT-4 1300ml, HCT-4A 1800ml, HCT-4B 1900ml) designed for whole square cakes, tartlets, and patisserie assortments.",
+      "descAr": "علب مربعة كبيرة فائقة الشفافية بغطاء متصل (من 750 حتى 1900 مل) مصممة خصيصاً للكيك المربع والتارت وتشكيلات المخبوزات والباتيسري.",
+      "isDessertFeatured": true,
+      "dessertGroup": "cake-bakery"
+    },
+    "bakery-hinged-hct5": {
+      "en": "Rectangular Hinged Swiss-Roll & Bakery Trays (HCT-5 Series)",
+      "ar": "علب سويسرول ومخبوزات مستطيلة بمفصلة (HCT-5)",
+      "subEn": "1100 & 1200 ml Elongated PET Bakery Clamshells · Built-In Hinged Lid",
+      "subAr": "علب مستطيلة طويلة بغطاء متصل للسويسرول والإكلير · 1100 و1200 مل",
+      "descEn": "Elongated rectangular crystal PET hinged trays (HCT-5 1200ml & HCT-5A 1100ml) tailored for Swiss rolls, éclairs, pound cakes, and cookies.",
+      "descAr": "علب مستطيلة طويلة من PET الكريستال بغطاء متصل (1100 و1200 مل) مثالية للسويسرول والإكلير والانجلش كيك والبسكويت.",
+      "isDessertFeatured": true,
+      "dessertGroup": "cake-bakery"
+    },
+    "bulgarian-hinged-sh": {
+      "en": "Bulgarian Square Hinged Containers (SH-4 to SH-6)",
+      "ar": "علب بلغاري مربعة بمفصلة (SH-4 إلى SH-6)",
+      "subEn": "500 to 1000 ml Wide Square PET Hinged Containers · Built-In Lid",
+      "subAr": "علب بلغاري مربعة واسعة بغطاء متصل · سعات 500 إلى 1000 مل",
+      "descEn": "Wide-format Bulgarian square PET hinged containers (SH-4 500ml, SH-5 750ml, SH-6 850ml & 1000ml) offering generous surface area for pastries, salads, and cold mezze.",
+      "descAr": "علب بلغاري مربعة واسعة من PET الشفاف بغطاء متصل (سعات 500 و750 و850 و1000 مل) تمنح مساحة عرض ممتازة للحلويات الشرقية والسلطات والمقبلات."
+    },
+    "smart-hinged-shrec": {
+      "en": "Smart Hinged Containers — Flat & Dome Lid (SHREC Series)",
+      "ar": "علب سمارت بمفصلة — غطاء مسطح وبومبيه (سلسلة SHREC)",
+      "subEn": "500, 750 & 1000 ml Architectural PET Clamshells · Flat or High-Dome Profile",
+      "subAr": "علب سمارت PET بتصميم عصري · متوفرة بغطاء مسطح أو بومبيه عالي (500 إلى 1000 مل)",
+      "descEn": "Next-generation Smart Rectangular Hinged PET containers (SHREC-5A 500ml, SHREC-5 750ml, SHREC-6 1000ml), each available in both a sleek Flat Hinged Lid and a high-clearance Dome Hinged Lid for topped desserts and bakery items.",
+      "descAr": "الجيل الجديد من علب سمارت المستطيلة بمفصلة (500 و750 و1000 مل)، متوفرة بخيارين للغطاء المتصل: غطاء مسطح أنيق أو غطاء بومبيه مرتفع يحمي تزيين الحلويات والمخبوزات.",
+      "isDessertFeatured": true,
+      "dessertGroup": "cake-bakery",
+      "featured": true
+    },
+    "round-hinged-rh": {
+      "en": "Round Hinged Containers (RH Series)",
+      "ar": "علب دائرية شفافة بمفصلة (سلسلة RH)",
+      "subEn": "200 to 1500 ml Round Crystal PET Clamshell Bowls · Built-In Lid",
+      "subAr": "علب وبولات دائرية PET بغطاء متصل · سعات 200 إلى 1500 مل",
+      "descEn": "Full range of round crystal PET hinged bowls (RH0 200ml through RH6-L 1500ml) for fruit cuts, salads, nuts, koshary, and round cakes.",
+      "descAr": "مجموعة كاملة من العلب الدائرية الشفافة بغطاء متصل (من 200 مل حتى 1500 مل) لسلطات الفواكه والمكسرات والسلطات الخضراء والمخبوزات الدائرية."
+    },
+    "turkish-lotus-hinged": {
+      "en": "Lotus & Turkish Hinged Dessert Containers",
+      "ar": "علب لوتس وتركي بمفصلة للحلويات",
+      "subEn": "375, 550 & 750 ml Decorative Fluted PET Hinged Packs · Built-In Lid",
+      "subAr": "علب حلويات لوتس وتركي مزخرفة بغطاء متصل · سعات 375 و550 و750 مل",
+      "descEn": "Ornamental Lotus and Turkish-style crystal PET hinged containers (Small Lotus 375ml, Large Lotus 750ml, Rectangular Turkish 550ml, Round Turkish 550ml) designed for premium oriental sweets, milk cakes, and pastry gifting.",
+      "descAr": "علب لوتس وتركي شفافة بتصميم مزخرف فاخر وغطاء متصل (لوتس صغير 375 مل، لوتس كبير 750 مل، تركي مستطيل ودائري 550 مل) مصممة للحلويات الشرقية وكيك الحليب والهدايا.",
+      "isDessertFeatured": true,
+      "dessertGroup": "cake-bakery"
+    },
+    "safety-hinged-sch": {
+      "en": "Tamper-Evident Safety Hinged Containers (SCH Series)",
+      "ar": "علب الأمان محكمة الغلق بمفصلة (سلسلة SCH)",
+      "subEn": "200 to 2000 ml Tamper-Evident Lock PET Containers · Flat & Dome Profiles",
+      "subAr": "علب أمان PET بقفل حماية ضد الفتح · سعات 200 إلى 2000 مل (مسطح وبومبيه)",
+      "descEn": "High-security tamper-evident crystal PET hinged containers (SCH-1 200ml through SCH-6 2000ml, plus SCH-2C & SCH-4A in Flat and Dome) for supermarket grab-and-go desserts, nuts, dates, salads, and confectionery.",
+      "descAr": "علب الأمان الشفافة المزودة بقفل حماية محكم يضمن عدم فتح العبوة قبل وصولها للعميل (سعات من 200 مل حتى 2000 مل، مع خيارات غطاء مسطح وبومبيه) مثالية للسوبر ماركت والحلويات والمكسرات والتمور.",
+      "featured": true
+    },
+    "secured-hinged-sbt": {
+      "en": "Rectangular Secured Hinged Trays (SBT Series)",
+      "ar": "علب مستطيلة محكمة الغلق بمفصلة (سلسلة SBT)",
+      "subEn": "700 & 1000 ml Perimeter-Lock PET Hinged Bakery & Deli Trays",
+      "subAr": "علب مستطيلة بقفل محيطي محكم للمخبوزات والدلي · 700 و1000 مل",
+      "descEn": "Heavy-duty perimeter-locking crystal PET hinged trays (SBT-2 700ml and SBT-3 1000ml) ensuring spill-free delivery for pastries and cold meals.",
+      "descAr": "علب مستطيلة شفافة بقفل محيطي فائق الإحكام (700 و1000 مل) تحافظ على المخبوزات والحلويات والوجبات الباردة أثناء التوصيل."
+    },
+    "produce-clamshells": {
+      "en": "Ventilated Produce Clamshells (Strawberries, Grapes & Tomatoes)",
+      "ar": "علب خضروات وفواكه مثقبة بمفصلة (فراولة وعنب وطماطم شيري)",
+      "subEn": "250g, 500g & 1000g Export-Grade Vented PET Produce Packs · Built-In Lid",
+      "subAr": "عبوات فواكه وخضروات PET مثقبة للتصدير والسوبر ماركت · 250 و500 و1000 جم",
+      "descEn": "Export-quality ventilated crystal PET produce clamshells for 250g/500g strawberries, 500g/1000g grapes, and 250g cherry tomatoes, engineered for optimal cold-chain airflow.",
+      "descAr": "علب خضروات وفواكه شفافة مثقبة بمواصفات التصدير (للفراولة 250/500 جم، والعنب 500/1000 جم، والطماطم الشيري 250 جم) بتهوية مدروسة للحفاظ على النضارة في الثلاجات."
+    },
+    "meal-tray-rlb": {
+      "en": "Meal Trays with Lids — 1 to 4 Sections (RLB Series)",
+      "ar": "علب وجبات مقسمة بالغطاء — 1 إلى 4 أقسام (سلسلة RLB)",
+      "subEn": "1100 ml Microwaveable PP Meal Trays (Black/White) + Matching Clear PET Lids",
+      "subAr": "علب وجبات PP مايكروويف (1 إلى 4 أقسام) + أغطية PET شفافة متوافقة (LRLB)",
+      "descEn": "Industry-standard 24.4×19.8 cm polypropylene meal trays in 1, 2, 3, and 4 compartments (RLB-1 to RLB-4, 600 pcs/box) paired with matching crystal-clear embossed dome lids (LRLB-1 to LRLB-4, 600 pcs/box). Ideal for corporate catering, restaurants, and meal-prep brands.",
+      "descAr": "علب الوجبات القياسية الأكثر طلباً للمطاعم وشركات التغذية مقاس 24.4×19.8 سم متوفرة بـ 1 و2 و3 و4 أقسام (RLB-1 إلى RLB-4، عدد 600 قاعدة/كرتونة) مع أغطيتها الشفافة المتوافقة لكل تقسيمة (LRLB-1 إلى LRLB-4، عدد 600 غطاء/كرتونة).",
+      "featured": true
+    },
+    "jumbo-meal-tray-fxmc": {
+      "en": "Medium Jumbo Meal Trays with Lids — 1 to 3 Sections (FXMC)",
+      "ar": "علب وجبات جامبو متوسطة بالغطاء — 1 إلى 3 أقسام (FXMC)",
+      "subEn": "900 ml Deep Footprint PP Meal Trays + Matching Divided Clear Lids (LXMC)",
+      "subAr": "علب وجبات جامبو PP (1 و2 و3 أقسام) + أغطية شفافة محكمة لكل قسم (LXMC)",
+      "descEn": "Extra-sturdy Jumbo meal trays (FXMC-1, FXMC-2, FXMC-3; 27×20.3×4.5 cm, 400 pcs/box) with compartment-sealing clear PET lids (LXMC-1, LXMC-2, LXMC-3; 400 pcs/box) that prevent sauce crossover between sections.",
+      "descAr": "علب وجبات جامبو متينة مقاس 27×20.3 سم متوفرة بـ 1 و2 و3 أقسام (400 قاعدة/كرتونة) مع أغطية شفافة مخصصة تعزل كل قسم لمنع اختلاط الصوصات والأطعمة أثناء التوصيل (400 غطاء/كرتونة)."
+    },
+    "small-krno-meal-kslb": {
+      "en": "Small KRNO Meal Trays with Lids — 1 to 3 Sections (KSLB)",
+      "ar": "علب وجبات كرنو صغيرة بالغطاء — 1 إلى 3 أقسام (KSLB)",
+      "subEn": "500 to 650 ml Compact PP Meal Boxes + Matching Clear Lids (LKSLB)",
+      "subAr": "علب وجبات كرنو صغيرة PP (1 إلى 3 أقسام) + أغطية شفافة متوافقة (LKSLB)",
+      "descEn": "Compact 20×16 cm polypropylene meal trays in 1, 2, and 3 sections (KSLB-1, KSLB-2, KSLB-3; 600 pcs/box) paired with crystal-clear compartmentalized lids (LKSLB-1/2/3; 600 pcs/box) for kids' meals, combo sides, and diet plans.",
+      "descAr": "علب وجبات كرنو صغيرة مقاس 20×16 سم متوفرة بـ 1 و2 و3 أقسام (600 قاعدة/كرتونة) مع أغطيتها الشفافة المتوافقة (600 غطاء/كرتونة) لوجبات الدايت ووجبات الأطفال والأصناف الجانبية."
+    },
+    "krno-meal-slb": {
+      "en": "KRNO Medium Square Meal Trays with Lids — 1 to 3 Sections (SLB)",
+      "ar": "علب وجبات كرنو مربعة متوسطة بالغطاء — 1 إلى 3 أقسام (SLB)",
+      "subEn": "750 to 1050 ml Square PP Meal Trays (20.7×20.7 cm) + Clear Lids (LSLB)",
+      "subAr": "علب وجبات كرنو مربعة 20.7×20.7 سم (1 إلى 3 أقسام) + أغطية شفافة (LSLB)",
+      "descEn": "Square 20.7×20.7×4.6 cm microwave-safe PP meal trays in 1, 2, and 3 compartments (SLB-1, SLB-2, SLB-3; 400 pcs/box) paired with matching transparent lids (LSLB-1, LSLB-2, LSLB-3; 400 pcs/box).",
+      "descAr": "علب وجبات كرنو مربعة مقاس 20.7×20.7 سم تتحمل المايكروويف متوفرة بـ 1 و2 و3 أقسام (400 قاعدة/كرتونة) مع أغطيتها الشفافة المحكمة (LSLB-1/2/3، عدد 400 غطاء/كرتونة)."
+    },
+    "vip-meal-ilb": {
+      "en": "VIP Meal Trays with Lids — 1 & 2 Sections (ILB Series)",
+      "ar": "علب وجبات VIP بالغطاء — 1 و2 قسم (سلسلة ILB)",
+      "subEn": "800 & 1100 ml Heavy-Gauge VIP PP Meal Boxes with Lid Included · 400 Sets/Box",
+      "subAr": "علب وجبات VIP فاخرة شاملة الغطاء في نفس الكرتونة · 400 طقم/كرتونة",
+      "descEn": "Complete VIP microwaveable meal containers shipped with both the heavy-gauge PP tray and clear dome lid in the same box (ILB-1 1-section 1100ml & ILB-2 2-section 800ml; 400 complete sets per box).",
+      "descAr": "علب وجبات VIP فاخرة تأتي كاملة بالقاعدة والغطاء الشفاف داخل نفس الكرتونة (ILB-1 قسم واحد 1100 مل، وILB-2 قسمان 800 مل؛ 400 طقم كامل في الكرتونة)."
+    },
+    "omw-meal-tray": {
+      "en": "Oval/Rect Meal Trays 750 & 1000ml + Lid (OMW Series)",
+      "ar": "علب وجبات مايكروويف 750 و1000 مل بالغطاء (سلسلة OMW)",
+      "subEn": "750 & 1000 ml PP Meal Trays with Matching Lid Included · 600 Sets/Box",
+      "subAr": "علب وجبات PP سعة 750 و1000 مل شاملة الغطاء في الكرتونة · 600 طقم/كرتونة",
+      "descEn": "Streamlined single-compartment microwave meal trays with snap-fit lids included in the same box (OMW-750 and OMW-1000; 600 complete sets per box) in Transparent, Black, and White.",
+      "descAr": "علب وجبات عملية للمايكروويف بغطاء محكم متضمن داخل نفس الكرتونة (سعتا 750 مل و1000 مل؛ 600 طقم كامل في الكرتونة) بألوان شفاف وأسود وأبيض."
+    },
+    "rect-microwave-mc": {
+      "en": "Rectangular Microwave Trays with Lids — 12 to 32 oz (MC Series)",
+      "ar": "علب مايكروويف مستطيلة بالغطاء — 12 إلى 32 أونصة (سلسلة MC)",
+      "subEn": "375 to 1000 ml Universal Footprint PP Trays + Shared Dome or Flat Lids (LMC)",
+      "subAr": "علب مايكروويف مستطيلة (375 إلى 1000 مل) تشترك في غطاء موحد بومبيه أو مسطح (LMC)",
+      "descEn": "Five modular rectangular PP microwave containers (MC-12 375ml, MC-16 500ml, MC-20 650ml, MC-24 750ml, MC-32 1000ml; 500 pcs/box) that all share a single 17.5×12.1 cm top rim, pairing with either the Embossed Dome Lid (LMC-04) or Plain Flat Lid (LMC-03).",
+      "descAr": "خمس مقاسات من علب المايكروويف المستطيلة (من 375 مل حتى 1000 مل؛ 500 قاعدة/كرتونة) تشترك جميعها في مقاس فوهة موحد، مما يتيح استخدام غطاء واحد لجميع المقاسات سواء الغطاء البومبيه (LMC-04) أو المسطح (LMC-03).",
+      "featured": true
+    },
+    "fridge-microwave-mw": {
+      "en": "Deep Fridge & Microwave Containers + Lid (MW Series)",
+      "ar": "علب ثلاجة ومايكروويف عميقة بالغطاء (سلسلة MW)",
+      "subEn": "500, 750 & 1000 ml Reusable-Grade PP Containers with Lid Included · 400 Sets/Box",
+      "subAr": "علب ثلاجة ومايكروويف PP متينة شاملة الغطاء · سعات 500 و750 و1000 مل (400 طقم/كرتونة)",
+      "descEn": "Freezer-to-microwave polypropylene food storage and delivery containers with tight-sealing lids included in the box (MW-500, MW-750, MW-1000; 400 complete sets per box).",
+      "descAr": "علب ثلاجة ومايكروويف عميقة عالية المتانة للحفظ والتسخين والتوصيل تأتي كاملة بالغطاء داخل الكرتونة (سعات 500 و750 و1000 مل؛ 400 طقم كامل/كرتونة)."
+    },
+    "pasta-containers-smw": {
+      "en": "Square Pasta & Hot Meal Containers + Lid (SMW Series)",
+      "ar": "علب باستا ووجبات ساخنة مربعة بالغطاء (سلسلة SMW)",
+      "subEn": "750, 1000 & 1250 ml Square PP Containers with Lid Included · 500 Sets/Box",
+      "subAr": "علب باستا وطواجن مربعة PP شاملة الغطاء · سعات 750 و1000 و1250 مل (500 طقم/كرتونة)",
+      "descEn": "Modern 17×17 cm square microwaveable polypropylene containers with snap-fit lids included in the box (SMW 750ml, 1000ml, and 1250ml; 500 complete sets per box). A favorite for pasta bars, salads, and hot casseroles.",
+      "descAr": "علب باستا مربعة أنيقة مقاس 17×17 سم تتحمل الحرارة والمايكروويف وتأتي كاملة مع الغطاء في نفس الكرتونة (سعات 750 و1000 و1250 مل؛ 500 طقم/كرتونة)."
+    },
+    "sushi-trays-ct": {
+      "en": "Black Sushi & Patisserie Trays with Clear Lids (CT / KDR Series)",
+      "ar": "علب سوشي وحلويات سوداء بغطاء كريستال شفاف (CT / KDR)",
+      "subEn": "6 Tray Sizes from Mini 16.6×9cm to Party Platter 32.5×26.5cm + Anti-Fog Clear Lids",
+      "subAr": "6 مقاسات من علب السوشي والجاتوه بقاعدة سوداء/حمراء وأغطية PET بومبيه فائقة النقاء",
+      "descEn": "Complete range of rigid PET sushi and mini-pastry presentation trays (CT-0, KDR-1, KDR-3, CT-1, CT-2, CT-3) in Black and Red & Black, paired with high-clarity snap-on dome lids (LCT-0, LCT-00, LABS-3, LCT-1, LCT-2, LCT-3).",
+      "descAr": "التشكيلة الكاملة من علب السوشي والجاتوه السواريه بمظهر فاخر (6 مقاسات من الفردي حتى صواني الحفلات) باللون الأسود أو الأحمر×أسود مع أغطيتها الكريستال الشفافة المحكمة.",
+      "featured": true
+    },
+    "rect-deli-rec": {
+      "en": "Rectangular PET Deli Containers with Lids — 8 to 32 oz (REC Series)",
+      "ar": "علب دلي وأجبان مستطيلة PET بالغطاء — 8 إلى 32 أونصة (سلسلة REC)",
+      "subEn": "250 to 1000 ml Crystal-Clear Deli Containers + Shared Universal Lids (LREC)",
+      "subAr": "علب دلي مستطيلة فائقة الشفافية (250 إلى 1000 مل) مع أغطية محكمة مانعة للتسريب",
+      "descEn": "Supermarket-grade crystal PET rectangular deli containers (REC-8 250ml, REC-2 375ml, REC-3 500ml, REC-4 750ml, REC-375G 1000ml, REC-5 1000ml) paired with universal snap-tight clear lids (LREC8, LREC, LREC1) for cheeses, halawa, olives, honey, and salads.",
+      "descAr": "علب دلي مستطيلة من خامة PET النقية للسوبر ماركت ومعامل الألبان (سعات 250 و375 و500 و750 و1000 مل) مع أغطيتها الشفافة فائقة الإحكام لتعبئة الأجبان والحلاوة والزيتون والعسل."
+    },
+    "octal-deli-reca": {
+      "en": "Octal PET Deli Containers with Lids — 8 to 32 oz (REC-A Series)",
+      "ar": "علب دلي ثمانية الأضلاع PET بالغطاء — 8 إلى 32 أونصة (سلسلة REC-A)",
+      "subEn": "250 to 1000 ml Faceted Octagonal Crystal PET Deli Packs + Matching Lids (LREC-A)",
+      "subAr": "علب دلي ثمانية الأضلاع بتصميم مضلع متين (250 إلى 1000 مل) مع أغطيتها المتوافقة",
+      "descEn": "Octagonal-cornered crystal PET deli containers (REC-8A 250ml, REC-2A 375ml, REC-3A 500ml, REC-4A 750ml, REC-5A 1000ml, REC-6A 1000ml) offering superior crush resistance on refrigerated shelves, paired with matching LREC-A clear lids.",
+      "descAr": "علب دلي ثمانية الأضلاع من PET الكريستال (سعات 250 حتى 1000 مل) تمنح صلابة إضافية عند الرص في ثلاجات العرض بالسوبر ماركت، مع أغطيتها الشفافة المحكمة (LREC-A)."
+    },
+    "clear-rect-brt": {
+      "en": "Clear Rectangular & 2-Section PET Containers with Lids (BRT Series)",
+      "ar": "علب PET مستطيلة ومقسمة بالغطاء (سلسلة BRT)",
+      "subEn": "500, 750 & 1000 ml 1-Section and 700 ml 2-Section PET Trays + Clear Lids (LBRT)",
+      "subAr": "علب PET شفافة سادة (500 إلى 1000 مل) ومقسمة قسمين (700 مل) مع أغطيتها (LBRT)",
+      "descEn": "Heavy-wall crystal PET rectangular containers in 1-compartment (BRT-1 500ml, BRT-2 750ml, BRT-3 1000ml + LBRT lid) and 2-compartment divided configuration (BRT-1D 700ml + LBRT-D divided lid) for nuts, dried fruits, sweets, and cold meals.",
+      "descAr": "علب PET مستطيلة سميكة فائقة الشفافية متوفرة بقسم واحد (500 و750 و1000 مل مع غطاء LBRT) أو مقسمة لقسمين (BRT-1D سعة 700 مل مع غطاء مقسم LBRT-D) للمكسرات والحلويات والفواكه المجففة."
+    },
+    "dairy-containers-dt": {
+      "en": "Square Dairy & Halawa Containers with Lids (DT — PET & PP)",
+      "ar": "علب ألبان وحلاوة مربعة بالغطاء (DT — خامات PET وPP)",
+      "subEn": "250 & 500 ml Square Containers in Crystal PET or Heat-Safe PP + Lids (LDT-1/2)",
+      "subAr": "علب مربعة 250 و500 مل متوفرة بخامة PET أو PP الحرارية مع الأغطية (LDT-1/2)",
+      "descEn": "Square 12.1×12.1 cm dairy and confectionery containers in 250ml (DT1 PET & DT-1 PP) and 500ml (DT-2 PET & DT-2 PP), paired with universal square snap lids (LDT-1 PET & LDT-2 PP).",
+      "descAr": "علب مربعة مقاس 12.1×12.1 سم لتعبئة القشطة والألبان والحلاوة الطحينية والتمور بسعتي 250 مل و500 مل (متوفرة بخامتي PET الشفافة وPP الحرارية) مع أغطيتها المربعة المحكمة."
+    },
+    "rizo-bowls-rk": {
+      "en": "Rizo Bowls with Lids — Small, Medium & Large (RK Series)",
+      "ar": "بولات ريزو بالغطاء — صغير ومتوسط وكبير (سلسلة RK)",
+      "subEn": "480, 620 & 850 ml Microwave-Safe PP Bowls with Matching Lid Included · 800 Sets/Box",
+      "subAr": "بولات ريزو وكشري PP مايكروويف شاملة الغطاء · سعات 480 و620 و850 مل (800 طقم/كرتونة)",
+      "descEn": "Egypt's go-to round Rizo, Koshary, and hot rice bowls with matching snap lids included in the box: Small 480ml (RK1-01), Medium 620ml (RK2-01), and Large 850ml (RK3-3) in Black, White, and Transparent (800 complete sets per box).",
+      "descAr": "بولات الريزو والكشري والأرز الأكثر انتشاراً في مطاعم مصر، تتحمل الحرارة والمايكروويف وتأتي كاملة مع الغطاء داخل الكرتونة بـ 3 مقاسات: صغير 480 مل، متوسط 620 مل، وكبير 850 مل (800 طقم كامل/كرتونة).",
+      "featured": true
+    },
+    "versace-meal-bowls": {
+      "en": "Versace Pattern Meal Bowls + Lid (RKV Series)",
+      "ar": "بولات وجبات وريزو بنقشة فيرساتشي بالغطاء (RKV)",
+      "subEn": "480 & 620 ml Embossed Versace Rim PP Bowls with Lid Included · 600 Sets/Box",
+      "subAr": "بولات وجبات وريزو فاخرة بنقشة فيرساتشي شاملة الغطاء · 480 و620 مل (600 طقم/كرتونة)",
+      "descEn": "Distinctive Versace-pattern embossed polypropylene round bowls with clear dome lids included in the box (Small 16oz/480ml and Medium 22oz/620ml; 600 complete sets per box).",
+      "descAr": "بولات وجبات وريزو دائرية بتصميم إطار فيرساتشي البارز مع الغطاء الشفاف متضمن داخل الكرتونة (سعة 480 مل و620 مل؛ 600 طقم كامل في الكرتونة)."
+    },
+    "export-rizo-trk": {
+      "en": "Export Rizo Bowls with Lid — 400 to 1000ml (TRK Series)",
+      "ar": "بولات ريزو تصدير بالغطاء — 400 إلى 1000 مل (سلسلة TRK)",
+      "subEn": "400, 500, 750 & 1000 ml Heavy-Duty PP Bowls + Universal 15cm Lid (TLRK1)",
+      "subAr": "بولات ريزو تصدير ثقيلة (400 و500 و750 و1000 مل) تشترك في غطاء موحد قطر 15 سم (TLRK1)",
+      "descEn": "Export-grade heavy-wall polypropylene Rizo bowls in four capacities (TRK-400, TRK-500, TRK-750, TRK-1000; 500 pcs/box) sharing a single universal 15 cm leak-proof lid (TLRK1; 500 pcs/box).",
+      "descAr": "بولات ريزو بمواصفات التصدير عالية السماكة بـ 4 سعات مختلفة (400 و500 و750 و1000 مل؛ 500 بولة/كرتونة) تشترك جميعها في مقاس غطاء موحد محكم الغلق قطر 15 سم (TLRK1؛ 500 غطاء/كرتونة)."
+    },
+    "lotus-rizo-crb-hrb": {
+      "en": "Lotus Rizo Bowls with Lid — Cold PET & Hot PP (CRB / HRB)",
+      "ar": "بولات ريزو لوتس بالغطاء — بارد PET وساخن PP (CRB / HRB)",
+      "subEn": "400 & 600 ml Fluted Lotus Bowls in Crystal PET or Hot PP + Universal Lid (LHCRB-1)",
+      "subAr": "بولات لوتس مضلعة 400 و600 مل للحلويات الباردة (PET) أو الريزو الساخن (PP) + غطاء موحد",
+      "descEn": "Fluted Lotus round bowls available in Crystal PET for cold desserts/fruit salads (CRB-1 400ml, CRB-2 600ml) and Microwave PP for hot Rizo/meals (HRB-1 400ml, HRB-2 600ml), all sharing the universal crystal PET lid (LHCRB-1).",
+      "descAr": "بولات لوتس مضلعة أنيقة متوفرة بخامة PET الشفافة للحلويات الباردة وأم علي والسلطات (400 و600 مل) وبخامة PP الحرارية للريزو والوجبات الساخنة (400 و600 مل)، مع غطاء كريستال موحد (LHCRB-1)."
+    },
+    "soup-bowls-sb": {
+      "en": "PP Hot Soup Bowls with Lids — 325 to 550ml (SB Series)",
+      "ar": "بولات شوربة ساخنة PP بالغطاء — 325 إلى 550 مل (سلسلة SB)",
+      "subEn": "325, 480 & 550 ml Microwave-Safe PP Soup Bowls with Tight-Sealing Lids (LSB)",
+      "subAr": "بولات شوربة PP تتحمل الغليان والمايكروويف (325 و480 و550 مل) مع أغطية محكمة مانعة للتسريب",
+      "descEn": "Heat-resistant polypropylene soup bowls in Small 325ml (SB1), Medium 480ml (SB2 & SB2-A1), and Large 550ml (SB3), available with universal 11.7 cm snap-fit PP lids (LSB) or complete Bowl+Lid combo cartons (SB1/LSB & SB2-LSB).",
+      "descAr": "بولات شوربة PP مخصصة للسوائل الساخنة والمايكروويف بـ 3 مقاسات (صغير 325 مل، متوسط 480 مل، كبير 550 مل) مع غطاء محكم مانع للتسريب قطر 11.7 سم (متوفرة كراتين بولات + أغطية منفصلة أو كرتونة كومبو شاملة الغطاء)."
+    },
+    "rondo-bowls-k115": {
+      "en": "Rondo Round & Rippled Bowls with Lid (K-115 Series)",
+      "ar": "بولات روندو دائرية ومضلعة بالغطاء (سلسلة K-115)",
+      "subEn": "180 to 400 ml Smooth & Rippled PP Bowls (115mm Rim) + Universal Clear Lid (LSLB)",
+      "subAr": "بولات روندو ملساء ومضلعة (180 إلى 400 مل) بقطر 115 مم للحلويات والشوربة + غطاء شفاف موحد",
+      "descEn": "Versatile 115mm polypropylene Rondo bowls in Smooth (200ml, 250ml, 400ml) and Rippled (180ml, 250ml) profiles across Transparent, White, and Black, all pairing with the universal 115mm crystal PET lid (LSLB, 1,000 pcs/box). Widely used for rice pudding, Qashtouta, hot soup, and side salads.",
+      "descAr": "بولات روندو الشهيرة بقطر موحد 115 مم متوفرة بتصميم أملس (200 و250 و400 مل) ومضلع (180 و250 مل) بألوان شفاف وأبيض وأسود مع غطاء PET شفاف موحد (1000 قطعة/كرتونة). مثالية للرز بلبن والقشطوطة والشوربة والسلطات.",
+      "isDessertFeatured": true,
+      "dessertGroup": "sweet-yogurt"
+    },
+    "cheesecake-tray-ck1": {
+      "en": "Cheesecake Slice Hinged Container (CK-1)",
+      "ar": "علبة شريحة تشيز كيك مثلثة بمفصلة (CK-1)",
+      "subEn": "300 ml Wedge-Shaped Crystal PET Hinged Slice Pack (14.5×12×7 cm) · 800 Pcs/Box",
+      "subAr": "علبة مثلثة فائقة الشفافية بغطاء متصل لشرائح التشيز كيك والتورتة · 800 قطعة/كرتونة",
+      "descEn": "Crystal-clear triangular wedge PET hinged container (CK-1, 300ml, 14.5×12×7 cm; 800 pcs/box) with an integrated snap-lock dome lid that protects tall cheesecake, gateau, and torte slices without touching the frosting.",
+      "descAr": "علبة شرائح التشيز كيك والجاتوه المثلثة من خامة PET الكريستال بغطاء متصل مرتفع (مقاس 14.5×12×7 سم، 800 قطعة/كرتونة) يحمي طبقة التزيين والكريمة ويبرز جمال القطعة.",
+      "isDessertFeatured": true,
+      "dessertGroup": "cake-bakery",
+      "featured": true
+    },
+    "square-cake-gt": {
+      "en": "Square Cake Containers with Dome Lids (GT 25×25 & 28×28 cm)",
+      "ar": "علب التورتة والكيك المربعة بغطاء بومبيه (GT مقاس 25×25 و28×28 سم)",
+      "subEn": "Anti-Slip Waffle Base (Black/White) + 3 Crystal PET Dome Lid Heights (8, 10 & 13 cm)",
+      "subAr": "قاعدة تورتة مربعة مضلعة مانعة للانزلاق + أغطية بومبيه كريستال بـ 3 ارتفاعات (8 و10 و13 سم)",
+      "descEn": "Patisserie-grade square cake and torte packaging system available in two footprints — 25×25 cm (GT-250 base, 200 pcs/box) and 28×28 cm (GT-280 base, 200 pcs/box) with an anti-slip textured waffle floor — paired with crystal-clear structural PET dome lids in Low (SLGT-250 8cm / SLGT-280 8.5cm), Medium (MLGT-250 10cm / MLGT-280 10.5cm), and High Torte Dome (HLGT-250 13cm).",
+      "descAr": "نظام تغليف التورتة والكيك المربع الفاخر لمحلات الحلويات والباتيسري بمقاسين: 25×25 سم (قاعدة GT-250) و28×28 سم (قاعدة GT-280) بأرضية مضلعة تمنع انزلاق الكيك، مع خيارات أغطية بومبيه PET فائقة الشفافية بثلاثة ارتفاعات: منخفض (8 / 8.5 سم)، متوسط (10 / 10.5 سم)، وعالي للتورت المرتفعة (13 سم).",
+      "isDessertFeatured": true,
+      "dessertGroup": "cake-bakery",
+      "featured": true
+    },
+    "ps-rect-dessert-trays": {
+      "en": "PS Rectangular Dessert Trays + Lid (BSRT-1 & BLRT)",
+      "ar": "صواني حلويات PS مستطيلة بالغطاء (BSRT-1 & BLRT)",
+      "subEn": "300 & 500 ml Rigid Crystal PS Dessert Trays with Clear Snap Lid Included",
+      "subAr": "علب وصواني حلويات PS كريستال صلبة 300 و500 مل شاملة الغطاء الشفاف في الكرتونة",
+      "descEn": "Rigid glass-finish polystyrene rectangular dessert trays with crystal-clear lids included in the same box: Small 300ml (BSRT-1, 16×10.6×3.8 cm, 440 sets/box) and Large 500ml (BLRT, 17×11.5×4.1 cm, 456 sets/box). Ideal for Qashtouta, tres leches, kunafa, and tiramisu.",
+      "descAr": "صواني حلويات مستطيلة من البوليسترين الكريستال الصلب (PS) تأتي كاملة مع الغطاء الشفاف داخل الكرتونة بمقاسين: صغير 300 مل (BSRT-1، عدد 440 طقم/كرتونة) وكبير 500 مل (BLRT، عدد 456 طقم/كرتونة). مثالية للقشطوطة، كيك الحليب، التيراميسو، والكنافة بالمانجو.",
+      "isDessertFeatured": true,
+      "dessertGroup": "ps-trays",
+      "featured": true
+    },
+    "ps-turky-dessert-trays": {
+      "en": "PS Turkish Dessert Trays + Lid (250 to 1600 ml)",
+      "ar": "صواني حلويات تركي PS بالغطاء (250 إلى 1600 مل)",
+      "subEn": "5 Sizes of Rigid PS Turkish Patisserie Trays with Crystal Lid Included",
+      "subAr": "5 مقاسات من صواني الحلويات التركي الكريستال الصلبة شاملة الغطاء (من الفردي للعائلي)",
+      "descEn": "Complete 5-size lineup of rigid PS Turkish dessert trays with crystal-clear lids included in every box: Square 250ml (1RST-1A, 480 sets/box), Square 400ml (RST-1, 450 sets/box), Rectangular 400ml (LSTL, 420 sets/box), Rectangular 500ml (TL-1C, 396 sets/box), and Family Size 1600ml (LDT, 24.4×17.1×5.2 cm, 126 sets/box).",
+      "descAr": "المجموعة الكاملة (5 مقاسات) من صواني الحلويات التركي المصنوعة من PS الكريستال الصلب مع الغطاء الشفاف متضمن داخل الكرتونة: مربع 250 مل (1RST-1A)، مربع 400 مل (RST-1)، مستطيل 400 مل (LSTL)، مستطيل 500 مل (TL-1C)، والمقاس العائلي الكبير 1600 مل (LDT) بألوان شفاف وأسود وأبيض.",
+      "isDessertFeatured": true,
+      "dessertGroup": "ps-trays",
+      "featured": true
+    },
+    "ps-duet-trays": {
+      "en": "PS Duet 2-Section Dessert Trays + Lid (T-2C & STC-2C)",
+      "ar": "صواني حلويات دويت مقسمة قسمين PS بالغطاء (T-2C & STC-2C)",
+      "subEn": "260 & 360 ml Twin-Compartment Rigid PS Dessert Trays with Clear Lid Included",
+      "subAr": "صواني دويت مقسمة لقسمين للحلويات والصوصات شاملة الغطاء · سعتا 260 و360 مل",
+      "descEn": "Two-compartment rigid crystal PS Duet trays with snap-fit clear lids included in the box: Standard Duet 360ml (T-2C / LT-2C, 21.8×14×2.2 cm, 330 sets/box) and Small Duet 260ml (STC-2C, 17.7×9.8×3 cm, 480 sets/box). Perfect for pairing cake or kunafa with a separate chocolate/pistachio sauce well.",
+      "descAr": "صواني حلويات دويت PS الصلبة المقسمة لقسمين مع الغطاء الشفاف داخل الكرتونة: دويت قياسي 360 مل (T-2C، عدد 330 طقم/كرتونة) ودويت صغير 260 مل (STC-2C، عدد 480 طقم/كرتونة). مثالية لتقديم الحلويات مع قسم مستقل لصوص الشوكولاتة أو البستاشيو.",
+      "isDessertFeatured": true,
+      "dessertGroup": "ps-trays",
+      "featured": true
+    },
+    "ps-oval-dessert-trays": {
+      "en": "PS Oval Bowl Dessert Trays + Lid (DTT-450 & OHDT-1400)",
+      "ar": "صواني وبولات حلويات بيضاوية PS بالغطاء (DTT & OHDT)",
+      "subEn": "450 ml Individual & 1400 ml Family Oval Rigid PS Dessert Bowls with Lid Included",
+      "subAr": "بولات حلويات بيضاوية PS كريستال بالغطاء · مقاس فردي 450 مل وعائلي 1400 مل",
+      "descEn": "Sculpted oval rigid PS dessert bowls with crystal dome lids included in the box: Individual Oval Bowl 450ml (DTT / LDTT, 18.2×11×4.9 cm, 252 sets/box) and Large Family Oval Bowl 1400ml (OHDT, 27×19×7.3 cm, 136 sets/box) for family trifles, Umm Ali, and layered oriental desserts.",
+      "descAr": "بولات وصواني حلويات بيضاوية فاخرة من PS الكريستال الصلب شاملة الغطاء الشفاف في نفس الكرتونة: المقاس الفردي 450 مل (DTT / LDTT، عدد 252 طقم/كرتونة) والمقاس العائلي الكبير 1400 مل (OHDT، عدد 136 طقم/كرتونة) لطواجن الحلويات العائلية والترايفل.",
+      "isDessertFeatured": true,
+      "dessertGroup": "ps-trays",
+      "featured": true
+    },
+    "sweets-plates-kda": {
+      "en": "PP Sweets & Party Plates (19 & 22 cm — KDA Series)",
+      "ar": "أطباق حلويات وحفلات PP (مقاس 19 و22 سم — سلسلة KDA)",
+      "subEn": "19 cm & 22 cm Unbreakable Polypropylene Dessert & Catering Plates",
+      "subAr": "أطباق تقديم حلويات وحفلات دائرية PP مرنة غير قابلة للكسر · قطر 19 و22 سم",
+      "descEn": "Durable polypropylene round catering and dessert plates in 19 cm (KDA-19, 1,200 pcs/box) and 22 cm (KDA-22, 1,500 pcs/box) across White, Black, and Yellow.",
+      "descAr": "أطباق دائرية عملية من البولي بروبيلين (PP) لتقديم الحلويات والجاتوه والحفلات بمقاسي 19 سم (1200 طبق/كرتونة) و22 سم (1500 طبق/كرتونة) بألوان أبيض وأسود وأصفر."
+    },
+    "ps-table-plate-sp28": {
+      "en": "Heavy-Duty PS Table Plate 28cm (SP-28)",
+      "ar": "طبق سفرة PS فاخر مقاس 28 سم (SP-28)",
+      "subEn": "28.3 cm Rigid Polystyrene Full-Meal & Banquet Plate · 300 Pcs/Box",
+      "subAr": "طبق مائدة وحفلات دائري كبير PS صلب بقطر 28.3 سم · 300 طبق/كرتونة",
+      "descEn": "Heavy-gauge 64g rigid polystyrene dinner and banquet plate (SP-28, 28.3 cm diameter; 300 pcs/box) in White, Black, and Transparent.",
+      "descAr": "طبق سفرة وحفلات كبير عالي الصلابة بوزن 64 جم وقطر 28.3 سم (SP-28، عدد 300 طبق في الكرتونة) متوفر باللون الأبيض والأسود والشفاف."
+    },
+    "pet-weight-plates": {
+      "en": "PET Rectangular Weight Plates — Shallow & Deep (⅛ to 2 KG)",
+      "ar": "أطباق PET مستطيلة بالوزن مسطحة وعميقة (من ثمن إلى 2 كيلو)",
+      "subEn": "⅛, ¼, ½, 1 & 2 KG Crystal PET Supermarket & Patisserie Trays + Optional 1KG Lid",
+      "subAr": "أطباق تعبئة بالوزن PET (ثمن، ربع، نصف، 1، 2 كيلو) مسطحة وعميقة للحلويات واللحوم والأجبان",
+      "descEn": "Complete range of crystal PET rectangular weight trays in Shallow (PET-1 ⅛kg, PET-2 ¼kg, PET-3 ½kg, PET-4 1kg, PET-6 2kg) and Deep profiles (PET-1A, PET-2A, PET-3A, PET-4A, PET-6A) in Transparent and Black, plus an optional snap-on clear lid for 1kg trays (LPET4).",
+      "descAr": "السلسلة الكاملة لأطباق الوزن المستطيلة من خامة PET النقية بالنوعين المسطح والعميق: ثمن كيلو (PET-1/1A)، ربع كيلو (PET-2/2A)، نصف كيلو (PET-3/3A)، واحد كيلو (PET-4/4A مع توفر غطاء شفاف LPET4)، و2 كيلو (PET-6/6A) باللونين الشفاف والأسود."
+    },
+    "pet-squared-plates-kdr3": {
+      "en": "PET Squared ½ KG Plates — Shallow & Deep (KDR3 / KDR3A)",
+      "ar": "أطباق PET مربعة نصف كيلو — مسطح وعميق (KDR3 / KDR3A)",
+      "subEn": "18.9×18.9 cm Square ½ KG PET Packaging Trays · 1,000 Pcs/Box",
+      "subAr": "أطباق PET مربعة مقاس 18.9×18.9 سم سعة نصف كيلو للحلويات والمخبوزات · 1000 طبق/كرتونة",
+      "descEn": "Square 18.9×18.9 cm crystal PET ½ kg trays in Shallow 3.4cm (KDR3) and Deep 4.2cm (KDR3A) profiles (1,000 pcs/box in Transparent or Black) for oriental sweets, biscuits, and supermarket overwrap.",
+      "descAr": "أطباق مربعة من PET مقاس 18.9×18.9 سم بحجم نصف كيلو متوفرة بارتفاع مسطح 3.4 سم (KDR3) وعميق 4.2 سم (KDR3A) بعدد 1000 طبق في الكرتونة باللونين الشفاف والأسود."
+    },
+    "absorbent-map-trays": {
+      "en": "Ultra-Absorbent MAP Meat & Poultry Trays (ABS — ½ & 1 KG)",
+      "ar": "أطباق امتصاص السوائل للحوم والدواجن MAP (سلسلة ABS — نصف و1 كيلو)",
+      "subEn": "Micro-Cell Fluid-Lock PET Trays for Fresh Meat, Poultry & Fish · 1,000 Pcs/Box",
+      "subAr": "أطباق PET بقاع شبكي ماص للسوائل بدون شيت منفصل · مقاس نصف كيلو و1 كيلو",
+      "descEn": "Engineered Modified Atmosphere Packaging (MAP) PET trays with built-in capillary fluid-retention cells that lock blood and moisture without a separate absorbent pad: ½ kg (ABS-3, 18.9×18.9 cm) and 1 kg (ABS-5, 23×16 cm; 1,000 pcs/box).",
+      "descAr": "أطباق MAP متطورة للحوم والدواجن والأسماك الطازجة مزودة بخلايا شعرية سفلية تحبس السوائل تلقائياً دون الحاجة لشيت امتصاص إضافي: متوفرة بحجم نصف كيلو (ABS-3) وواحد كيلو (ABS-5) بعدد 1000 طبق/كرتونة.",
+      "featured": true
+    },
+    "ps-plain-round-trays": {
+      "en": "PS Plain Round Serving Trays (29 & 33 cm)",
+      "ar": "صواني تقديم PS دائرية سادة (مقاس 29 و33 سم)",
+      "subEn": "Heavy-Gauge Rigid PS Round Catering & Pastry Platters · 100 Pcs/Box",
+      "subAr": "صواني تقديم دائرية سادة من PS الصلب للحلويات الشرقية والتورت · 100 صينية/كرتونة",
+      "descEn": "Heavy-duty rigid polystyrene plain round serving platters in 29 cm (135g) and 33 cm (175g) diameters (100 pcs/box) in Transparent, Black, and White.",
+      "descAr": "صواني تقديم دائرية سادة عالية السماكة من خامة PS الصلبة بمقاسي 29 سم (وزن 135 جم) و33 سم (وزن 175 جم) بعدد 100 صينية في الكرتونة بألوان شفاف وأسود وأبيض."
+    },
+    "ps-lotus-round-trays": {
+      "en": "PS Lotus Round Serving Trays — 20 to 33 cm (RT Series)",
+      "ar": "صواني تقديم لوتس دائرية PS — مقاس 20 إلى 33 سم (سلسلة RT)",
+      "subEn": "5 Diameters (20, 23, 27, 29 & 33 cm) of Fluted Lotus Rigid PS Pastry Platters",
+      "subAr": "5 مقاسات من صواني التقديم الدائرية بنقشة لوتس الفاخرة (20، 23، 27، 29، 33 سم)",
+      "descEn": "Decorative Lotus-fluted rigid PS round serving platters across 5 diameters: 20 cm (RT20), 23 cm (RT23), 27 cm (RT27), 29 cm (RT29), and 33 cm (RT33) in Crystal Clear, Black, and White for oriental sweets and patisserie assortments.",
+      "descAr": "صواني تقديم دائرية بنقشة لوتس البارزة من خامة PS الصلبة بـ 5 أقطار متدرجة (20 و23 و27 و29 و33 سم) باللون الشفاف والأسود والأبيض لتقديم الحلويات الشرقية والشوكولاتة والمخبوزات.",
+      "isDessertFeatured": true,
+      "dessertGroup": "ps-trays"
+    },
+    "ps-oriental-round-trays": {
+      "en": "PS Oriental Round Serving Trays — Gold, Black & Clear (EP1–EP4)",
+      "ar": "صواني تقديم شرقي دائرية PS — ذهبي وأسود وشفاف (سلسلة EP)",
+      "subEn": "20, 23, 27 & 33 cm Braided-Rim Oriental Sweet Platters in Metallic Gold, Black, White & Clear",
+      "subAr": "صواني حلويات شرقية بإطار مجدول فاخر بمقاسات 20 و23 و27 و33 سم (ذهبي، أسود، أبيض، شفاف)",
+      "descEn": "Signature braided-rim Oriental Round Serving Trays in 4 diameters — 20 cm (EP1), 23 cm (EP2), 27 cm (EP3), and 33 cm (EP4) — finished in Metallic Gold, Obsidian Black, Pure White, and Crystal Clear. Built for luxury oriental sweets, baklava, kahk, and Eid/Ramadan gifting.",
+      "descAr": "صواني التقديم الشرقي الفاخرة ذات الإطار المجدول بـ 4 مقاسات (20 و23 و27 و33 سم) متوفرة باللون الذهبي الميتاليك والأسود والأبيض والشفاف الكريستال. الاختيار الأول لمحلات الحلويات الشرقية وتشكيلات البقلاوة والكحك وهدايا المواسم.",
+      "isDessertFeatured": true,
+      "dessertGroup": "ps-trays",
+      "featured": true
+    },
+    "ps-seasonal-trays": {
+      "en": "PS Seasonal Divided Serving Trays — 1, 2 & 4 Sections",
+      "ar": "صواني تقديم موسمية مقسمة PS — 1 و2 و4 أقسام",
+      "subEn": "30×30 cm Square Rigid PS Assortment Platters for Oriental Sweets, Kahk & Nuts",
+      "subAr": "صواني مربعة فاخرة 30×30 سم (سادة ومقسمة قسمين و4 أقسام) لتشكيلات الحلويات والمكسرات",
+      "descEn": "Heavy 225g rigid polystyrene 30×30×3.2 cm square presentation platters in 1-Section, 2-Section, and 4-Section layouts (60 pcs/box) in Gold, Black, White, and Transparent for seasonal sweet assortments, Mawlid, Ramadan, and Eid boxes.",
+      "descAr": "صواني تقديم موسمية مربعة ثقيلة (وزن 225 جم، مقاس 30×30 سم، 60 صينية/كرتونة) متوفرة بقسم واحد أو قسمين أو 4 أقسام بألوان الذهبي والأسود والأبيض والشفاف لتشكيلات الحلويات الشرقية والمولد وكحك العيد.",
+      "isDessertFeatured": true,
+      "dessertGroup": "ps-trays"
+    },
+    "turkish-cutlery": {
+      "en": "Turkish PS Meal Cutlery (Spoon, Fork & Knife)",
+      "ar": "أدوات مائدة تركي PS (ملعقة وشوكة وسكين)",
+      "subEn": "Full-Size 17–18 cm Rigid Polystyrene Meal Cutlery · 2,000 Pcs/Box",
+      "subAr": "ملاعق وشوك وسكاكين وجبات موديل تركي من PS الصلب · 2000 قطعة/كرتونة",
+      "descEn": "Full-length Turkish-design rigid polystyrene meal spoons (17 cm), forks (17.5 cm), and knives (18 cm) in Transparent, Black, and White (2,000 pcs per box).",
+      "descAr": "أدوات مائدة كاملة للوجبات بتصميم تركي متين من خامة PS الصلبة (ملعقة 17 سم، شوكة 17.5 سم، سكين 18 سم) بألوان شفاف وأسود وأبيض (2000 قطعة في الكرتونة)."
+    },
+    "german-cutlery": {
+      "en": "German Heavy-Duty PS Cutlery (Spoon & Fork)",
+      "ar": "أدوات مائدة ألماني PS ثقيلة (ملعقة وشوكة)",
+      "subEn": "17.7 & 18.2 cm Extra-Rigid German Profile PS Meal Spoon & Fork · 2,000 Pcs/Box",
+      "subAr": "ملاعق وشوك وجبات موديل ألماني عالية الصلابة · 2000 قطعة/كرتونة",
+      "descEn": "Extra-rigid German-profile polystyrene meal spoons (17.7 cm, 4.1g) and meal forks (18.2 cm, 4.0g) engineered not to snap under dense meats and hot rice dishes (2,000 pcs/box).",
+      "descAr": "ملاعق وشوك وجبات موديل ألماني فائقة الصلابة (وزن 4 جم، طول 18 سم) مصممة لتحمل الوجبات الثقيلة واللحوم دون انحناء أو كسر (2000 قطعة/كرتونة)."
+    },
+    "souvenir-cutlery": {
+      "en": "Souvenir Meal Cutlery — Rigid PS & Flexible PP",
+      "ar": "أدوات مائدة سوفنير فاخرة — خامات PS وPP",
+      "subEn": "18–19.8 cm Heavyweight 5.5g Souvenir Spoons, Forks & Knives · 1,000 to 2,000 Pcs/Box",
+      "subAr": "أدوات مائدة سوفنير ثقيلة (5.5 جم) بخامتي PS الصلبة وPP المرنة · 1000 إلى 2000 قطعة/كرتونة",
+      "descEn": "Flagship heavyweight 5.5g Souvenir cutlery line available in both crystal-rigid PS and unbreakable PP: Meal Spoons (18 cm), Meal Forks (18 cm), and 19.8 cm Steak/Meal Knives.",
+      "descAr": "خط أدوات المائدة الفاخرة (سوفنير) بوزن ثقيل 5.5 جم، متوفر بخامتي PS الصلبة اللامعة وPP المرنة غير القابلة للكسر: ملاعق وشوك (18 سم) وسكاكين وجبات كبيرة (19.8 سم)."
+    },
+    "lotus-souvenir-cutlery": {
+      "en": "Lotus Souvenir PS Cutlery (Spoon, Fork & Knife)",
+      "ar": "أدوات مائدة لوتس سوفنير PS (ملعقة وشوكة وسكين)",
+      "subEn": "17–18.5 cm Ergonomic Lotus-Handle Rigid PS Cutlery · 2,000 Pcs/Box",
+      "subAr": "ملاعق وشوك وسكاكين لوتس سوفنير بمقبض انسيابي · 2000 قطعة/كرتونة",
+      "descEn": "Sculpted Lotus Souvenir rigid polystyrene meal spoons, forks, and knives (3.8g to 4.2g; 2,000 pcs/box) in Transparent, Black, and White.",
+      "descAr": "أدوات مائدة لوتس سوفنير بمقبض مزخرف مريح من خامة PS الصلبة (ملعقة وشوكة وسكين؛ 2000 قطعة في الكرتونة) بألوان شفاف وأسود وأبيض."
+    },
+    "dessert-icecream-spoons": {
+      "en": "Dessert & Ice Cream Spoons (Turkish, German & Mini)",
+      "ar": "ملاعق الحلويات والآيس كريم (تركي وألماني وميني)",
+      "subEn": "9.3 to 13.7 cm PS & PP Spoons for Patisseries, Gelato & Sweet Cups",
+      "subAr": "ملاعق حلويات صغيرة وآيس كريم (9.3 إلى 13.7 سم) بألوان متعددة وشفاف وأسود وأبيض",
+      "descEn": "Complete range of dessert and gelato spoons: Turkish Dessert Spoon 13.2cm (3,000 pcs/box), German Dessert Spoon 13.7cm (5,000 pcs/box), Ice Cream Spoon 11cm (5,000 pcs/box), Bulk Colored Ice Cream Spoons (10 kg carton), and Mini Tasting Spoon 9.3cm (10,000 pcs/box).",
+      "descAr": "تشكيلة متكاملة من ملاعق الحلويات والآيس كريم: ملعقة حلويات تركي (13.2 سم)، وملعقة حلويات ألماني (13.7 سم)، وملعقة آيس كريم (11 سم بالعدد أو كرتونة 10 كجم ملونة)، وملعقة ميني تذوق (9.3 سم)."
+    },
+    "ps-cake-knife-ptsh": {
+      "en": "PS Crystal Cake Knife / Server (PTSH)",
+      "ar": "سكين وشيالة تقطيع وتقديم الكيك كريستال (PTSH)",
+      "subEn": "23×5.5 cm Wide-Blade Rigid Crystal PS Cake Server & Cutter · 400 Pcs/Box",
+      "subAr": "سكين وشيالة تورتة وحلويات عريضة من PS الكريستال الصلب (23×5.5 سم) · 400 قطعة/كرتونة",
+      "descEn": "Heavy 24g rigid crystal polystyrene serrated cake knife and pastry server (PTSH, 23×5.5 cm; 400 pcs/box) in Crystal Clear, Black, and White — essential accompaniment for whole cake boxes and oriental pastry trays.",
+      "descAr": "سكين وشيالة تقطيع التورتة والحلويات الشرقية بوزن ثقيل 24 جم ونصل عريض مسنن (مقاس 23×5.5 سم؛ 400 قطعة/كرتونة) بألوان شفاف كريستال وأسود وأبيض — إضافة أساسية مع علب التورتة وصواني الحلويات.",
+      "isDessertFeatured": true,
+      "dessertGroup": "cake-bakery"
+    },
+    "chicken-trays-cht10": {
+      "en": "Oval Chicken Trays with Clear Dome Lids (CHT-10)",
+      "ar": "علب الدجاج المشوي البيضاوية بغطاء بومبيه شفاف (CHT-10)",
+      "subEn": "Heavy-Duty Ribbed Oval PP Base (Black or White) + High Anti-Fog Dome Lid Included",
+      "subAr": "علب فراخ مشوية ووجبات ساخنة بيضاوية (أسود وأبيض) مع غطاء بومبيه عالي متضمن",
+      "descEn": "Whole-roast chicken and hot family meal oval containers (CHT-10XBlack and CHT-10XWhite) combining a heat-resistant ribbed polypropylene base with a high-clearance snap-lock clear dome lid.",
+      "descAr": "علب الدجاج المشوي والوجبات الساخنة البيضاوية (متوفرة باللونين الأسود والأبيض) بقاعدة PP مضلعة تتحمل الحرارة العالية مع غطاء بومبيه شفاف مرتفع محكم الغلق."
+    },
+    "ps-rect-serving-trays-st": {
+      "en": "PS Rectangular Serving Trays (ST1 / ST2 / ST3)",
+      "ar": "صواني تقديم PS مستطيلة للحلويات والمخبوزات (ST1 / ST2 / ST3)",
+      "subEn": "Small, Medium & Large Rigid Polystyrene Rectangular Patisserie Platters",
+      "subAr": "صواني تقديم مستطيلة صلبة بـ 3 مقاسات (صغير ST1، متوسط ST2، كبير ST3) للحلويات والجاتوه",
+      "descEn": "Rigid polystyrene rectangular presentation trays in Small (ST1), Medium (ST2), and Large (ST3) sizes for oriental pastries, gateaux, petit fours, and catering displays.",
+      "descAr": "صواني تقديم مستطيلة أنيقة من خامة PS الصلبة بثلاثة مقاسات متدرجة (ST1 صغير، ST2 متوسط، ST3 كبير) لتقديم الجاتوه والبيتي فور والحلويات الشرقية.",
+      "isDessertFeatured": true,
+      "dessertGroup": "ps-trays"
+    },
+    "wrapped-cutlery-napkin-pack": {
+      "en": "Individually Wrapped Cutlery Set with Napkin",
+      "ar": "طقم أدوات مائدة مغلف مع منديل (أسود وأبيض)",
+      "subEn": "Hygienic Sealed Packet (Spoon, Fork, Knife & Napkin) in Black or White",
+      "subAr": "طقم وجبات صحي مغلف آلياً (ملعقة + شوكة + سكين + منديل) باللون الأسود أو الأبيض",
+      "descEn": "Ready-to-pack hygienic sealed takeaway cutlery kits containing a heavy-duty spoon, fork, knife, and soft paper napkin in Black (Cutlery-Packet-BX25) or White (Cutlery-Packet-WX25).",
+      "descAr": "أطقم أدوات مائدة مغلفة آلياً بأعلى معايير النظافة للوجبات السريعة والدليفري تحتوي على (ملعقة + شوكة + سكين + منديل ورقي) متوفرة باللونين الأسود والأبيض."
+    },
+    "ps-dessert-fork-knife": {
+      "en": "Crystal Clear PS Dessert Fork & Dessert Knife",
+      "ar": "شوكة وسكين حلويات كريستال شفافة (PS)",
+      "subEn": "Rigid Crystal Polystyrene Pastry Fork & Cake Slice Knife for Patisseries",
+      "subAr": "شوكة وسكين حلويات صغيرة من PS الكريستال الشفاف لمحلات الحلويات والكافيهات",
+      "descEn": "Crystal-clear rigid polystyrene dessert forks (HODC-201853) and dessert knives (HODC-205870) sized specifically for individual cake boxes, waffles, and patisserie dine-in or takeaway.",
+      "descAr": "شوك وسكاكين حلويات شفافة من البوليسترين الكريستال الصلب مصممة خصيصاً لعلب الكيك الفردية والوافل والجاتوه في الكافيهات ومحلات الحلويات."
+    },
+    "plastic-straws": {
+      "en": "Plastic Beverage & 8mm Smoothie Straws",
+      "ar": "شفاطات عصير وسموذي بلاستيك (قياسية و8 مم)",
+      "subEn": "Standard & Wide 8mm Smoothie Straws in Black, Blue, Pink & Multicolor",
+      "subAr": "شفاطات مشروبات وعصائر سميكة (8 مم للسموذي ومقاس قياسي) بألوان أسود وأزرق وبينك وملون",
+      "descEn": "Food-grade polypropylene drinking straws for cafés and juice bars: Wide 8mm Smoothie Straws in Blue (BLuex8mm) and Pink (Pinkx8mm), plus Large Drinking Straws in Black (StrawsxLxB), Blue (strawsxLxBlue), and Multicolor (StrawsMxc).",
+      "descAr": "شفاطات مشروبات عالية الجودة للكافيهات ومحلات العصائر تشمل شفاطات السموذي العريضة قطر 8 مم (أزرق وبينك) وشفاطات المشروبات الكبيرة (أسود، أزرق، وألوان متعددة)."
+    },
+    "wooden-stirrers": {
+      "en": "Natural Birchwood Coffee & Tea Stirrers",
+      "ar": "مقلبات قهوة وشاي خشبية طبيعية",
+      "subEn": "Smooth Splinter-Free Food-Grade Wooden Hot Beverage Stirrers",
+      "subAr": "أعواد تقليب قهوة ومشروبات ساخنة من الخشب الطبيعي الأملس",
+      "descEn": "100% natural splinter-free birchwood coffee and tea stirrers (JX-FWQY-7MAH) with rounded ends for cafés, offices, and hotel beverage stations.",
+      "descAr": "أعواد تقليب القهوة والشاي المصنوعة من خشب البتولا الطبيعي النقي بحواف دائرية ملساء خالية من الشوائب للكافيهات والفنادق والشركات."
+    },
+    "cups-straws-bundles": {
+      "en": "KRNO Cups + Lids + Straws All-in-One Café Bundles (14 & 16 oz)",
+      "ar": "باقات التوفير المتكاملة: أكواب + أغطية + شفاطات (14 و16 أونصة)",
+      "subEn": "Complete Matched Sets of Clear U-Shape PET Cups with Dome or Black Lids & Straws",
+      "subAr": "أطقم جاهزة تجمع الأكواب الشفافة مع الأغطية (بومبيه شفاف أو سبر أسود) والشفاطات",
+      "descEn": "All-in-one value bundles combining crystal-clear 14 oz and 16 oz PET cups with matched lids (Clear Dome Lid or Black Sipper Lid) and color-coordinated straws (Pink or Blue). Perfect for quick café restocking and events.",
+      "descAr": "باقات توفير متكاملة تجمع أكواب PET الشفافة (مقاسي 14 و16 أونصة) مع الأغطية المتوافقة (غطاء بومبيه شفاف أو غطاء أسود) والشفاطات المتناسقة (بينك أو أزرق) في طلبية واحدة."
+    },
+    "krno2go-party-pack": {
+      "en": "KRNO2GO Complete Disposable Tableware Party Pack (Pink & Blue)",
+      "ar": "باقة الحفلات المتكاملة KRNO2GO (وردي وأزرق)",
+      "subEn": "All-in-One Coordinated Party Box: Plates, Cups, Cutlery & Straws",
+      "subAr": "صندوق حفلات متكامل يضم الأطباق والأكواب والملاعق والشوك والشفاطات بألوان متناسقة",
+      "descEn": "Complete ready-to-serve party and picnic tableware bundle (KRNO2GO-Pink and KRNO2GO-Blue) containing color-coordinated plates, cups, spoons, forks, knives, and straws in one box.",
+      "descAr": "باقة الحفلات والرحلات المتكاملة (KRNO2GO) باللونين الوردي والأزرق، تحتوي على تشكيلة متناسقة من الأطباق والأكواب والملاعق والشوك والسكاكين والشفاطات في عبوة واحدة جاهزة."
+    }
+  }
+}

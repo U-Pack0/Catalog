@@ -1,0 +1,278 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CatalogToolbar from '../../components/catalog/CatalogToolbar.astro';
+import ProductCard from '../../components/catalog/ProductCard.astro';
+import QuoteBagDrawer from '../../components/catalog/QuoteBagDrawer.astro';
+import WholesaleBanner from '../../components/home/WholesaleBanner.astro';
+import Icon from '../../components/icons/Icon.astro';
+
+import rawCatalog from '../../data/catalog.json';
+import type { CatalogData } from '../../data/catalog.schema';
+import { absUrl, localePath, type Lang } from '../../lib/url';
+import { getUI } from '../../lib/i18n';
+import {
+  EGYPT_SEO_KEYWORDS,
+  buildBreadcrumbJsonLd,
+  buildItemListJsonLd
+} from '../../lib/seo';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'ar' } }];
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const isAr = lang === 'ar';
+const ui = getUI(lang);
+const catalogData = rawCatalog as unknown as CatalogData;
+
+const categoryMap = new Map(
+  catalogData.categories.map((c) => [c.slug, c.name[lang]])
+);
+
+const canonicalPath = localePath(lang, 'catalog');
+
+const breadcrumbLd = buildBreadcrumbJsonLd([
+  { name: ui.nav.home, url: absUrl(localePath(lang), Astro.site) },
+  { name: ui.nav.catalog, url: absUrl(canonicalPath, Astro.site) }
+]);
+
+const itemListLd = buildItemListJsonLd(
+  ui.seo.catalogTitle,
+  catalogData.products.map((p) => ({
+    name: p.name[lang],
+    url: absUrl(localePath(lang, `product/${p.slug}`), Astro.site),
+    image: absUrl(p.ogImage, Astro.site)
+  }))
+);
+
+const pageCopy = isAr
+  ? {
+      title: 'الكتالوج الكامل لعبوات التغليف بالجملة',
+      lead: 'تصفح جميع خطوط إنتاج KRNO بالكرتونة — صواني وعلب الحلويات، علب التورتة بالبومبيه، أكواب PET الشفافة وأغطيتها المنفصلة، علب وجبات المايكروويف PP، علب المفصلة والسوشي وأدوات المائدة.',
+      cupLidNotice: 'تنبيه طلبات الأكواب: كراتين الأكواب تحتوي على الأكواب فقط، وتُطلب كراتين الأغطية المطابقة بشكل منفصل.'
+    }
+  : {
+      title: 'Complete Wholesale Packaging Box Catalog',
+      lead: 'Browse every KRNO packaging line supplied by the box — PS dessert trays, cake dome boxes, crystal PET cold cups, separate lid boxes, microwave PP meal trays, hinged containers, sushi packs, and cutlery.',
+      cupLidNotice: 'Cup Ordering Note: Cup boxes contain cups only. Compatible flat, dome, and sipping lid boxes are ordered separately.'
+    };
+---
+
+<BaseLayout
+  lang={lang}
+  title={ui.seo.catalogTitle}
+  description={ui.seo.catalogDescription}
+  canonicalPath={canonicalPath}
+  keywords={EGYPT_SEO_KEYWORDS[lang]}
+  jsonLd={[breadcrumbLd, itemListLd]}
+>
+  <section class="catalog-hero-band">
+    <div class="catalog-page-container">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <a href={localePath(lang)} class="breadcrumb-link">{ui.nav.home}</a>
+        <span class="breadcrumb-sep" aria-hidden="true">/</span>
+        <span class="breadcrumb-current" aria-current="page">{ui.nav.catalog}</span>
+      </nav>
+
+      <div class="catalog-hero-header">
+        <div class="catalog-hero-copy">
+          <div class="catalog-meta-pills">
+            <span class="catalog-meta-pill is-crimson">{ui.krnoDistributor}</span>
+            <span class="catalog-meta-pill">
+              <Icon name="box" size={14} />
+              <span>{ui.catalog.soldByBoxBanner}</span>
+            </span>
+          </div>
+
+          <h1 class="catalog-h1">{pageCopy.title}</h1>
+          <p class="catalog-lead">{pageCopy.lead}</p>
+        </div>
+
+        <div class="cup-lid-callout">
+          <Icon name="info" size={18} class="text-crimson" />
+          <span>{pageCopy.cupLidNotice}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="catalog-main-section" aria-label={pageCopy.title}>
+    <div class="catalog-page-container">
+      <CatalogToolbar
+        lang={lang}
+        categories={catalogData.categories}
+        totalProducts={catalogData.products.length}
+        showCategoryPills={true}
+      />
+
+      <div class="catalog-products-grid" id="catalog-products-grid" data-catalog-grid>
+        {catalogData.products.map((product) => (
+          <ProductCard
+            product={product}
+            lang={lang}
+            categoryName={categoryMap.get(product.category)}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <WholesaleBanner lang={lang} />
+
+  <QuoteBagDrawer slot="drawer" lang={lang} />
+</BaseLayout>
+
+<style>
+  .catalog-hero-band {
+    padding: 32px 20px 40px;
+    background-color: var(--color-surface, #FFFFFF);
+    border-bottom: 1px solid var(--color-hairline, #E2E6EF);
+  }
+
+  @media (min-width: 1024px) {
+    .catalog-hero-band {
+      padding: 44px 28px 52px;
+    }
+  }
+
+  .catalog-main-section {
+    padding: 36px 20px 72px;
+    background-color: var(--color-gallery, #F5F7FA);
+  }
+
+  @media (min-width: 1024px) {
+    .catalog-main-section {
+      padding: 48px 28px 88px;
+    }
+  }
+
+  .catalog-page-container {
+    width: 100%;
+    max-width: 1320px;
+    margin-inline: auto;
+    padding-inline: 4px;
+  }
+
+  .breadcrumb-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--color-ink-muted, #4B5366);
+    margin-bottom: 18px;
+  }
+
+  .breadcrumb-link {
+    color: var(--color-ink-secondary, #374051);
+    text-decoration: none;
+  }
+
+  .breadcrumb-link:hover {
+    color: var(--color-crimson, #C61D2A);
+  }
+
+  .breadcrumb-current {
+    color: var(--color-ink, #0D0F14);
+    font-weight: 700;
+  }
+
+  .catalog-hero-header {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    align-items: end;
+  }
+
+  @media (min-width: 960px) {
+    .catalog-hero-header {
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 32px;
+    }
+  }
+
+  .catalog-meta-pills {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .catalog-meta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    background-color: var(--color-gallery, #F5F7FA);
+    border: 1px solid var(--color-hairline, #E2E6EF);
+    color: var(--color-ink-secondary, #374051);
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  .catalog-meta-pill.is-crimson {
+    background-color: var(--color-crimson-soft, #FDECEE);
+    border-color: rgba(198, 29, 42, 0.25);
+    color: var(--color-crimson, #C61D2A);
+    font-weight: 800;
+  }
+
+  .catalog-h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 3.5vw, 2.85rem);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+    color: var(--color-ink, #0D0F14);
+    margin: 0;
+  }
+
+  :global(html[dir='rtl']) .catalog-h1 {
+    letter-spacing: 0;
+    line-height: 1.26;
+  }
+
+  .catalog-lead {
+    margin: 12px 0 0;
+    font-size: 1rem;
+    color: var(--color-ink-muted, #4B5366);
+    line-height: 1.62;
+    max-width: 64ch;
+  }
+
+  .cup-lid-callout {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 1px solid var(--color-hairline, #E2E6EF);
+    background-color: var(--color-gallery, #F5F7FA);
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--color-ink-secondary, #374051);
+    line-height: 1.54;
+  }
+
+  .catalog-products-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 24px;
+  }
+
+  @media (min-width: 680px) {
+    .catalog-products-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1080px) {
+    .catalog-products-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

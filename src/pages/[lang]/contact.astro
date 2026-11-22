@@ -1,0 +1,611 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import QuoteBagDrawer from '../../components/catalog/QuoteBagDrawer.astro';
+import Icon from '../../components/icons/Icon.astro';
+
+import { absUrl, localePath, type Lang } from '../../lib/url';
+import { UPACK_CONTACT, getUI } from '../../lib/i18n';
+import { buildGeneralWhatsAppUrl } from '../../lib/whatsapp';
+import { EGYPT_SEO_KEYWORDS, buildBreadcrumbJsonLd } from '../../lib/seo';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'ar' } }];
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const isAr = lang === 'ar';
+const ui = getUI(lang);
+
+const canonicalPath = localePath(lang, 'contact');
+const breadcrumbLd = buildBreadcrumbJsonLd([
+  { name: ui.nav.home, url: absUrl(localePath(lang), Astro.site) },
+  { name: ui.nav.contact, url: absUrl(canonicalPath, Astro.site) }
+]);
+
+const copy = isAr
+  ? {
+      h1: 'طلبات الجملة بالكرتونة والتواصل المباشر',
+      lead: 'تواصل معنا مباشرة عبر الخط الساخن الموحد أو واتساب للحصول على عروض أسعار الكراتين والتوريد لجميع محافظات مصر.',
+      waCardTitle: 'طلب سريع عبر واتساب',
+      waCardSub: 'أرسل الأكواد أو الأصناف المطلوبة وسنرد عليك بعرض السعر وتفاصيل الشحن فوراً.',
+      waCardBtn: 'محادثة واتساب مباشرة',
+      callCardTitle: 'الاتصال المباشر بالمبيعات',
+      callCardSub: 'للاستفسار عن الكميات الكبيرة، التوريد الدوري للمطاعم ومحلات الحلويات، والشحن للمحافظات.',
+      callCardBtn: 'اتصل الآن',
+      emailCardTitle: 'المراسلة عبر البريد الإلكتروني',
+      deliveryTitle: 'نطاق التوريد والشحن',
+      deliverySub: 'توصيل لجميع محافظات مصر (القاهرة، الجيزة، الإسكندرية، الدلتا، مدن القناة، الصعيد، والبحر الأحمر).',
+      formHeading: 'نموذج تجهيز طلب عرض سعر واتساب',
+      formSub: 'املأ بيانات نشاطك والأصناف المطلوبة ليتم فتح رسالة واتساب جاهزة ومنظمة مباشرة إلى قسم المبيعات.',
+      labelBusiness: 'اسم المطعم / الكافيه / محل الحلويات',
+      placeholderBusiness: 'مثال: كانليه باتيسيري / مطعم...',
+      labelSegment: 'نوع النشاط التجاري',
+      segments: [
+        'محل حلويات / باتيسيري / مخبوزات',
+        'كافيه / مشروبات باردة',
+        'مطعم / تيك أواي',
+        'مطبخ سحابي / كاترينج',
+        'فندق / ضيافة',
+        'تاجر / موزع'
+      ],
+      labelCity: 'المحافظة / المدينة في مصر',
+      placeholderCity: 'مثال: القاهرة — مدينة نصر / الإسكندرية...',
+      labelNotes: 'الأصناف أو الأكواد المطلوبة وعدد الكراتين',
+      placeholderNotes: 'مثال: 10 كراتين أكواب UK-92-16 + 10 كراتين غطاء بومبيه LKD-92 + 5 كراتين صواني حلويات...',
+      submitBtn: 'إرسال الطلب عبر واتساب (01055400404)'
+    }
+  : {
+      h1: 'Wholesale Box Orders & Direct Sales Contact',
+      lead: 'Reach our wholesale desk directly by WhatsApp or phone on 01055400404 for master-box pricing and nationwide delivery across all Egyptian governorates.',
+      waCardTitle: 'Instant WhatsApp Wholesale Desk',
+      waCardSub: 'Send your required SKUs or box quantities and receive an immediate wholesale quote.',
+      waCardBtn: 'Open WhatsApp Chat',
+      callCardTitle: 'Direct Sales Hotline',
+      callCardSub: 'Speak directly with our sales team regarding recurring supply for pâtisseries, cafés, and restaurants.',
+      callCardBtn: 'Call Sales Desk',
+      emailCardTitle: 'Official Email Contacts',
+      deliveryTitle: 'Nationwide Egypt Coverage',
+      deliverySub: 'Master-box delivery across Cairo, Giza, Alexandria, Delta, Canal Cities, Upper Egypt, and Red Sea governorates.',
+      formHeading: 'WhatsApp Box Quote Builder',
+      formSub: 'Enter your business details and required items below to open a pre-formatted wholesale inquiry directly in WhatsApp.',
+      labelBusiness: 'Business / Restaurant / Pâtisserie Name',
+      placeholderBusiness: 'e.g. Canelé Pâtisserie / Café name...',
+      labelSegment: 'Business Segment',
+      segments: [
+        'Pâtisserie / Dessert Shop / Bakery',
+        'Café / Cold Beverage Bar',
+        'Restaurant / Takeaway',
+        'Cloud Kitchen / Catering',
+        'Hotel / Hospitality',
+        'Sub-Distributor / Wholesale Buyer'
+      ],
+      labelCity: 'Governorate / City in Egypt',
+      placeholderCity: 'e.g. Cairo — Nasr City / Alexandria...',
+      labelNotes: 'Requested Products, SKUs & Box Quantities',
+      placeholderNotes: 'e.g. 10 boxes UK-92-16 cups + 10 boxes LKD-92 dome lids + 5 boxes GT-250 cake trays...',
+      submitBtn: 'Send Inquiry on WhatsApp (01055400404)'
+    };
+---
+
+<BaseLayout
+  lang={lang}
+  title={ui.seo.contactTitle}
+  description={ui.seo.contactDescription}
+  canonicalPath={canonicalPath}
+  keywords={EGYPT_SEO_KEYWORDS[lang]}
+  jsonLd={[breadcrumbLd]}
+>
+  <section class="contact-section">
+    <div class="contact-container">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <a href={localePath(lang)} class="breadcrumb-link">{ui.nav.home}</a>
+        <span aria-hidden="true">/</span>
+        <span class="breadcrumb-current" aria-current="page">{ui.nav.contact}</span>
+      </nav>
+
+      <div class="contact-header">
+        <div class="contact-badges">
+          <span class="contact-badge is-crimson">{ui.krnoDistributor}</span>
+          <span class="contact-badge">{ui.deliveryNationwide}</span>
+        </div>
+        <h1 class="contact-h1">{copy.h1}</h1>
+        <p class="contact-lead">{copy.lead}</p>
+      </div>
+
+      <div class="contact-split-grid">
+        <!-- Start Column: Direct Contact Channels (01055400404 + Both Emails + Nationwide Delivery) -->
+        <div class="contact-channels">
+          <article class="channel-card is-wa">
+            <div class="channel-head">
+              <span class="channel-icon is-wa">
+                <Icon name="whatsapp" size={22} />
+              </span>
+              <div>
+                <h2 class="channel-title">{copy.waCardTitle}</h2>
+                <div class="channel-num font-mono-tech">
+                  <bdi dir="ltr">{UPACK_CONTACT.phone}</bdi>
+                </div>
+              </div>
+            </div>
+            <p class="channel-sub">{copy.waCardSub}</p>
+            <a
+              href={buildGeneralWhatsAppUrl(lang)}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="channel-btn-wa"
+            >
+              <Icon name="whatsapp" size={18} />
+              <span>{copy.waCardBtn} · <bdi dir="ltr" class="font-mono-tech">{UPACK_CONTACT.phone}</bdi></span>
+            </a>
+          </article>
+
+          <article class="channel-card">
+            <div class="channel-head">
+              <span class="channel-icon">
+                <Icon name="phone" size={20} />
+              </span>
+              <div>
+                <h2 class="channel-title">{copy.callCardTitle}</h2>
+                <div class="channel-num font-mono-tech">
+                  <bdi dir="ltr">{UPACK_CONTACT.phone}</bdi>
+                </div>
+              </div>
+            </div>
+            <p class="channel-sub">{copy.callCardSub}</p>
+            <a href={UPACK_CONTACT.telHref} class="channel-btn-call">
+              <Icon name="phone" size={17} />
+              <span>{copy.callCardBtn} · <bdi dir="ltr" class="font-mono-tech">{UPACK_CONTACT.phone}</bdi></span>
+            </a>
+          </article>
+
+          <article class="channel-card">
+            <div class="channel-head">
+              <span class="channel-icon">
+                <Icon name="mail" size={20} />
+              </span>
+              <h2 class="channel-title">{copy.emailCardTitle}</h2>
+            </div>
+            <ul class="email-list">
+              {UPACK_CONTACT.emails.map((email) => (
+                <li>
+                  <a href={`mailto:${email}`} class="email-link font-mono-tech">
+                    <bdi dir="ltr">{email}</bdi>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </article>
+
+          <article class="channel-card">
+            <div class="channel-head">
+              <span class="channel-icon is-crimson">
+                <Icon name="truck" size={20} />
+              </span>
+              <h2 class="channel-title">{copy.deliveryTitle}</h2>
+            </div>
+            <p class="channel-sub">{copy.deliverySub}</p>
+          </article>
+        </div>
+
+        <!-- End Column: Interactive WhatsApp Box Quote Builder Form -->
+        <div class="quote-form-panel">
+          <h2 class="form-h2">{copy.formHeading}</h2>
+          <p class="form-sub">{copy.formSub}</p>
+
+          <form id="contact-wa-form" class="contact-form" data-lang={lang}>
+            <div class="form-field">
+              <label for="contact-business" class="form-label">{copy.labelBusiness}</label>
+              <input
+                type="text"
+                id="contact-business"
+                name="businessName"
+                class="form-input"
+                placeholder={copy.placeholderBusiness}
+                required
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="contact-segment" class="form-label">{copy.labelSegment}</label>
+              <select id="contact-segment" name="segment" class="form-input">
+                {copy.segments.map((seg) => (
+                  <option value={seg}>{seg}</option>
+                ))}
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="contact-city" class="form-label">{copy.labelCity}</label>
+              <input
+                type="text"
+                id="contact-city"
+                name="governorate"
+                class="form-input"
+                placeholder={copy.placeholderCity}
+                required
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="contact-notes" class="form-label">{copy.labelNotes}</label>
+              <textarea
+                id="contact-notes"
+                name="message"
+                rows={4}
+                class="form-textarea"
+                placeholder={copy.placeholderNotes}
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="form-submit-wa">
+              <Icon name="whatsapp" size={20} />
+              <span>{copy.submitBtn}</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <QuoteBagDrawer slot="drawer" lang={lang} />
+</BaseLayout>
+
+<script>
+  import { buildContactWhatsAppUrl } from '../../lib/whatsapp';
+  import type { Lang } from '../../lib/url';
+
+  function initContactForm(): void {
+    const form = document.getElementById('contact-wa-form') as HTMLFormElement | null;
+    if (!form) return;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const lang = (form.getAttribute('data-lang') as Lang) || 'en';
+      const fd = new FormData(form);
+
+      const url = buildContactWhatsAppUrl({
+        lang,
+        businessName: String(fd.get('businessName') || ''),
+        segment: String(fd.get('segment') || ''),
+        governorate: String(fd.get('governorate') || ''),
+        message: String(fd.get('message') || '')
+      });
+
+      window.open(url, '_blank', 'noopener,noreferrer');
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initContactForm, { once: true });
+  } else {
+    initContactForm();
+  }
+  document.addEventListener('astro:page-load', initContactForm);
+</script>
+
+<style>
+  .contact-section {
+    padding: 36px 20px 80px;
+    background-color: var(--color-gallery, #F5F7FA);
+  }
+
+  @media (min-width: 1024px) {
+    .contact-section {
+      padding: 48px 28px 96px;
+    }
+  }
+
+  .contact-container {
+    width: 100%;
+    max-width: 1320px;
+    margin-inline: auto;
+    padding-inline: 4px;
+  }
+
+  .breadcrumb-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--color-ink-muted, #4B5366);
+    margin-bottom: 20px;
+  }
+
+  .breadcrumb-link {
+    color: var(--color-ink-secondary, #374051);
+    text-decoration: none;
+  }
+
+  .breadcrumb-link:hover {
+    color: var(--color-crimson, #C61D2A);
+  }
+
+  .breadcrumb-current {
+    color: var(--color-ink, #0D0F14);
+    font-weight: 700;
+  }
+
+  .contact-header {
+    max-width: 720px;
+    margin-bottom: 36px;
+  }
+
+  .contact-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .contact-badge {
+    padding: 4px 12px;
+    border-radius: 9999px;
+    background-color: #FFFFFF;
+    border: 1px solid var(--color-hairline, #E2E6EF);
+    color: var(--color-ink-secondary, #374051);
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  .contact-badge.is-crimson {
+    background-color: var(--color-crimson-soft, #FDECEE);
+    border-color: rgba(198, 29, 42, 0.25);
+    color: var(--color-crimson, #C61D2A);
+    font-weight: 800;
+  }
+
+  .contact-h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 3.5vw, 2.85rem);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+    color: var(--color-ink, #0D0F14);
+    margin: 0;
+  }
+
+  :global(html[dir='rtl']) .contact-h1 {
+    letter-spacing: 0;
+    line-height: 1.26;
+  }
+
+  .contact-lead {
+    margin: 12px 0 0;
+    font-size: 1.02rem;
+    color: var(--color-ink-muted, #4B5366);
+    line-height: 1.62;
+  }
+
+  .contact-split-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+
+  @media (min-width: 960px) {
+    .contact-split-grid {
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 36px;
+    }
+  }
+
+  .contact-channels {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .channel-card {
+    padding: 22px;
+    border-radius: 18px;
+    background-color: #FFFFFF;
+    border: 1px solid var(--color-hairline, #E2E6EF);
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .channel-card.is-wa {
+    border-color: rgba(18, 122, 62, 0.35);
+  }
+
+  .channel-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .channel-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background-color: var(--color-obsidian, #0D0F14);
+    color: #FFFFFF;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .channel-icon.is-wa {
+    background-color: var(--color-wa, #127A3E);
+  }
+
+  .channel-icon.is-crimson {
+    background-color: var(--color-crimson, #C61D2A);
+  }
+
+  .channel-title {
+    font-family: var(--font-display);
+    font-size: 1.12rem;
+    font-weight: 800;
+    color: var(--color-ink, #0D0F14);
+    margin: 0;
+  }
+
+  .channel-num {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--color-ink, #0D0F14);
+    margin-top: 2px;
+  }
+
+  .channel-sub {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--color-ink-muted, #4B5366);
+    line-height: 1.56;
+  }
+
+  .channel-btn-wa {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 46px;
+    padding: 0 18px;
+    border-radius: 12px;
+    background-color: var(--color-wa, #127A3E);
+    color: #FFFFFF;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.16s ease;
+  }
+
+  .channel-btn-wa:hover {
+    background-color: var(--color-wa-hover, #0D6130);
+  }
+
+  .channel-btn-call {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 46px;
+    padding: 0 18px;
+    border-radius: 12px;
+    background-color: var(--color-obsidian, #0D0F14);
+    color: #FFFFFF;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.16s ease;
+  }
+
+  .channel-btn-call:hover {
+    background-color: var(--color-crimson, #C61D2A);
+  }
+
+  .email-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .email-link {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--color-ink-secondary, #374051);
+    text-decoration: none;
+  }
+
+  .email-link:hover {
+    color: var(--color-crimson, #C61D2A);
+  }
+
+  /* Quote Form Panel */
+  .quote-form-panel {
+    padding: 32px 26px;
+    border-radius: 22px;
+    background-color: #FFFFFF;
+    border: 1px solid var(--color-hairline, #E2E6EF);
+    box-shadow: var(--shadow-card);
+  }
+
+  .form-h2 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--color-ink, #0D0F14);
+    margin: 0;
+  }
+
+  .form-sub {
+    margin: 8px 0 22px;
+    font-size: 0.92rem;
+    color: var(--color-ink-muted, #4B5366);
+    line-height: 1.56;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-label {
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: var(--color-ink, #0D0F14);
+  }
+
+  .form-input,
+  .form-textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border-radius: 10px;
+    border: 1.5px solid var(--color-input-border, #747D91);
+    background-color: #FFFFFF;
+    color: var(--color-ink, #0D0F14);
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: border-color 0.16s ease;
+  }
+
+  .form-input {
+    min-height: 46px;
+  }
+
+  .form-input:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--color-crimson, #C61D2A);
+  }
+
+  .form-submit-wa {
+    margin-top: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 52px;
+    padding: 0 24px;
+    border-radius: 12px;
+    border: none;
+    background-color: var(--color-wa, #127A3E);
+    color: #FFFFFF;
+    font-size: 0.96rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background-color 0.16s ease;
+  }
+
+  .form-submit-wa:hover {
+    background-color: var(--color-wa-hover, #0D6130);
+  }
+</style>

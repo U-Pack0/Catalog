@@ -1,0 +1,317 @@
+---
+import type { Category } from '../../data/catalog.schema';
+import { localePath, withBase, type Lang } from '../../lib/url';
+import Icon from '../icons/Icon.astro';
+
+export interface Props {
+  lang: Lang;
+  categories: Category[];
+}
+
+const { lang, categories } = Astro.props;
+const isAr = lang === 'ar';
+
+const sorted = [...categories].sort((a, b) => a.order - b.order);
+
+const copy = isAr
+  ? {
+      title: 'تصفح جميع تصنيفات عبوات KRNO',
+      lead: `${categories.length} فئات تخصصية تغطي الحلويات وصواني PS وعلب الكيك، أكواب PET الباردة، علب الوجبات والمايكروويف والريزو والشوربة، السوشي، وأدوات المائدة — البيع بالكرتونة لجميع محافظات مصر.`,
+      priorityBadge: 'قسم الحلويات · الأكثر طلباً',
+      familiesUnit: 'خط منتج',
+      variantsUnit: 'مقاس/صنف',
+      exploreCta: 'استعراض الفئة'
+    }
+  : {
+      title: 'Complete KRNO Packaging Categories',
+      lead: `${categories.length} specialized wholesale lines covering dessert & PS trays, cake boxes, crystal PET cold cups, microwave meal, rizo & soup bowls, sushi packs, and tableware — supplied by the box across Egypt.`,
+      priorityBadge: 'Dessert Priority',
+      familiesUnit: 'Product Lines',
+      variantsUnit: 'Variants',
+      exploreCta: 'Browse Category'
+    };
+
+// Asymmetric 12-column spans for 9 categories (clean balanced rows: 7+5, 5+7, 6+6, 4+4+4)
+const spanClasses = [
+  'bento-col-7',
+  'bento-col-5',
+  'bento-col-5',
+  'bento-col-7',
+  'bento-col-6',
+  'bento-col-6',
+  'bento-col-4',
+  'bento-col-4',
+  'bento-col-4'
+];
+---
+
+<section class="bento-section" data-reveal-section aria-labelledby="category-bento-heading">
+  <div class="bento-container">
+    <div class="bento-header">
+      <div>
+        <h2 id="category-bento-heading" class="bento-h2">{copy.title}</h2>
+        <p class="bento-lead">{copy.lead}</p>
+      </div>
+    </div>
+
+    <div class="bento-grid">
+      {sorted.map((cat, idx) => {
+        const isPriority =
+          Boolean(cat.isDessertPriority) ||
+          cat.slug === 'dessert-cups-bowls';
+        const spanClass = spanClasses[idx] || 'bento-col-6';
+        const href = localePath(lang, `category/${cat.slug}`);
+        const imgSrc = withBase(cat.image);
+
+        return (
+          <a
+            href={href}
+            class:list={[
+              'bento-card',
+              'card-3d-trick',
+              spanClass,
+              isPriority ? 'is-priority' : ''
+            ]}
+            data-trick-card
+            data-reveal-card
+          >
+            <span class="card-sheen-layer" aria-hidden="true"></span>
+
+            <div class="bento-card-top">
+              <div class="bento-copy">
+                <div class="bento-badges">
+                  {isPriority && (
+                    <span class="bento-priority-tag">
+                      <Icon name="sparkle" size={13} />
+                      <span>{copy.priorityBadge}</span>
+                    </span>
+                  )}
+                  <span class="bento-stat-tag">
+                    {cat.count} {copy.familiesUnit} · {cat.variantCount} {copy.variantsUnit}
+                  </span>
+                </div>
+
+                <h3 class="bento-card-title">{cat.name[lang]}</h3>
+                <p class="bento-card-desc">{cat.description[lang]}</p>
+              </div>
+
+              <div
+                class:list={[
+                  'bento-thumb',
+                  cat.photoBackdrop === 'dark' ? 'plinth-dark' : 'plinth-light'
+                ]}
+                data-backdrop={cat.photoBackdrop}
+                data-card-media
+              >
+                <img
+                  src={imgSrc}
+                  alt={cat.name[lang]}
+                  width="140"
+                  height="140"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+
+            <div class="bento-card-foot">
+              <span class="bento-cta-text">{copy.exploreCta}</span>
+              <Icon name="arrow-right" size={16} class="bento-arrow" />
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<style>
+  .bento-section {
+    padding: 64px 20px;
+    background-color: var(--color-gallery, #F5F7FA);
+    border-bottom: 1px solid var(--color-hairline, #E2E6EF);
+  }
+
+  @media (min-width: 1024px) {
+    .bento-section {
+      padding: 84px 28px;
+    }
+  }
+
+  .bento-container {
+    width: 100%;
+    max-width: 1320px;
+    margin-inline: auto;
+    padding-inline: 4px;
+  }
+
+  .bento-header {
+    margin-bottom: 32px;
+    max-width: 720px;
+  }
+
+  .bento-h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3.1vw, 2.55rem);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+    color: var(--color-ink, #0D0F14);
+    margin: 0;
+  }
+
+  :global(html[dir='rtl']) .bento-h2 {
+    letter-spacing: 0;
+    line-height: 1.26;
+  }
+
+  .bento-lead {
+    margin: 10px 0 0;
+    font-size: 1rem;
+    color: var(--color-ink-muted, #4B5366);
+    line-height: 1.62;
+  }
+
+  .bento-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  @media (min-width: 768px) {
+    .bento-grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .bento-col-7 { grid-column: span 7; }
+    .bento-col-6 { grid-column: span 6; }
+    .bento-col-5 { grid-column: span 5; }
+    .bento-col-4 { grid-column: span 4; }
+  }
+
+  .bento-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 22px;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+  }
+
+  .bento-card.is-priority {
+    border-color: rgba(198, 29, 42, 0.35);
+    background:
+      radial-gradient(circle at 95% 8%, rgba(198, 29, 42, 0.05), transparent 55%),
+      #FFFFFF;
+  }
+
+  .bento-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .bento-copy {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .bento-badges {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .bento-priority-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    background-color: var(--color-crimson, #C61D2A);
+    color: #FFFFFF;
+    font-size: 0.72rem;
+    font-weight: 800;
+  }
+
+  .bento-stat-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    background-color: var(--color-gallery, #F5F7FA);
+    color: var(--color-ink-secondary, #374051);
+    font-size: 0.74rem;
+    font-weight: 700;
+  }
+
+  .bento-card-title {
+    font-family: var(--font-display);
+    font-size: 1.22rem;
+    font-weight: 800;
+    line-height: 1.24;
+    color: var(--color-ink, #0D0F14);
+    margin: 0;
+  }
+
+  .bento-card-desc {
+    margin: 7px 0 0;
+    font-size: 0.88rem;
+    color: var(--color-ink-muted, #4B5366);
+    line-height: 1.54;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .bento-thumb {
+    width: 96px;
+    height: 96px;
+    border-radius: 14px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    overflow: hidden;
+  }
+
+  .bento-thumb img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .bento-card-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding-top: 12px;
+    border-top: 1px solid var(--color-hairline, #E2E6EF);
+    font-size: 0.84rem;
+    font-weight: 800;
+    color: var(--color-crimson, #C61D2A);
+  }
+
+  .bento-arrow {
+    transition: transform 0.18s ease;
+  }
+
+  .bento-card:hover .bento-arrow {
+    transform: translateX(3px);
+  }
+
+  :global(html[dir='rtl']) .bento-card:hover .bento-arrow {
+    transform: scaleX(-1) translateX(3px);
+  }
+</style>

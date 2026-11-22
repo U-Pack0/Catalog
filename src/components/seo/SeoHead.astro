@@ -1,0 +1,90 @@
+---
+import { absUrl, alternateLocalePath, withBase, type Lang } from '../../lib/url';
+import { EGYPT_SEO_KEYWORDS } from '../../lib/seo';
+import { UPACK_CONTACT } from '../../lib/i18n';
+
+export interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'product';
+  keywords?: string[];
+  jsonLd?: Record<string, unknown>[];
+  noindex?: boolean;
+}
+
+const {
+  lang,
+  title,
+  description,
+  canonicalPath,
+  ogImage = '/images/brand/upack-logo.jpg',
+  ogType = 'website',
+  keywords = EGYPT_SEO_KEYWORDS[lang],
+  jsonLd = [],
+  noindex = false,
+} = Astro.props;
+
+const site = Astro.site;
+const currentPath = canonicalPath ?? Astro.url.pathname;
+const canonicalUrl = absUrl(currentPath, site);
+const enUrl = absUrl(alternateLocalePath(currentPath, 'en'), site);
+const arUrl = absUrl(alternateLocalePath(currentPath, 'ar'), site);
+const ogImageAbs = absUrl(ogImage, site);
+
+const fontHref =
+  lang === 'ar'
+    ? 'https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700;800&family=JetBrains+Mono:wght@500&family=Tajawal:wght@400;500;700;800&display=swap'
+    : 'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@500&family=Manrope:wght@400;500;600;700;800&display=swap';
+
+const siteName =
+  lang === 'ar'
+    ? `${UPACK_CONTACT.brandAr} — ${UPACK_CONTACT.krnoTagline.ar}`
+    : `${UPACK_CONTACT.brandEn} — ${UPACK_CONTACT.krnoTagline.en}`;
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#F5F7FA" />
+<title>{title}</title>
+<meta name="description" content={description} />
+{keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
+{noindex && <meta name="robots" content="noindex, follow" />}
+
+<link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+<link rel="canonical" href={canonicalUrl} />
+<link rel="alternate" hreflang="en-EG" href={enUrl} />
+<link rel="alternate" hreflang="ar-EG" href={arUrl} />
+<link rel="alternate" hreflang="x-default" href={arUrl} />
+
+<!-- Open Graph & WhatsApp Rich Photo Card Preview Metadata -->
+<meta property="og:type" content={ogType} />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:locale" content={lang === 'ar' ? 'ar_EG' : 'en_EG'} />
+<meta property="og:locale:alternate" content={lang === 'ar' ? 'en_EG' : 'ar_EG'} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImageAbs} />
+<meta property="og:image:secure_url" content={ogImageAbs} />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={title} />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageAbs} />
+
+<!-- Locale-Split Non-Cliché Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href={fontHref} rel="stylesheet" />
+
+{jsonLd.map((schema) => (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+))}

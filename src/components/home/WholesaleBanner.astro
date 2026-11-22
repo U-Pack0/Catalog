@@ -1,0 +1,248 @@
+---
+import { UPACK_CONTACT, getUI } from '../../lib/i18n';
+import { buildGeneralWhatsAppUrl } from '../../lib/whatsapp';
+import type { Lang } from '../../lib/url';
+import Icon from '../icons/Icon.astro';
+
+export interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const isAr = lang === 'ar';
+const ui = getUI(lang);
+const waHref = buildGeneralWhatsAppUrl(lang);
+
+const copy = isAr
+  ? {
+      boxBadge: 'البيع بالكرتونة · أسعار جملة مباشرة',
+      hotlineLabel: 'الخط الساخن الموحد والواتساب'
+    }
+  : {
+      boxBadge: 'Sold by Master Box · Direct Wholesale Supply',
+      hotlineLabel: 'Unified Sales Hotline & WhatsApp'
+    };
+---
+
+<section class="wholesale-banner-section" data-reveal-section aria-labelledby="wholesale-banner-heading">
+  <div class="wholesale-container">
+    <div class="wholesale-panel dark-surface">
+      <div class="wholesale-copy">
+        <div class="wholesale-tags">
+          <span class="wholesale-tag is-crimson">{ui.krnoDistributor}</span>
+          <span class="wholesale-tag">
+            <Icon name="truck" size={14} />
+            <span>{ui.deliveryNationwide}</span>
+          </span>
+          <span class="wholesale-tag">
+            <Icon name="box" size={14} />
+            <span>{copy.boxBadge}</span>
+          </span>
+        </div>
+
+        <h2 id="wholesale-banner-heading" class="wholesale-h2">
+          {ui.wholesale.title}
+        </h2>
+        <p class="wholesale-lead">
+          {ui.wholesale.lead}
+        </p>
+      </div>
+
+      <div class="wholesale-cta-col">
+        <span class="wholesale-hotline-k">{copy.hotlineLabel}</span>
+        <span class="wholesale-hotline-v font-mono-tech">
+          <bdi dir="ltr">{UPACK_CONTACT.phone}</bdi>
+        </span>
+
+        <a
+          href={waHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="wholesale-wa-btn"
+          data-magnetic
+        >
+          <Icon name="whatsapp" size={20} />
+          <span>{ui.wholesale.whatsappBtn}</span>
+        </a>
+
+        <a href={UPACK_CONTACT.telHref} class="wholesale-call-btn">
+          <Icon name="phone" size={18} />
+          <span>{ui.wholesale.callBtn}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .wholesale-banner-section {
+    padding: 48px 20px 68px;
+    background-color: var(--color-gallery, #F5F7FA);
+  }
+
+  @media (min-width: 1024px) {
+    .wholesale-banner-section {
+      padding: 64px 28px 88px;
+    }
+  }
+
+  .wholesale-container {
+    width: 100%;
+    max-width: 1320px;
+    margin-inline: auto;
+    padding-inline: 4px;
+  }
+
+  .wholesale-panel {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    background:
+      radial-gradient(ellipse 58% 80% at 92% 14%, rgba(198, 29, 42, 0.28), transparent 65%),
+      var(--color-obsidian, #0D0F14);
+    border: 1px solid var(--color-dark-border, #252A36);
+    color: #FFFFFF;
+    padding: 36px 26px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    align-items: center;
+  }
+
+  .wholesale-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    inset-inline: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #C61D2A 0%, #F2525E 50%, #C61D2A 100%);
+  }
+
+  @media (min-width: 920px) {
+    .wholesale-panel {
+      padding: 48px 52px;
+      grid-template-columns: 1.35fr 0.85fr;
+    }
+  }
+
+  .wholesale-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .wholesale-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 9999px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: #FFFFFF;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  .wholesale-tag.is-crimson {
+    background-color: var(--color-crimson, #C61D2A);
+    border-color: var(--color-crimson, #C61D2A);
+    font-weight: 800;
+  }
+
+  .wholesale-h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
+    font-weight: 800;
+    line-height: 1.14;
+    color: #FFFFFF;
+    margin: 0;
+  }
+
+  :global(html[dir='rtl']) .wholesale-h2 {
+    line-height: 1.28;
+  }
+
+  .wholesale-lead {
+    margin: 12px 0 0;
+    font-size: 1rem;
+    color: var(--color-silver, #A1A8B8);
+    line-height: 1.62;
+    max-width: 54ch;
+  }
+
+  .wholesale-cta-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+  }
+
+  @media (min-width: 920px) {
+    .wholesale-cta-col {
+      padding-top: 0;
+      border-top: none;
+      padding-inline-start: 32px;
+      border-inline-start: 1px solid rgba(255, 255, 255, 0.14);
+    }
+  }
+
+  .wholesale-hotline-k {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-silver, #A1A8B8);
+  }
+
+  .wholesale-hotline-v {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1.1;
+  }
+
+  .wholesale-wa-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 50px;
+    padding: 0 22px;
+    border-radius: 12px;
+    background-color: var(--color-wa-vivid, #25D366);
+    color: #071A0E;
+    font-size: 0.95rem;
+    font-weight: 800;
+    text-decoration: none;
+    will-change: transform;
+    transition: filter 0.16s ease;
+  }
+
+  .wholesale-wa-btn:hover {
+    filter: brightness(1.06);
+  }
+
+  .wholesale-call-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 46px;
+    padding: 0 20px;
+    border-radius: 12px;
+    background: transparent;
+    border: 1.5px solid rgba(255, 255, 255, 0.28);
+    color: #FFFFFF;
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.16s ease, border-color 0.16s ease;
+  }
+
+  .wholesale-call-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #FFFFFF;
+  }
+</style>

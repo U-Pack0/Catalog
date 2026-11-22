@@ -1,0 +1,26 @@
+{
+  "name": "upack-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "U-Pack for Trading — Bilingual (AR/EN) KRNO Distributor Food-Service Packaging Catalog",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "extract": "node scripts/extract-catalog.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.4.2",
+    "@tailwindcss/vite": "^4.1.4",
+    "astro": "^5.7.10",
+    "gsap": "^3.13.0",
+    "tailwindcss": "^4.1.4"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "sharp": "^0.34.1",
+    "typescript": "^5.8.3"
+  }
+}

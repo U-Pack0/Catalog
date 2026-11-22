@@ -1,0 +1,365 @@
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    background-color: var(--color-gallery);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    min-height: 100dvh;
+    background-color: var(--color-gallery);
+    color: var(--color-ink);
+    line-height: 1.6;
+    overflow-x: clip;
+    caret-color: var(--color-crimson);
+    font-variant-numeric: tabular-nums;
+  }
+
+  html[dir="rtl"] body {
+    line-height: 1.72;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--color-crimson);
+    color: #FFFFFF;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-gallery);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #C5CDD9;
+    border-radius: 9999px;
+    border: 2px solid var(--color-gallery);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-crimson);
+  }
+
+  a {
+    text-underline-offset: 4px;
+  }
+
+  button {
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+
+  :focus-visible {
+    outline: 2.5px solid var(--color-crimson);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  .dark-surface :focus-visible {
+    outline-color: var(--color-crimson-dark);
+  }
+}
+
+/* Directional RTL Icon Mirroring */
+html[dir="rtl"] .icon-dir {
+  transform: scaleX(-1);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+.font-body {
+  font-family: var(--font-body);
+}
+.font-mono-tech {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Skip Link */
+.skip-link {
+  position: fixed;
+  top: -120px;
+  inset-inline-start: 16px;
+  z-index: 100;
+  background-color: var(--color-obsidian);
+  color: #FFFFFF;
+  padding: 12px 18px;
+  border-radius: var(--radius-btn);
+  font-weight: 700;
+  transition: top 180ms ease;
+}
+.skip-link:focus {
+  top: 16px;
+}
+
+/* Luminous Crystal Architectural Cyclorama Sweep */
+.arch-cyclorama {
+  background-color: var(--color-gallery);
+  background-image: radial-gradient(
+    ellipse 86% 74% at 72% 34%,
+    #FFFFFF 0%,
+    #F5F7FA 62%,
+    #ECEFF6 100%
+  );
+}
+html[dir="rtl"] .arch-cyclorama {
+  background-image: radial-gradient(
+    ellipse 86% 74% at 28% 34%,
+    #FFFFFF 0%,
+    #F5F7FA 62%,
+    #ECEFF6 100%
+  );
+}
+
+/* Inline Headline Visual Punctuation (/taste-design §4) */
+.inline-headline-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  height: 0.92em;
+  width: 1.85em;
+  margin-inline: 0.14em;
+  border-radius: 9999px;
+  overflow: hidden;
+  border: 1.5px solid var(--color-hairline-strong);
+  background-color: var(--color-plinth-dark);
+  box-shadow: var(--shadow-card);
+  transform: translateY(-0.06em);
+}
+.inline-headline-pill img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Adaptive Bimodal Product Photo Plinths (238 Dark Studio vs Light Studio) */
+.plinth-dark {
+  background-color: var(--color-plinth-dark);
+  background-image: radial-gradient(
+    circle at 50% 22%,
+    rgba(255, 255, 255, 0.08),
+    transparent 68%
+  );
+  border-bottom: 1px solid #1E222E;
+}
+
+.plinth-light {
+  background-color: var(--color-plinth-light);
+  border-bottom: 1px solid var(--color-hairline);
+}
+
+/* 3D Card Tricks Engine CSS Hooks (Driven by Track C motion-controller.ts) */
+.card-3d-trick {
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1100px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 220ms var(--ease-spring), border-color 220ms ease;
+}
+
+/* Magnetic 1px Crimson Border-Glow Spotlight */
+.card-3d-trick::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: radial-gradient(
+    260px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+    rgba(198, 29, 42, 0.55),
+    rgba(198, 29, 42, 0.08) 45%,
+    transparent 70%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 220ms ease;
+  z-index: 2;
+}
+
+.card-3d-trick:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+.card-3d-trick:hover::before {
+  opacity: 1;
+}
+
+/* Prismatic Specular Glass Sheen Sweep */
+.card-sheen-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 220ms ease;
+  z-index: 3;
+}
+.card-3d-trick:hover .card-sheen-layer {
+  opacity: 1;
+}
+.plinth-dark .card-sheen-layer {
+  background: radial-gradient(
+    300px circle at var(--sheen-x, 50%) var(--sheen-y, 50%),
+    rgba(255, 255, 255, 0.16),
+    transparent 64%
+  );
+}
+.plinth-light .card-sheen-layer {
+  background: radial-gradient(
+    300px circle at var(--sheen-x, 50%) var(--sheen-y, 50%),
+    rgba(198, 29, 42, 0.075),
+    rgba(255, 255, 255, 0.35) 35%,
+    transparent 68%
+  );
+}
+
+/* 3D Depth-Pop Stage for Product Media */
+.card-3d-trick [data-card-media] {
+  transition: transform 320ms var(--ease-spring);
+  transform: translateZ(0);
+  will-change: transform;
+}
+.card-3d-trick:hover [data-card-media] {
+  transform: translateZ(24px) scale(1.035);
+}
+
+/* 3D Y-Axis Peek-Inside Flip Container (Group A Closed <-> Open Interior) */
+.peek-flip-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+/* Sliding Active Pill Rail */
+[data-pill-rail] {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+.pill-rail-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 9999px;
+  background-color: var(--color-obsidian);
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform, width, height;
+}
+.pill-rail-btn {
+  position: relative;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-ink-secondary);
+  white-space: nowrap;
+  transition: color 180ms ease;
+}
+.pill-rail-btn:hover {
+  color: var(--color-ink);
+}
+.pill-rail-btn[aria-selected="true"],
+.pill-rail-btn[aria-pressed="true"],
+.pill-rail-btn.is-active {
+  color: #FFFFFF;
+}
+.pill-rail-btn[aria-selected="true"] .pill-count,
+.pill-rail-btn[aria-pressed="true"] .pill-count,
+.pill-rail-btn.is-active .pill-count {
+  background-color: rgba(255, 255, 255, 0.22);
+  color: #FFFFFF;
+}
+
+/* Guarantee hidden elements are never overridden by display utilities */
+[hidden] {
+  display: none !important;
+}
+
+/* Flying "+1 Box" Micro-Burst */
+.fly-bag-burst {
+  position: fixed;
+  z-index: 80;
+  pointer-events: none;
+  padding: 5px 11px;
+  border-radius: 9999px;
+  background-color: var(--color-crimson);
+  color: #FFFFFF;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 800;
+  box-shadow: var(--shadow-float);
+  white-space: nowrap;
+}
+
+/* Toast Notification */
+.upack-toast {
+  position: fixed;
+  bottom: 22px;
+  inset-inline-start: 50%;
+  transform: translateX(-50%) translateY(20px);
+  z-index: 70;
+  background-color: var(--color-obsidian);
+  color: #FFFFFF;
+  border: 1px solid var(--color-dark-border);
+  padding: 12px 20px;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-float);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease, transform 220ms var(--ease-spring);
+}
+html[dir="rtl"] .upack-toast {
+  transform: translateX(50%) translateY(20px);
+}
+.upack-toast.is-shown,
+.upack-toast.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+html[dir="rtl"] .upack-toast.is-shown,
+html[dir="rtl"] .upack-toast.is-visible {
+  transform: translateX(50%) translateY(0);
+}
+
+/* Reduced Motion Respect */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .card-3d-trick:hover [data-card-media] {
+    transform: none !important;
+  }
+}

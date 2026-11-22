@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@theme {
+  /* Luminous Crystal Architectural Gallery Surfaces */
+  --color-gallery: #F5F7FA;
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #EEF2F7;
+
+  /* Obsidian Accents & Dark Plinth */
+  --color-obsidian: #0D0F14;
+  --color-obsidian-deep: #090A0D;
+  --color-obsidian-card: #141720;
+  --color-plinth-dark: #050608;
+  --color-plinth-light: #FFFFFF;
+
+  /* Machined Hairlines & Accessible Input Boundaries (WCAG 1.4.11 >= 3.8:1) */
+  --color-hairline: #E2E6EF;
+  --color-hairline-strong: #CBD3E1;
+  --color-input-border: #747D91;
+  --color-dark-border: #252A36;
+
+  /* High-Contrast Ink Hierarchy (all >= 7.1:1 AAA) */
+  --color-ink: #0D0F14;
+  --color-ink-secondary: #374051;
+  --color-ink-muted: #4B5366;
+  --color-silver: #A1A8B8;
+
+  /* Singular Brand Accent — U-Pack Signal Crimson */
+  --color-crimson: #C61D2A;
+  --color-crimson-hover: #A61520;
+  --color-crimson-soft: #FDECEE;
+  --color-crimson-dark: #F2525E;
+
+  /* WhatsApp Conversion Forest Emerald (WCAG AA 5.41:1 with #FFFFFF) */
+  --color-wa: #127A3E;
+  --color-wa-hover: #0D6130;
+  --color-wa-soft: #E9F7EF;
+  --color-wa-vivid: #25D366;
+
+  /* Semantic Material Tints (all >= 6.52:1) */
+  --color-mat-pet-fg: #0B5B8A;
+  --color-mat-pet-bg: #E8F4FB;
+  --color-mat-pp-fg: #1D2433;
+  --color-mat-pp-bg: #ECEFF4;
+  --color-mat-ps-fg: #6D3B09;
+  --color-mat-ps-bg: #FDF3E7;
+  --color-mat-eco-fg: #14532D;
+  --color-mat-eco-bg: #EAF7EE;
+
+  /* Non-Cliché Typography Stacks */
+  --font-display: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
+  --font-body: 'Manrope', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+  /* Elevation Shadows (Neutral Architectural — Zero Colored Neon Halos) */
+  --shadow-glass: 0 8px 32px rgba(13, 15, 20, 0.08), 0 1px 2px rgba(13, 15, 20, 0.04);
+  --shadow-card: 0 1px 2px rgba(13, 15, 20, 0.05), 0 8px 24px rgba(13, 15, 20, 0.04);
+  --shadow-card-hover: 0 18px 38px rgba(13, 15, 20, 0.12), 0 2px 6px rgba(13, 15, 20, 0.06);
+  --shadow-float: 0 12px 28px rgba(9, 10, 13, 0.24);
+  --shadow-drawer: -18px 0 48px rgba(9, 10, 13, 0.28);
+
+  /* Deliberate Radius Hierarchy */
+  --radius-stage: 24px;
+  --radius-card: 18px;
+  --radius-btn: 12px;
+  --radius-input: 10px;
+  --radius-chip: 7px;
+}
+
+:root {
+  --sheen-x: 50%;
+  --sheen-y: 50%;
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+  --header-offset: 5.5rem;
+}
+
+html[dir="rtl"],
+html[lang="ar"] {
+  --font-display: 'Alexandria', 'Tahoma', system-ui, sans-serif;
+  --font-body: 'Tajawal', 'Tahoma', system-ui, sans-serif;
+  --shadow-drawer: 18px 0 48px rgba(9, 10, 13, 0.28);
+}

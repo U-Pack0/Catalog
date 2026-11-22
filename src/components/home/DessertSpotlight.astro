@@ -1,0 +1,469 @@
+---
+import type { ProductFamily } from '../../data/catalog.schema';
+import { localePath, type Lang } from '../../lib/url';
+import { buildGeneralWhatsAppUrl } from '../../lib/whatsapp';
+import Icon from '../icons/Icon.astro';
+import ProductCard from '../catalog/ProductCard.astro';
+
+export interface Props {
+  lang: Lang;
+  products: ProductFamily[];
+}
+
+const { lang, products } = Astro.props;
+const isAr = lang === 'ar';
+
+const psProducts = products.filter(
+  (p) => p.category === 'dessert-cups-bowls' && p.material.includes('PS')
+);
+const mealProducts = products.filter((p) => p.category === 'meal-containers');
+
+const CUPS_ORDER = [
+  'ushape-cups-92',
+  'pet-cups-92',
+  'smart-cups-92',
+  'tornado-cups-82',
+  'ripple-cups-70',
+  'chop-cups-73',
+  'pet-cup-lids'
+];
+const CUTLERY_SLUGS = [
+  'turkish-cutlery',
+  'german-cutlery',
+  'souvenir-cutlery',
+  'lotus-souvenir-cutlery',
+  'wrapped-cutlery-napkin-pack'
+];
+
+const bySlug = new Map(products.map((p) => [p.slug, p]));
+
+const cupProducts = [
+  ...CUPS_ORDER.map((s) => bySlug.get(s)).filter((p): p is ProductFamily => Boolean(p)),
+  ...products.filter((p) => p.category === 'cold-cups' && !CUPS_ORDER.includes(p.slug))
+];
+
+const cutleryProducts = CUTLERY_SLUGS
+  .map((s) => bySlug.get(s))
+  .filter((p): p is ProductFamily => Boolean(p));
+
+// Curated 12-card flagship mix for the default "All Most Requested" tab
+const FEATURED_ALL_SLUGS = new Set([
+  'ps-crystal-bowl-200',
+  'ps-rect-dessert-trays',
+  'ps-oriental-round-trays',
+  'ps-crystal-dessert-bowls',
+  'meal-tray-rlb',
+  'rect-microwave-mc',
+  'rizo-bowls-rk',
+  'soup-bowls-sb',
+  'ushape-cups-92',
+  'pet-cup-lids',
+  'turkish-cutlery',
+  'wrapped-cutlery-napkin-pack'
+]);
+
+type SpotlightGroup = 'ps' | 'meals' | 'cups' | 'cutlery';
+
+interface SpotlightItem {
+  product: ProductFamily;
+  group: SpotlightGroup;
+  featuredAll: boolean;
+}
+
+const orderedEntries: SpotlightItem[] = [];
+const seenSlugs = new Set<string>();
+
+function addEntries(list: ProductFamily[], group: SpotlightGroup) {
+  for (const product of list) {
+    if (seenSlugs.has(product.slug)) continue;
+    seenSlugs.add(product.slug);
+    orderedEntries.push({
+      product,
+      group,
+      featuredAll: FEATURED_ALL_SLUGS.has(product.slug)
+    });
+  }
+}
+
+addEntries(psProducts, 'ps');
+addEntries(mealProducts, 'meals');
+addEntries(cupProducts, 'cups');
+addEntries(cutleryProducts, 'cutlery');
+
+const tabs = isAr
+  ? [
+      { id: 'all', label: 'كل الأكثر طلباً' },
+      { id: 'ps', label: 'منتجات PS الكريستال' },
+      { id: 'meals', label: 'الوجبات والمايكروويف والريزو والشوربة' },
+      { id: 'cups', label: 'الأكواب' },
+      { id: 'cutlery', label: 'أدوات مائدة الوجبات' }
+    ]
+  : [
+      { id: 'all', label: 'All Most Requested' },
+      { id: 'ps', label: 'PS Items' },
+      { id: 'meals', label: 'Microwave Meals, Rizo & Soup' },
+      { id: 'cups', label: 'Cups' },
+      { id: 'cutlery', label: 'Meal Cutlery' }
+    ];
+
+const copy = isAr
+  ? {
+      badge: 'الأكثر طلباً',
+      countLabel: `${orderedEntries.length} خط منتج أساسي`,
+      title: 'المنتجات الأكثر طلباً',
+      lead: 'الأصناف الأكثر سحباً للمطاعم والكافيهات ومحلات الحلويات في مصر — من منتجات PS الكريستال وعلب الوجبات والمايكروويف والريزو والشوربة حتى أكواب U-Shape وأدوات المائدة بالجملة بالكرتونة.',
+      catalogCta: 'تصفح الكتالوج الكامل',
+      waCta: 'اطلب عبر واتساب',
+      filterAria: 'تصفية المنتجات الأكثر طلباً'
+    }
+  : {
+      badge: 'Most Requested',
+      countLabel: `${orderedEntries.length} High-Demand Product Lines`,
+      title: 'Most Requested Products',
+      lead: 'Our fastest-moving wholesale box lines for Egyptian restaurants, cafés, and pâtisseries — spanning crystal PS trays & bowls, microwave meal, rizo & soup containers, U-Shape PET café cups, and heavy-duty meal cutlery.',
+      catalogCta: 'Browse Full Catalog',
+      waCta: 'Order on WhatsApp',
+      filterAria: 'Filter most requested packaging by line'
+    };
+
+const fullCatalogHref = localePath(lang, 'catalog');
+const waHref = buildGeneralWhatsAppUrl(lang);
+---
+
+<section
+  id="most-requested"
+  class="dessert-spotlight-section"
+  data-reveal-section
+  aria-labelledby="most-requested-heading"
+>
+  <div class="dessert-container">
+    <!-- Asymmetric Header Row -->
+    <div class="dessert-header">
+      <div class="dessert-header-copy">
+        <div class="dessert-badge-row">
+          <span class="dessert-priority-badge">
+            <Icon name="sparkle" size={14} />
+            <span>{copy.badge}</span>
+          </span>
+          <span class="dessert-count-pill">{copy.countLabel}</span>
+        </div>
+
+        <h2 id="most-requested-heading" class="dessert-h2">
+          {copy.title}
+        </h2>
+        <p class="dessert-lead">
+          {copy.lead}
+        </p>
+      </div>
+
+      <div class="dessert-category-actions">
+        <a href={fullCatalogHref} class="dessert-cat-btn is-crimson">
+          <span>{copy.catalogCta}</span>
+          <Icon name="arrow-right" size={16} />
+        </a>
+        <a
+          href={waHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="dessert-cat-btn is-wa"
+        >
+          <Icon name="whatsapp" size={16} />
+          <span>{copy.waCta}</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Interactive Sliding-Pill Tabs -->
+    <div class="dessert-rail-shell">
+      <div
+        class="dessert-pill-rail"
+        data-pill-rail
+        id="most-requested-rail"
+        role="group"
+        aria-label={copy.filterAria}
+      >
+        <span class="pill-rail-indicator pointer-events-none z-0" data-pill-indicator aria-hidden="true"></span>
+        {tabs.map((tab, idx) => (
+          <button
+            type="button"
+            class:list={['dessert-tab-btn relative z-10', idx === 0 ? 'is-active' : '']}
+            data-spotlight-tab={tab.id}
+            aria-pressed={idx === 0 ? 'true' : 'false'}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Most Requested Product Cards Grid -->
+    <div class="dessert-products-grid" id="most-requested-grid">
+      {orderedEntries.map((entry) => (
+        <div
+          class="spotlight-slot"
+          data-spotlight-slot
+          data-spotlight-group={entry.group}
+          data-featured-all={entry.featuredAll ? 'true' : 'false'}
+          hidden={!entry.featuredAll}
+        >
+          <ProductCard product={entry.product} lang={lang} />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { refreshCardTricks, syncPillRail } from '../../scripts/motion-controller';
+
+  function initMostRequestedTabs(): void {
+    const rail = document.getElementById('most-requested-rail');
+    const grid = document.getElementById('most-requested-grid');
+    if (!rail || !grid) return;
+
+    const buttons = Array.from(rail.querySelectorAll<HTMLButtonElement>('[data-spotlight-tab]'));
+    const slots = Array.from(grid.querySelectorAll<HTMLElement>('[data-spotlight-slot]'));
+
+    syncPillRail(rail, true);
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const selected = btn.getAttribute('data-spotlight-tab') || 'all';
+
+        buttons.forEach((b) => {
+          const active = b === btn;
+          b.setAttribute('aria-pressed', String(active));
+          b.classList.toggle('is-active', active);
+        });
+
+        syncPillRail(rail, false);
+
+        slots.forEach((slot) => {
+          const group = slot.getAttribute('data-spotlight-group') || '';
+          const featuredAll = slot.getAttribute('data-featured-all') === 'true';
+          const match = selected === 'all' ? featuredAll : group === selected;
+          slot.hidden = !match;
+        });
+
+        refreshCardTricks(grid);
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMostRequestedTabs, { once: true });
+  } else {
+    initMostRequestedTabs();
+  }
+  document.addEventListener('astro:page-load', initMostRequestedTabs);
+</script>
+
+<style>
+  .dessert-spotlight-section {
+    padding: 64px 20px;
+    background-color: var(--color-surface, #FFFFFF);
+    border-bottom: 1px solid var(--color-hairline, #E2E6EF);
+  }
+
+  @media (min-width: 1024px) {
+    .dessert-spotlight-section {
+      padding: 84px 28px;
+    }
+  }
+
+  .dessert-container {
+    width: 100%;
+    max-width: 1320px;
+    margin-inline: auto;
+    padding-inline: 4px;
+  }
+
+  .dessert-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 28px;
+  }
+
+  .dessert-header-copy {
+    max-width: 680px;
+  }
+
+  .dessert-badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .dessert-priority-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 13px;
+    border-radius: 9999px;
+    background-color: var(--color-crimson-soft, #FDECEE);
+    color: var(--color-crimson, #C61D2A);
+    font-size: 0.8rem;
+    font-weight: 800;
+  }
+
+  .dessert-count-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    border-radius: 9999px;
+    background-color: var(--color-gallery, #F5F7FA);
+    border: 1px solid var(--color-hairline, #E2E6EF);
+    color: var(--color-ink-secondary, #374051);
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  .dessert-h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3.1vw, 2.6rem);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+    color: var(--color-ink, #0D0F14);
+    margin: 0;
+  }
+
+  :global(html[dir='rtl']) .dessert-h2 {
+    letter-spacing: 0;
+    line-height: 1.26;
+  }
+
+  .dessert-lead {
+    margin: 10px 0 0;
+    font-size: 1rem;
+    color: var(--color-ink-muted, #4B5366);
+    line-height: 1.62;
+  }
+
+  .dessert-category-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .dessert-cat-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 18px;
+    border-radius: 12px;
+    background-color: var(--color-gallery, #F5F7FA);
+    border: 1px solid var(--color-hairline-strong, #CBD3E1);
+    color: var(--color-ink, #0D0F14);
+    font-size: 0.86rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease;
+  }
+
+  .dessert-cat-btn:hover {
+    background-color: var(--color-obsidian, #0D0F14);
+    border-color: var(--color-obsidian, #0D0F14);
+    color: #FFFFFF;
+  }
+
+  .dessert-cat-btn.is-crimson {
+    background-color: var(--color-crimson, #C61D2A);
+    border-color: var(--color-crimson, #C61D2A);
+    color: #FFFFFF;
+  }
+
+  .dessert-cat-btn.is-crimson:hover {
+    background-color: var(--color-crimson-hover, #A61520);
+    border-color: var(--color-crimson-hover, #A61520);
+  }
+
+  .dessert-cat-btn.is-wa {
+    background-color: var(--color-wa, #127A3E);
+    border-color: var(--color-wa, #127A3E);
+    color: #FFFFFF;
+  }
+
+  .dessert-cat-btn.is-wa:hover {
+    background-color: var(--color-wa-hover, #0D6130);
+    border-color: var(--color-wa-hover, #0D6130);
+  }
+
+  /* Sliding Pill Rail */
+  .dessert-rail-shell {
+    margin-bottom: 28px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .dessert-pill-rail {
+    position: relative;
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    padding: 6px;
+    border-radius: 9999px;
+    background-color: var(--color-gallery, #F5F7FA);
+    border: 1px solid var(--color-hairline, #E2E6EF);
+  }
+
+  .dessert-tab-btn {
+    position: relative;
+    z-index: 10;
+    min-height: 40px;
+    padding: 0 16px;
+    border-radius: 9999px;
+    border: none;
+    background: transparent;
+    color: var(--color-ink-secondary, #374051);
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.18s ease;
+  }
+
+  .dessert-tab-btn:hover {
+    color: var(--color-ink, #0D0F14);
+  }
+
+  .dessert-tab-btn.is-active,
+  .dessert-tab-btn[aria-pressed='true'] {
+    color: #FFFFFF;
+  }
+
+  .dessert-products-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .spotlight-slot {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .spotlight-slot > :global(article) {
+    flex: 1;
+  }
+
+  @media (min-width: 680px) {
+    .dessert-products-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1080px) {
+    .dessert-products-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

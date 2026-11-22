@@ -1,0 +1,306 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ProductDetailStage from '../../../components/product/ProductDetailStage.astro';
+import VariantSpecTable from '../../../components/product/VariantSpecTable.astro';
+import ProductCard from '../../../components/catalog/ProductCard.astro';
+import QuoteBagDrawer from '../../../components/catalog/QuoteBagDrawer.astro';
+import WholesaleBanner from '../../../components/home/WholesaleBanner.astro';
+import Icon from '../../../components/icons/Icon.astro';
+
+import rawCatalog from '../../../data/catalog.json';
+import type { CatalogData, ProductFamily } from '../../../data/catalog.schema';
+import { absUrl, localePath, type Lang } from '../../../lib/url';
+import { formatShortBox, getUI } from '../../../lib/i18n';
+import { buildBreadcrumbJsonLd, buildProductJsonLd } from '../../../lib/seo';
+
+export function getStaticPaths() {
+  const data = rawCatalog as unknown as CatalogData;
+  const langs: Lang[] = ['en', 'ar'];
+
+  return langs.flatMap((lang) =>
+    data.products.map((product) => ({
+      params: { lang, slug: product.slug },
+      props: { product }
+    }))
+  );
+}
+
+export interface Props {
+  product: ProductFamily;
+}
+
+const { lang } = Astro.params as { lang: Lang; slug: string };
+const { product } = Astro.props;
+const isAr = lang === 'ar';
+const ui = getUI(lang);
+const catalogData = rawCatalog as unknown as CatalogData;
+
+const categoryObj = catalogData.categories.find((c) => c.slug === product.category);
+const categoryName = categoryObj ? categoryObj.name[lang] : product.category;
+
+const relatedProducts = catalogData.products
+  .filter((p) => p.category === product.category && p.slug !== product.slug)
+  .slice(0, 3);
+
+const canonicalPath = localePath(lang, `product/${product.slug}`);
+const v0 = product.variants[0];
+const boxSummary = v0
+  ? formatShortBox(lang, v0.pcsPerBox, v0.orderUnit, v0.packUnit)
+  : '';
+
+const pageTitle = isAr
+  ? `${product.name.ar} (${boxSummary}) | ${ui.brandName} — ${ui.krnoDistributor}`
+  : `${product.name.en} (${boxSummary}) | ${ui.brandName} — ${ui.krnoDistributor}`;
+
+const pageDesc = `${product.description[lang]} — ${ui.lidBadges[product.lidPolicy]}. ${boxSummary}. WhatsApp 01055400404.`;
+
+const breadcrumbLd = buildBreadcrumbJsonLd([
+  { name: ui.nav.home, url: absUrl(localePath(lang), Astro.site) },
+  { name: ui.nav.catalog, url: absUrl(localePath(lang, 'catalog'), Astro.site) },
+  {
+    name: categoryName,
+    url: absUrl(localePath(lang, `category/${product.category}`), Astro.site)
+  },
+  { name: product.name[lang], url: absUrl(canonicalPath, Astro.site) }
+]);
+
+const productImages = [
+  absUrl(product.ogImage, Astro.site),
+  absUrl(product.image, Astro.site)
+];
+
+const productLd = buildProductJsonLd({
+  name: product.name[lang],
+  description: product.description[lang],
+  url: absUrl(canonicalPath, Astro.site),
+  images: productImages,
+  categoryName,
+  materials: product.material,
+  sku: v0?.sku,
+  isSyntheticSku: v0?.isSyntheticSku,
+  pcsPerBox: v0?.pcsPerBox,
+  packUnit: v0?.packUnit,
+  dimensionsMm: v0?.dimensionsMm,
+  lidPolicy: product.lidPolicy,
+  lidSku: v0?.lidSku
+});
+---
+
+<BaseLayout
+  lang={lang}
+  title={pageTitle}
+  description={pageDesc}
+  canonicalPath={canonicalPath}
+  ogImage={product.ogImage}
+  ogType="product"
+  keywords={categoryObj?.seoKeywords?.[lang]}
+  jsonLd={[breadcrumbLd, productLd]}
+>
+  <section class="pdp-main-section">
+    <div class="pdp-container">
+      <!-- Breadcrumb Navigation -->
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <a href={localePath(lang)} class="breadcrumb-link">{ui.nav.home}</a>
+        <span aria-hidden="true">/</span>
+        <a href={localePath(lang, 'catalog')} class="breadcrumb-link">{ui.nav.catalog}</a>
+        <span aria-hidden="true">/</span>
+        <a href={localePath(lang, `category/${product.category}`)} class="breadcrumb-link">
+          {categoryName}
+        </a>
+        <span aria-hidden="true">/</span>
+        <span class="breadcrumb-current" aria-current="page">{product.name[lang]}</span>
+      </nav>
+
+      <!-- Explicit Cup-Lid Separate Box Notice Banner for Cups -->
+      {product.lidPolicy === 'cups-no-lid-separate' && (
+        <div class="pdp-cup-lid-alert" role="note">
+          <Icon name="cup" size={18} class="text-crimson" />
+          <div>
+            <strong>{ui.lidBadges['cups-no-lid-separate']}:</strong>{' '}
+            <span>{ui.lidNotes['cups-no-lid-separate']}</span>
+          </div>
+        </div>
+      )}
+
+      <!-- 2-Column Architectural PDP Split -->
+      <div class="pdp-split-grid">
+        <div class="pdp-stage-wrap">
+          <ProductDetailStage product={product} lang={lang} />
+        </div>
+
+        <div class="pdp-specs-wrap">
+          <VariantSpecTable
+            product={product}
+            lang={lang}
+            categoryName={categoryName}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Products in the Same Category -->
+  {relatedProducts.length > 0 && (
+    <section class="pdp-related-section" aria-labelledby="pdp-related-heading">
+      <div class="pdp-container">
+        <div class="pdp-related-header">
+          <h2 id="pdp-related-heading" class="pdp-related-h2">
+            {ui.catalog.relatedHeading}
+          </h2>
+          <a
+            href={localePath(lang, `category/${product.category}`)}
+            class="pdp-related-all"
+          >
+            <span>{categoryName}</span>
+            <Icon name="arrow-right" size={16} />
+          </a>
+        </div>
+
+        <div class="pdp-related-grid">
+          {relatedProducts.map((rel) => (
+            <ProductCard
+              product={rel}
+              lang={lang}
+              categoryName={categoryName}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <WholesaleBanner lang={lang} />
+
+  <QuoteBagDrawer slot="drawer" lang={lang} />
+</BaseLayout>
+
+<style>
+  .pdp-main-section {
+    padding: 32px 20px 68px;
+    background-color: var(--color-surface, #FFFFFF);
+    border-bottom: 1px solid var(--color-hairline, #E2E6EF);
+  }
+
+  @media (min-width: 1024px) {
+    .pdp-main-section {
+      padding: 44px 28px 84px;
+    }
+  }
+
+  .pdp-container {
+    width: 100%;
+    max-width: 1320px;
+    margin-inline: auto;
+    padding-inline: 4px;
+  }
+
+  .breadcrumb-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--color-ink-muted, #4B5366);
+    margin-bottom: 22px;
+  }
+
+  .breadcrumb-link {
+    color: var(--color-ink-secondary, #374051);
+    text-decoration: none;
+  }
+
+  .breadcrumb-link:hover {
+    color: var(--color-crimson, #C61D2A);
+  }
+
+  .breadcrumb-current {
+    color: var(--color-ink, #0D0F14);
+    font-weight: 700;
+  }
+
+  .pdp-cup-lid-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px 16px;
+    margin-bottom: 24px;
+    border-radius: 14px;
+    background-color: var(--color-crimson-soft, #FDECEE);
+    border: 1px solid rgba(198, 29, 42, 0.22);
+    color: var(--color-ink, #0D0F14);
+    font-size: 0.88rem;
+    line-height: 1.54;
+  }
+
+  .pdp-split-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  @media (min-width: 980px) {
+    .pdp-split-grid {
+      grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
+      gap: 44px;
+    }
+  }
+
+  .pdp-related-section {
+    padding: 56px 20px 72px;
+    background-color: var(--color-gallery, #F5F7FA);
+    border-bottom: 1px solid var(--color-hairline, #E2E6EF);
+  }
+
+  @media (min-width: 1024px) {
+    .pdp-related-section {
+      padding: 72px 28px 88px;
+    }
+  }
+
+  .pdp-related-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .pdp-related-h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.45rem, 2.5vw, 2rem);
+    font-weight: 800;
+    color: var(--color-ink, #0D0F14);
+    margin: 0;
+  }
+
+  .pdp-related-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-crimson, #C61D2A);
+    text-decoration: none;
+  }
+
+  .pdp-related-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  @media (min-width: 680px) {
+    .pdp-related-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1080px) {
+    .pdp-related-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

@@ -1,0 +1,384 @@
+---
+import type { PhotoBackdrop, ProductFamily } from '../../data/catalog.schema';
+import { formatSoldByBox, getUI } from '../../lib/i18n';
+import { absUrl, localePath, withBase, type Lang } from '../../lib/url';
+import Icon from '../icons/Icon.astro';
+
+export interface Props {
+  product: ProductFamily;
+  lang: Lang;
+}
+
+const { product, lang } = Astro.props;
+const ui = getUI(lang);
+
+const v0 = product.variants[0];
+const initialImage = v0?.image || product.image;
+const initialBackdrop: PhotoBackdrop = v0?.photoBackdrop || product.photoBackdrop;
+const shareUrl = absUrl(localePath(lang, `product/${product.slug}`), Astro.site);
+
+interface GalleryThumb {
+  src: string;
+  backdrop: PhotoBackdrop;
+  label: string;
+}
+
+const galleryMap = new Map<string, GalleryThumb>();
+
+function pushThumb(src: string | undefined, backdrop: PhotoBackdrop | undefined, label: string) {
+  if (!src) return;
+  if (!galleryMap.has(src)) {
+    galleryMap.set(src, {
+      src,
+      backdrop: backdrop || product.photoBackdrop,
+      label,
+    });
+  }
+}
+
+pushThumb(product.image, product.photoBackdrop, product.name[lang]);
+if (product.openImage) {
+  pushThumb(
+    product.openImage,
+    product.openImageBackdrop || product.photoBackdrop,
+    `${product.name[lang]} — ${ui.actions.peekInside}`
+  );
+}
+if (product.gallery?.length) {
+  product.gallery.forEach((g) => pushThumb(g.src, g.backdrop, g.label[lang]));
+}
+product.variants.forEach((v) => {
+  if (v.image) {
+    pushThumb(v.image, v.photoBackdrop || product.photoBackdrop, v.label[lang]);
+  }
+  if (v.openImage) {
+    pushThumb(
+      v.openImage,
+      v.photoBackdrop || product.photoBackdrop,
+      `${v.label[lang]} — ${ui.actions.peekInside}`
+    );
+  }
+});
+
+const galleryItems = Array.from(galleryMap.values());
+
+const lidBadgeStyle =
+  product.lidPolicy === 'cups-no-lid-separate'
+    ? 'border-amber-500/40 bg-amber-500/15 text-amber-900'
+    : product.lidPolicy === 'built-in-hinged' || product.lidPolicy === 'included-set'
+      ? 'border-wa/30 bg-wa/12 text-wa'
+      : 'border-hairline-strong bg-surface/95 text-ink-secondary';
+---
+
+<div class="flex flex-col gap-4" data-pdp-stage>
+  <!-- Interactive 3D-Tilted Studio Plinth -->
+  <div
+    id="pdp-stage-plinth"
+    class={`card-3d-trick relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-3xl p-6 sm:p-10 ${
+      initialBackdrop === 'dark' ? 'plinth-dark' : 'plinth-light'
+    }`}
+    data-pdp-plinth
+    data-backdrop={initialBackdrop}
+  >
+    <div class="card-sheen-layer" aria-hidden="true"></div>
+
+    <!-- Top Floating Overlay: Material + Lid Policy + Peek Inside Flip -->
+    <div class="absolute inset-x-4 top-4 z-10 flex flex-wrap items-center justify-between gap-2">
+      <div class="flex flex-wrap items-center gap-1.5">
+        {
+          product.material.map((mat) => (
+            <span class="inline-flex items-center rounded-full border border-white/20 bg-obsidian/85 px-3 py-1 font-mono text-xs font-bold tracking-wide text-white backdrop-blur-md">
+              <bdi dir="ltr">{mat}</bdi>
+            </span>
+          ))
+        }
+        <span
+          class={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-bold shadow-2xs backdrop-blur-md ${lidBadgeStyle}`}
+        >
+          <Icon
+            name={product.lidPolicy === 'cups-no-lid-separate' ? 'info' : 'layers'}
+            size={13}
+          />
+          <span>{ui.lidBadges[product.lidPolicy]}</span>
+        </span>
+      </div>
+
+      {
+        product.openImage && (
+          <button
+            type="button"
+            class="inline-flex items-center gap-1.5 rounded-full border border-hairline-strong bg-surface/95 px-3.5 py-1.5 text-xs font-bold text-ink shadow-xs backdrop-blur-md transition-colors hover:border-crimson hover:text-crimson"
+            data-peek-btn
+            aria-pressed="false"
+          >
+            <Icon name="flip" size={15} />
+            <span data-peek-label>{ui.actions.peekInside}</span>
+          </button>
+        )
+      }
+    </div>
+
+    <!-- Main Studio Photo -->
+    <img
+      id="pdp-main-image"
+      src={withBase(initialImage)}
+      alt={product.name[lang]}
+      width="720"
+      height="540"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+      class="card-media-pop max-h-72 w-auto cursor-zoom-in object-contain select-none sm:max-h-96"
+      data-pdp-main-img
+      data-pdp-zoom-open
+      data-peek-img={product.openImage ? '' : undefined}
+      data-front-src={product.openImage ? withBase(initialImage) : undefined}
+      data-back-src={product.openImage ? withBase(product.openImage) : undefined}
+      data-front-backdrop={product.openImage ? initialBackdrop : undefined}
+      data-back-backdrop={
+        product.openImage
+          ? product.openImageBackdrop || product.photoBackdrop
+          : undefined
+      }
+      data-label-open={product.openImage ? ui.actions.viewClosed : undefined}
+      data-label-closed={product.openImage ? ui.actions.peekInside : undefined}
+    />
+
+    <!-- Bottom Floating Overlay: Sold by Box Badge + Zoom Trigger -->
+    <div class="absolute inset-x-4 bottom-4 z-10 flex items-center justify-between gap-2">
+      <span class="inline-flex items-center gap-2 rounded-full border border-hairline bg-surface/95 px-3.5 py-1.5 font-mono text-xs font-bold text-ink shadow-xs backdrop-blur-md">
+        <Icon name="box" size={15} class="text-crimson" />
+        <span id="pdp-stage-box-badge">
+          {formatSoldByBox(lang, v0?.pcsPerBox, v0?.orderUnit, v0?.packUnit)}
+        </span>
+      </span>
+
+      <button
+        type="button"
+        class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-hairline bg-surface/95 text-ink shadow-xs backdrop-blur-md transition-colors hover:border-obsidian hover:bg-obsidian hover:text-white"
+        data-pdp-zoom-open
+        aria-label={lang === 'ar' ? 'تكبير صورة المنتج' : 'Zoom product photo'}
+      >
+        <Icon name="zoom" size={16} />
+      </button>
+    </div>
+  </div>
+
+  <!-- Gallery Thumbnail Switcher + Keyboard 3D Controls & Share Link -->
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    {
+      galleryItems.length > 1 ? (
+        <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Product gallery">
+          {galleryItems.map((thumb, idx) => (
+            <button
+              type="button"
+              class={`relative flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl border p-1.5 transition-all ${
+                thumb.backdrop === 'dark' ? 'plinth-dark' : 'plinth-light'
+              } ${
+                idx === 0
+                  ? 'border-crimson ring-2 ring-crimson/25'
+                  : 'border-hairline opacity-80 hover:opacity-100'
+              }`}
+              data-pdp-thumb
+              data-thumb-src={withBase(thumb.src)}
+              data-thumb-backdrop={thumb.backdrop}
+              aria-label={thumb.label}
+              aria-pressed={idx === 0 ? 'true' : 'false'}
+            >
+              <img
+                src={withBase(thumb.src)}
+                alt={thumb.label}
+                width="56"
+                height="56"
+                loading="lazy"
+                decoding="async"
+                class="h-full w-full object-contain"
+              />
+            </button>
+          ))}
+        </div>
+      ) : (
+        <div></div>
+      )
+    }
+
+    <!-- Accessible 3D Tilt Controls + Copy Product Link -->
+    <div class="flex items-center gap-1.5">
+      <div
+        class="inline-flex items-center rounded-xl border border-hairline bg-surface p-1"
+        role="group"
+        aria-label={lang === 'ar' ? 'تدوير زاوية العرض' : '3D view angle'}
+      >
+        <button
+          type="button"
+          class="inline-flex h-7 w-7 items-center justify-center rounded-lg text-ink-secondary hover:bg-surface-muted hover:text-ink"
+          data-pdp-tilt="left"
+          aria-label={lang === 'ar' ? 'إمالة لليسار' : 'Tilt left'}
+        >
+          <Icon name="arrow-left" size={14} />
+        </button>
+        <button
+          type="button"
+          class="inline-flex h-7 px-2 items-center justify-center rounded-lg font-mono text-[11px] font-bold text-ink-secondary hover:bg-surface-muted hover:text-ink"
+          data-pdp-tilt="reset"
+        >
+          3D
+        </button>
+        <button
+          type="button"
+          class="inline-flex h-7 w-7 items-center justify-center rounded-lg text-ink-secondary hover:bg-surface-muted hover:text-ink"
+          data-pdp-tilt="right"
+          aria-label={lang === 'ar' ? 'إمالة لليمين' : 'Tilt right'}
+        >
+          <Icon name="arrow-right" size={14} />
+        </button>
+      </div>
+
+      <button
+        type="button"
+        class="inline-flex items-center gap-1.5 rounded-xl border border-hairline bg-surface px-3 py-2 text-xs font-semibold text-ink-secondary transition-colors hover:border-hairline-strong hover:text-ink"
+        data-pdp-copy-link={shareUrl}
+        data-copied-text={lang === 'ar' ? 'تم نسخ رابط المنتج' : 'Product link copied'}
+      >
+        <Icon name="share" size={14} />
+        <span>{ui.actions.copyLink}</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Fullscreen Zoom Modal (Initialized with valid src to guarantee zero empty src) -->
+  <div
+    id="pdp-zoom-modal"
+    class="hidden fixed inset-0 z-50 flex items-center justify-center bg-obsidian/85 p-4 backdrop-blur-md"
+    role="dialog"
+    aria-modal="true"
+    aria-label={product.name[lang]}
+  >
+    <button
+      type="button"
+      class="absolute top-5 end-5 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition-colors hover:bg-white hover:text-obsidian"
+      data-pdp-zoom-close
+      aria-label={lang === 'ar' ? 'إغلاق التكبير' : 'Close zoom'}
+    >
+      <Icon name="close" size={20} />
+    </button>
+    <img
+      id="pdp-zoom-image"
+      src={withBase(initialImage)}
+      alt={product.name[lang]}
+      width="1000"
+      height="750"
+      loading="lazy"
+      decoding="async"
+      class="max-h-[85dvh] max-w-[90vw] rounded-2xl object-contain"
+    />
+  </div>
+</div>
+
+<script>
+  import { showToast } from '../../lib/quote-bag-store';
+  import { animateMetricPop } from '../../scripts/motion-controller';
+
+  function initPdpStage(): void {
+    const mainImg = document.getElementById('pdp-main-image') as HTMLImageElement | null;
+    const zoomImg = document.getElementById('pdp-zoom-image') as HTMLImageElement | null;
+    const zoomModal = document.getElementById('pdp-zoom-modal');
+    const plinth = document.getElementById('pdp-stage-plinth');
+    const boxBadge = document.getElementById('pdp-stage-box-badge');
+
+    if (!mainImg || !plinth) return;
+
+    function setStageImage(src: string, backdrop: string) {
+      if (!mainImg || !plinth) return;
+      mainImg.src = src;
+      if (zoomImg) zoomImg.src = src;
+      plinth.dataset.backdrop = backdrop;
+      plinth.classList.toggle('plinth-dark', backdrop === 'dark');
+      plinth.classList.toggle('plinth-light', backdrop !== 'dark');
+    }
+
+    // Thumbnail switcher
+    const thumbs = document.querySelectorAll<HTMLElement>('[data-pdp-thumb]');
+    thumbs.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const src = btn.dataset.thumbSrc;
+        const backdrop = btn.dataset.thumbBackdrop || 'light';
+        if (!src) return;
+        setStageImage(src, backdrop);
+        thumbs.forEach((t) => {
+          const active = t === btn;
+          t.setAttribute('aria-pressed', active ? 'true' : 'false');
+          t.classList.toggle('border-crimson', active);
+          t.classList.toggle('ring-2', active);
+          t.classList.toggle('ring-crimson/25', active);
+          t.classList.toggle('border-hairline', !active);
+          t.classList.toggle('opacity-80', !active);
+        });
+      });
+    });
+
+    // Zoom modal open / close
+    document.querySelectorAll<HTMLElement>('[data-pdp-zoom-open]').forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        if (!zoomModal || !zoomImg) return;
+        zoomImg.src = mainImg.src;
+        zoomModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeZoom() {
+      if (!zoomModal) return;
+      zoomModal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll<HTMLElement>('[data-pdp-zoom-close]').forEach((btn) => {
+      btn.addEventListener('click', closeZoom);
+    });
+
+    zoomModal?.addEventListener('click', (e) => {
+      if (e.target === zoomModal) closeZoom();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && zoomModal && !zoomModal.classList.contains('hidden')) {
+        closeZoom();
+      }
+    });
+
+    // Copy product shareable URL
+    document.querySelectorAll<HTMLElement>('[data-pdp-copy-link]').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const url = btn.getAttribute('data-pdp-copy-link') || window.location.href;
+        const msg = btn.getAttribute('data-copied-text') || 'Link copied';
+        try {
+          await navigator.clipboard.writeText(url);
+          showToast(msg);
+        } catch {
+          showToast(url);
+        }
+      });
+    });
+
+    // Listen for variant changes dispatched by VariantSpecTable
+    window.addEventListener('upack:pdp-variant-change', ((e: CustomEvent) => {
+      const detail = e.detail;
+      if (!detail) return;
+      if (detail.imageSrc) {
+        setStageImage(detail.imageSrc, detail.backdrop || 'light');
+      }
+      if (detail.soldByBoxText && boxBadge) {
+        boxBadge.textContent = detail.soldByBoxText;
+        animateMetricPop(boxBadge);
+      }
+    }) as EventListener);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPdpStage, { once: true });
+  } else {
+    initPdpStage();
+  }
+  document.addEventListener('astro:page-load', initPdpStage);
+</script>

@@ -1,0 +1,367 @@
+---
+import { UPACK_CONTACT } from '../../lib/i18n';
+import { buildGeneralWhatsAppUrl } from '../../lib/whatsapp';
+import type { Lang } from '../../lib/url';
+import Icon from '../icons/Icon.astro';
+
+export interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const isAr = lang === 'ar';
+const waHref = buildGeneralWhatsAppUrl(lang);
+
+const copy = isAr
+  ? {
+      heading: 'معايير خامات KRNO ونظام تعبئة الكراتين والأغطية',
+      lead: 'نوضح لك تفاصيل الخامة، توافق الأغطية، وعدد القطع في الكرتونة بدقة قبل الطلب لضمان تجربة توريد واضحة وسريعة.',
+      p1Title: 'نقاء الكريستال PET وتحمل المايكروويف PP وصواني الحلويات PS',
+      p1Body: 'أكواب وعلب PET شفافة فائقة النقاء لإبراز المشروبات والسلطات والحلويات، وعلب وجبات PP سوداء آمنة للتسخين في المايكروويف، وصواني حلويات PS صلبة بأناقة الكريستال.',
+      p1Specs: [
+        { code: 'PET', label: 'شفافية كريستالية · مشروبات باردة وحلويات ومفصلة' },
+        { code: 'PP', label: 'تحمل حرارة المايكروويف · علب وجبات وبولات شوربة' },
+        { code: 'PS', label: 'صلابة ولمعان · صواني وكاسات تقديم الحلويات الشرقية والغربية' }
+      ],
+      p2Title: 'سياسة الأغطية بوضوح: العلب بالغطاء مقابل الأكواب بدون غطاء',
+      p2Body: 'لتجنب أي لبس في طلبات الجملة، يفصل الكتالوج بوضوح بين نظامين للتوريد:',
+      p2RuleAKey: 'علب الوجبات والحلويات والمفصلة',
+      p2RuleAVal: 'تُعرض وتُورّد مع غطائها المدمج أو كرتونة الغطاء المطابق مباشرة دون تكرار في البطاقات.',
+      p2RuleBKey: 'كراتين الأكواب (بارد · صوص · جيلي · مربعة)',
+      p2RuleBVal: 'كرتونة الأكواب تحتوي على الأكواب فقط (1,000 كوب/كرتونة للأكواب الباردة)، وتُطلب كرتونة الأغطية المتوافقة (مسطح / بومبيه / سيبنج) بشكل منفصل.',
+      p3Title: 'البيع بالكرتونة والتوصيل لجميع محافظات مصر',
+      p3Body: 'توريد مباشر بالكرتونة لمطاعم وكافيهات ومحلات الحلويات في القاهرة، الجيزة، الإسكندرية، الدلتا، الصعيد، الساحل، والبحر الأحمر عبر الخط الساخن الموحد.',
+      p3Cta: 'اطلب عرض سعر عبر واتساب'
+    }
+  : {
+      heading: 'KRNO Material Standards & Box-Lid Supply System',
+      lead: 'Every specification in our catalog states the exact resin, box piece count, and lid pairing policy up front so wholesale purchasing stays effortless.',
+      p1Title: 'Optical-Clarity PET, Microwave-Safe PP & Rigid Patisserie PS',
+      p1Body: 'Crystal thermoformed PET for cold beverages, salads, and cake domes; heat-resistant matte black PP for hot meal delivery; and rigid crystal PS trays engineered for patisserie presentation.',
+      p1Specs: [
+        { code: 'PET', label: 'High optical clarity · Cold cups, cake domes & hinged packs' },
+        { code: 'PP', label: 'Microwave heat-safe · Divided meal boxes & hot soup bowls' },
+        { code: 'PS', label: 'Rigid patisserie finish · Dessert trays, parfait & sweet cups' }
+      ],
+      p2Title: 'Clear Lid Pairing Policy: Containers vs. Cup Boxes',
+      p2Body: 'To keep wholesale ordering accurate, our catalog distinguishes two packaging supply models:',
+      p2RuleAKey: 'Food Containers, Cake Boxes & Hinged Trays',
+      p2RuleAVal: 'Displayed closed with their built-in hinged lid, included lid set, or matched lid box.',
+      p2RuleBKey: 'Cup Boxes (Cold Cups, Sauce, Square & Jelly Cups)',
+      p2RuleBVal: 'Cup boxes contain cups only (e.g. 1,000 cups/box). Compatible Flat, Dome, or Sipping lids are supplied in separate lid boxes selectable on every cup page.',
+      p3Title: 'Sold by Master Box · Nationwide Delivery Across Egypt',
+      p3Body: 'Direct master-box supply to restaurants, cafés, pâtisseries, and cloud kitchens across Cairo, Giza, Alexandria, Delta, Upper Egypt, and Red Sea governorates.',
+      p3Cta: 'Request Box Quote on WhatsApp'
+    };
+---
+
+<section class="material-section" data-reveal-section aria-labelledby="material-showcase-heading">
+  <div class="material-container">
+    <div class="material-header">
+      <h2 id="material-showcase-heading" class="material-h2">{copy.heading}</h2>
+      <p class="material-lead">{copy.lead}</p>
+    </div>
+
+    <!-- Asymmetric 2-Column Zig-Zag Layout (taste-design §6: never 3 equal cards) -->
+    <div class="material-zigzag">
+      <!-- Row 1: 7 / 5 Asymmetric Split (Materials + Lid Policy) -->
+      <article class="mat-panel mat-panel-7">
+        <div class="mat-panel-head">
+          <span class="mat-icon-chip">
+            <Icon name="layers" size={18} />
+          </span>
+          <h3 class="mat-h3">{copy.p1Title}</h3>
+        </div>
+        <p class="mat-body">{copy.p1Body}</p>
+
+        <dl class="mat-spec-ledger">
+          {copy.p1Specs.map((sp) => (
+            <div class="mat-spec-row">
+              <dt class:list={['mat-code-badge', `code-${sp.code}`]}>{sp.code}</dt>
+              <dd class="mat-spec-text">{sp.label}</dd>
+            </div>
+          ))}
+        </dl>
+      </article>
+
+      <article class="mat-panel mat-panel-5 is-lid-policy">
+        <div class="mat-panel-head">
+          <span class="mat-icon-chip is-crimson">
+            <Icon name="box" size={18} />
+          </span>
+          <h3 class="mat-h3">{copy.p2Title}</h3>
+        </div>
+        <p class="mat-body">{copy.p2Body}</p>
+
+        <div class="lid-policy-ledger">
+          <div class="lid-rule">
+            <div class="lid-rule-title">
+              <Icon name="check" size={15} class="text-wa" />
+              <span>{copy.p2RuleAKey}</span>
+            </div>
+            <p class="lid-rule-desc">{copy.p2RuleAVal}</p>
+          </div>
+
+          <div class="lid-rule is-separate">
+            <div class="lid-rule-title">
+              <Icon name="cup" size={15} class="text-crimson" />
+              <span>{copy.p2RuleBKey}</span>
+            </div>
+            <p class="lid-rule-desc">{copy.p2RuleBVal}</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Row 2: Full-Span Split Logistics Strip -->
+      <article class="mat-panel mat-panel-12 is-logistics">
+        <div class="logistics-copy">
+          <div class="mat-panel-head">
+            <span class="mat-icon-chip">
+              <Icon name="truck" size={18} />
+            </span>
+            <h3 class="mat-h3">{copy.p3Title}</h3>
+          </div>
+          <p class="mat-body">{copy.p3Body}</p>
+        </div>
+
+        <div class="logistics-cta-col">
+          <a href={waHref} target="_blank" rel="noopener noreferrer" class="logistics-wa-btn">
+            <Icon name="whatsapp" size={18} />
+            <span>{copy.p3Cta}</span>
+            <bdi dir="ltr" class="font-mono-tech">{UPACK_CONTACT.phone}</bdi>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .material-section {
+    padding: 64px 20px;
+    background-color: var(--color-surface, #FFFFFF);
+    border-bottom: 1px solid var(--color-hairline, #E2E6EF);
+  }
+
+  @media (min-width: 1024px) {
+    .material-section {
+      padding: 84px 28px;
+    }
+  }
+
+  .material-container {
+    width: 100%;
+    max-width: 1320px;
+    margin-inline: auto;
+    padding-inline: 4px;
+  }
+
+  .material-header {
+    max-width: 720px;
+    margin-bottom: 32px;
+  }
+
+  .material-h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3.1vw, 2.55rem);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+    color: var(--color-ink, #0D0F14);
+    margin: 0;
+  }
+
+  :global(html[dir='rtl']) .material-h2 {
+    letter-spacing: 0;
+    line-height: 1.26;
+  }
+
+  .material-lead {
+    margin: 10px 0 0;
+    font-size: 1rem;
+    color: var(--color-ink-muted, #4B5366);
+    line-height: 1.62;
+  }
+
+  .material-zigzag {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  @media (min-width: 900px) {
+    .material-zigzag {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 20px;
+    }
+    .mat-panel-7 { grid-column: span 7; }
+    .mat-panel-5 { grid-column: span 5; }
+    .mat-panel-12 { grid-column: span 12; }
+  }
+
+  .mat-panel {
+    padding: 28px 24px;
+    border-radius: 18px;
+    background-color: var(--color-gallery, #F5F7FA);
+    border: 1px solid var(--color-hairline, #E2E6EF);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .mat-panel.is-lid-policy {
+    background-color: #FFFFFF;
+    border-color: var(--color-hairline-strong, #CBD3E1);
+  }
+
+  .mat-panel.is-logistics {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  @media (min-width: 860px) {
+    .mat-panel.is-logistics {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  .mat-panel-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .mat-icon-chip {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background-color: var(--color-obsidian, #0D0F14);
+    color: #FFFFFF;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .mat-icon-chip.is-crimson {
+    background-color: var(--color-crimson, #C61D2A);
+  }
+
+  .mat-h3 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 800;
+    line-height: 1.26;
+    color: var(--color-ink, #0D0F14);
+    margin: 0;
+  }
+
+  .mat-body {
+    margin: 0;
+    font-size: 0.94rem;
+    color: var(--color-ink-muted, #4B5366);
+    line-height: 1.6;
+  }
+
+  .mat-spec-ledger {
+    margin: 4px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 14px;
+    border-top: 1px solid var(--color-hairline, #E2E6EF);
+  }
+
+  .mat-spec-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .mat-code-badge {
+    min-width: 52px;
+    text-align: center;
+    padding: 4px 10px;
+    border-radius: 7px;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  .code-PET { background-color: var(--color-mat-pet-bg, #E8F4FB); color: var(--color-mat-pet-fg, #0B5B8A); }
+  .code-PP { background-color: var(--color-mat-pp-bg, #ECEFF4); color: var(--color-mat-pp-fg, #1D2433); }
+  .code-PS { background-color: var(--color-mat-ps-bg, #FDF3E7); color: var(--color-mat-ps-fg, #6D3B09); }
+
+  .mat-spec-text {
+    margin: 0;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--color-ink-secondary, #374051);
+  }
+
+  .lid-policy-ledger {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--color-hairline, #E2E6EF);
+  }
+
+  .lid-rule {
+    padding: 12px 14px;
+    border-radius: 12px;
+    background-color: var(--color-gallery, #F5F7FA);
+  }
+
+  .lid-rule.is-separate {
+    background-color: var(--color-crimson-soft, #FDECEE);
+  }
+
+  .lid-rule-title {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: var(--color-ink, #0D0F14);
+  }
+
+  .lid-rule-desc {
+    margin: 4px 0 0;
+    font-size: 0.84rem;
+    color: var(--color-ink-muted, #4B5366);
+    line-height: 1.52;
+  }
+
+  .logistics-copy {
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .logistics-wa-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 48px;
+    padding: 0 22px;
+    border-radius: 12px;
+    background-color: var(--color-wa, #127A3E);
+    color: #FFFFFF;
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.16s ease;
+  }
+
+  .logistics-wa-btn:hover {
+    background-color: var(--color-wa-hover, #0D6130);
+  }
+</style>

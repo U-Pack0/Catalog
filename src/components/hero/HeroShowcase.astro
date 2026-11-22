@@ -1,0 +1,912 @@
+---
+export interface HeroItem {
+  slug: string;
+  name: string;
+  tag: string;
+  boxCount: string;
+  image: string;
+  photoBackdrop: 'dark' | 'light';
+  href: string;
+}
+
+export interface Props {
+  lang: 'en' | 'ar';
+  stats: {
+    categories: number;
+    families: number;
+    totalUniqueSkus: number;
+  };
+  catalogHref: string;
+  dessertHref: string;
+  whatsappHref: string;
+  showcaseItems: HeroItem[];
+}
+
+const { lang, stats, catalogHref, dessertHref, whatsappHref, showcaseItems } = Astro.props;
+const isAr = lang === 'ar';
+
+const items = showcaseItems.slice(0, 4);
+const inlineVisual = items[0] ?? null;
+
+const copy = isAr
+  ? {
+      krnoDistributor: 'موزع KRNO',
+      deliveryTag: 'توصيل لجميع محافظات مصر',
+      h1Prefix: 'عبوات',
+      h1Suffix: 'الحلويات والمطاعم، بالجملة لكل مصر.',
+      sub: 'توريد مباشر بالكرتونة لأرقى عبوات الحلويات والـ PET الشفافة وعلب المايكروويف PP — أرقام تعبئة دقيقة للكرتونة وطلب فوري عبر واتساب.',
+      primaryCta: 'تصفح الكتالوج الكامل',
+      whatsappCta: 'اطلب عبر واتساب',
+      dessertPillLead: 'الأكثر طلباً',
+      dessertPillText: 'تصفح المنتجات الأكثر طلباً',
+      statCategories: 'فئة متخصصة',
+      statFamilies: 'عائلة منتج',
+      statSkus: 'كود SKU معتمد',
+      statBoxVal: 'بالكرتونة',
+      statBoxLabel: 'بيع جملة · كل مصر',
+      topDemand: 'الأكثر طلباً',
+      inspectProduct: 'عرض المواصفات',
+      stageAria: 'عرض ثلاثي الأبعاد لمنتجات يو-باك الحقيقية'
+    }
+  : {
+      krnoDistributor: 'KRNO Distributor',
+      deliveryTag: 'Nationwide Delivery Across All of Egypt',
+      h1Prefix: 'Food',
+      h1Suffix: "Packaging, Built for Egypt's Kitchens & Cafés.",
+      sub: 'Wholesale box supply of crystal PET dessert packs, cake domes, cold cups, and microwave PP meal trays — exact box counts and one-tap WhatsApp ordering.',
+      primaryCta: 'Explore Full Catalog',
+      whatsappCta: 'Order on WhatsApp',
+      dessertPillLead: 'Most Requested',
+      dessertPillText: 'Browse Most Requested Products',
+      statCategories: 'Categories',
+      statFamilies: 'Product Lines',
+      statSkus: 'Verified SKUs',
+      statBoxVal: 'By Box',
+      statBoxLabel: 'Wholesale · All Egypt',
+      topDemand: 'Top Demand',
+      inspectProduct: 'View specs',
+      stageAria: 'Interactive depth showcase of real U-Pack food packaging products'
+    };
+
+// Distinct depth planes for multi-plane 3D pointer parallax
+const depthPlanes = ['2.2', '1.3', '1.6', '0.95'];
+---
+
+<section class="hero-showcase" aria-labelledby="hero-main-heading">
+  <div class="hero-ambient" aria-hidden="true">
+    <div class="hero-ring hero-ring-outer"></div>
+    <div class="hero-ring hero-ring-inner"></div>
+  </div>
+
+  <div class="hero-container">
+    <div class="hero-grid">
+      <!-- Start Column: Typography, Brand Trust & Conversion CTAs -->
+      <div class="hero-copy">
+        <div class="hero-eyebrow-row" data-hero-enter>
+          <span class="hero-krno-badge">
+            <span class="hero-crimson-dot" aria-hidden="true"></span>
+            <span>{copy.krnoDistributor}</span>
+          </span>
+          <span class="hero-delivery-tag">{copy.deliveryTag}</span>
+        </div>
+
+        <div class="hero-h1-wrap">
+          <h1 id="hero-main-heading" class="hero-h1" data-hero-headline>
+            <span>{copy.h1Prefix}</span>
+            {inlineVisual && (
+              <span
+                class:list={['hero-inline-pill', inlineVisual.photoBackdrop === 'dark' ? 'is-dark' : 'is-light']}
+                data-hero-inline-img
+                aria-hidden="true"
+              >
+                <img
+                  src={inlineVisual.image}
+                  alt=""
+                  width="96"
+                  height="64"
+                  loading="eager"
+                  decoding="async"
+                />
+              </span>
+            )}
+            <span>{copy.h1Suffix}</span>
+          </h1>
+        </div>
+
+        <p class="hero-subcopy" data-hero-enter>
+          {copy.sub}
+        </p>
+
+        <div class="hero-cta-row" data-hero-enter>
+          <a href={catalogHref} class="hero-btn-primary">
+            <span>{copy.primaryCta}</span>
+            <svg
+              class="hero-icon-dir"
+              width="17"
+              height="17"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </a>
+
+          <a
+            href={whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hero-btn-wa"
+            data-magnetic
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.49 0 .15 5.34.15 11.91c0 2.1.55 4.15 1.59 5.96L0 24l6.31-1.65a11.86 11.86 0 0 0 5.74 1.46h.01c6.56 0 11.9-5.34 11.9-11.91 0-3.18-1.24-6.17-3.44-8.42ZM12.06 21.8h-.01a9.87 9.87 0 0 1-5.04-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.52-5.26c0-5.46 4.44-9.9 9.91-9.9 2.64 0 5.13 1.03 7 2.9a9.84 9.84 0 0 1 2.9 7c0 5.46-4.45 9.89-9.9 9.89Zm5.43-7.42c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35Z" />
+            </svg>
+            <span>{copy.whatsappCta}</span>
+            <bdi dir="ltr" class="hero-phone-mono">01055400404</bdi>
+          </a>
+        </div>
+
+        <a href={dessertHref} class="hero-dessert-shortcut" data-hero-enter>
+          <span class="hero-shortcut-badge">{copy.dessertPillLead}</span>
+          <span class="hero-shortcut-text">{copy.dessertPillText}</span>
+          <svg
+            class="hero-icon-dir"
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </a>
+
+        <!-- Real Verified Catalog Facts Strip -->
+        <dl class="hero-facts" data-hero-enter>
+          <div class="hero-fact">
+            <dt class="hero-fact-label">{copy.statCategories}</dt>
+            <dd class="hero-fact-val">{stats.categories}</dd>
+          </div>
+          <div class="hero-fact">
+            <dt class="hero-fact-label">{copy.statFamilies}</dt>
+            <dd class="hero-fact-val">{stats.families}</dd>
+          </div>
+          <div class="hero-fact">
+            <dt class="hero-fact-label">{copy.statSkus}</dt>
+            <dd class="hero-fact-val">{stats.totalUniqueSkus}</dd>
+          </div>
+          <div class="hero-fact">
+            <dt class="hero-fact-label">{copy.statBoxLabel}</dt>
+            <dd class="hero-fact-val">{copy.statBoxVal}</dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- End Column: Interactive 3D Multi-Plane Floating Real-Photo Collage -->
+      <div class="hero-stage-col" data-hero-3d-stage aria-label={copy.stageAria}>
+        <div class="hero-stage-canvas" data-hero-3d-canvas>
+          <div class="hero-collage-grid">
+            {items.map((item, idx) => {
+              const isLead = idx === 0;
+              const isDark = item.photoBackdrop === 'dark';
+              return (
+                <div
+                  class:list={['hero-plane-wrap', `plane-slot-${idx}`]}
+                  data-depth-plane={depthPlanes[idx] ?? '1'}
+                >
+                  <div class="hero-float-wrap" data-hero-float>
+                    <a
+                      href={item.href}
+                      class:list={[
+                        'hero-photo-card',
+                        isLead ? 'is-lead' : '',
+                        isDark ? 'is-dark-plinth' : 'is-light-plinth'
+                      ]}
+                      data-trick-card
+                      data-backdrop={item.photoBackdrop}
+                    >
+                      <span class="hero-card-glow" aria-hidden="true"></span>
+                      <span class="hero-card-sheen" aria-hidden="true"></span>
+
+                      <div class="hero-card-plinth" data-backdrop={item.photoBackdrop}>
+                        <div class="hero-card-top">
+                          <span class:list={['hero-card-tag', isLead ? 'is-crimson' : '']}>
+                            {isLead ? copy.topDemand : item.tag}
+                          </span>
+                        </div>
+
+                        <div class="hero-card-media" data-card-media>
+                          <img
+                            src={item.image}
+                            alt={item.name}
+                            width="380"
+                            height="285"
+                            loading={idx < 2 ? 'eager' : 'lazy'}
+                            fetchpriority={idx === 0 ? 'high' : 'auto'}
+                            decoding="async"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="hero-card-meta">
+                        <span class="hero-card-name">{item.name}</span>
+                        <span class="hero-card-foot">
+                          <span class="hero-card-box">{item.boxCount}</span>
+                          <svg
+                            class="hero-icon-dir hero-card-arrow"
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                            focusable="false"
+                          >
+                            <path d="M5 12h14" />
+                            <path d="m12 5 7 7-7 7" />
+                          </svg>
+                        </span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-showcase {
+    position: relative;
+    overflow: hidden;
+    padding: 36px 20px 64px;
+    border-bottom: 1px solid var(--color-gallery-border, #E2E6EF);
+    background:
+      radial-gradient(ellipse 80% 72% at 76% 36%, #FFFFFF 0%, #F5F7FA 62%, #ECF0F6 100%);
+  }
+
+  :global(html[dir='rtl']) .hero-showcase {
+    background:
+      radial-gradient(ellipse 80% 72% at 24% 36%, #FFFFFF 0%, #F5F7FA 62%, #ECF0F6 100%);
+  }
+
+  @media (min-width: 1024px) {
+    .hero-showcase {
+      padding: 52px 28px 76px;
+    }
+  }
+
+  /* Architectural subtle depth rings behind the 3D photo stage */
+  .hero-ambient {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .hero-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(13, 15, 20, 0.06);
+  }
+
+  .hero-ring-outer {
+    width: 680px;
+    height: 680px;
+    top: -120px;
+    inset-inline-end: -100px;
+    background: radial-gradient(circle, rgba(198, 29, 42, 0.045) 0%, transparent 66%);
+  }
+
+  .hero-ring-inner {
+    width: 440px;
+    height: 440px;
+    top: 40px;
+    inset-inline-end: 60px;
+    border-color: rgba(198, 29, 42, 0.08);
+  }
+
+  .hero-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1320px;
+    margin-inline: auto;
+    padding-inline: 4px;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 36px;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-grid {
+      grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.08fr);
+      gap: 48px;
+      min-height: calc(100dvh - 156px);
+      max-height: 760px;
+    }
+  }
+
+  /* Copy Column */
+  .hero-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    min-width: 0;
+  }
+
+  .hero-eyebrow-row {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-krno-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    background: #FFFFFF;
+    border: 1px solid var(--color-gallery-border, #E2E6EF);
+    color: var(--color-ink-primary, #0D0F14);
+    font-size: 0.82rem;
+    font-weight: 800;
+    box-shadow: 0 2px 8px rgba(13, 15, 20, 0.04);
+  }
+
+  .hero-crimson-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-brand-crimson, #C61D2A);
+    flex-shrink: 0;
+  }
+
+  .hero-delivery-tag {
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: var(--color-ink-muted, #4B5366);
+  }
+
+  .hero-h1-wrap {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .hero-h1 {
+    font-family: var(--font-display, 'Bricolage Grotesque', system-ui, sans-serif);
+    font-size: clamp(2.25rem, 4.3vw, 3.75rem);
+    font-weight: 800;
+    line-height: 1.09;
+    letter-spacing: -0.03em;
+    color: var(--color-ink-primary, #0D0F14);
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  :global(html[dir='rtl']) .hero-h1 {
+    font-family: var(--font-display-ar, 'Alexandria', system-ui, sans-serif);
+    font-size: clamp(2.05rem, 4vw, 3.3rem);
+    line-height: 1.26;
+    letter-spacing: 0;
+  }
+
+  /* Signature Creative Inline Image Typography Pill (taste-design §4) */
+  .hero-inline-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    height: 0.92em;
+    width: 1.48em;
+    margin-inline: 0.14em;
+    margin-top: -0.1em;
+    padding: 0.08em 0.14em;
+    border-radius: 9999px;
+    overflow: hidden;
+    border: 1.5px solid var(--color-gallery-border, #E2E6EF);
+    box-shadow: 0 6px 16px rgba(13, 15, 20, 0.1);
+  }
+
+  .hero-inline-pill.is-dark {
+    background: #050608;
+    border-color: #232836;
+  }
+
+  .hero-inline-pill.is-light {
+    background: #FFFFFF;
+  }
+
+  .hero-inline-pill img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  @media (max-width: 520px) {
+    .hero-inline-pill {
+      display: none;
+    }
+  }
+
+  .hero-subcopy {
+    font-size: clamp(1rem, 1.25vw, 1.125rem);
+    line-height: 1.62;
+    color: var(--color-ink-muted, #4B5366);
+    max-width: 52ch;
+    text-wrap: pretty;
+    margin: 0;
+  }
+
+  :global(html[dir='rtl']) .hero-subcopy {
+    line-height: 1.74;
+  }
+
+  .hero-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .hero-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 50px;
+    padding: 0 24px;
+    border-radius: 12px;
+    background: var(--color-ink-primary, #0D0F14);
+    color: #FFFFFF;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border: 1.5px solid var(--color-ink-primary, #0D0F14);
+    text-decoration: none;
+    transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.14s ease, box-shadow 0.18s ease;
+  }
+
+  .hero-btn-primary:hover {
+    background: var(--color-brand-crimson, #C61D2A);
+    border-color: var(--color-brand-crimson, #C61D2A);
+    box-shadow: 0 10px 24px rgba(13, 15, 20, 0.16);
+  }
+
+  .hero-btn-primary:active {
+    transform: translateY(1px);
+  }
+
+  .hero-btn-wa {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 50px;
+    padding: 0 22px;
+    border-radius: 12px;
+    background: var(--color-wa-primary, #127A3E);
+    color: #FFFFFF;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border: 1.5px solid var(--color-wa-primary, #127A3E);
+    text-decoration: none;
+    will-change: transform;
+    transition: background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  .hero-btn-wa:hover {
+    background: var(--color-wa-hover, #0D6130);
+    border-color: var(--color-wa-hover, #0D6130);
+    box-shadow: 0 10px 24px rgba(13, 15, 20, 0.16);
+  }
+
+  .hero-phone-mono {
+    font-family: var(--font-mono, 'JetBrains Mono', ui-monospace, monospace);
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+  }
+
+  .hero-dessert-shortcut {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 6px 14px 6px 8px;
+    border-radius: 9999px;
+    background: #FFFFFF;
+    border: 1px solid var(--color-gallery-border, #E2E6EF);
+    color: var(--color-ink-primary, #0D0F14);
+    font-size: 0.86rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: border-color 0.18s ease, background-color 0.18s ease, transform 0.16s ease;
+  }
+
+  :global(html[dir='rtl']) .hero-dessert-shortcut {
+    padding: 6px 8px 6px 14px;
+  }
+
+  .hero-dessert-shortcut:hover {
+    border-color: var(--color-brand-crimson, #C61D2A);
+    transform: translateY(-1px);
+  }
+
+  .hero-shortcut-badge {
+    padding: 4px 10px;
+    border-radius: 9999px;
+    background: #FDECEE;
+    color: var(--color-brand-crimson, #C61D2A);
+    font-size: 0.76rem;
+    font-weight: 800;
+  }
+
+  .hero-shortcut-text {
+    color: var(--color-ink-primary, #0D0F14);
+  }
+
+  .hero-icon-dir {
+    flex-shrink: 0;
+    transition: transform 0.18s ease;
+  }
+
+  :global(html[dir='rtl']) .hero-icon-dir {
+    transform: scaleX(-1);
+  }
+
+  /* Real Facts Ledger */
+  .hero-facts {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 0;
+    margin: 6px 0 0;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-gallery-border, #E2E6EF);
+  }
+
+  @media (min-width: 580px) {
+    .hero-facts {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .hero-fact {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 3px;
+    padding-inline-end: 12px;
+  }
+
+  @media (min-width: 580px) {
+    .hero-fact + .hero-fact {
+      padding-inline-start: 14px;
+      border-inline-start: 1px solid var(--color-gallery-border, #E2E6EF);
+    }
+  }
+
+  .hero-fact-val {
+    margin: 0;
+    font-family: var(--font-display, 'Bricolage Grotesque', system-ui, sans-serif);
+    font-size: clamp(1.2rem, 2vw, 1.55rem);
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--color-ink-primary, #0D0F14);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .hero-fact-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--color-ink-muted, #4B5366);
+    line-height: 1.3;
+  }
+
+  /* ============================================================================
+     3D MULTI-PLANE FLOATING SHOWCASE COLLAGE (Real Photography — Zero Overlap!)
+     ============================================================================ */
+  .hero-stage-col {
+    perspective: 1200px;
+    width: 100%;
+  }
+
+  .hero-stage-canvas {
+    transform-style: preserve-3d;
+    width: 100%;
+  }
+
+  .hero-collage-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    align-items: start;
+    transform-style: preserve-3d;
+  }
+
+  @media (min-width: 640px) {
+    .hero-collage-grid {
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 18px;
+    }
+  }
+
+  .hero-plane-wrap {
+    transform-style: preserve-3d;
+    min-width: 0;
+  }
+
+  /* Editorial asymmetric vertical offset on desktop so collage feels spatial, never flat */
+  @media (min-width: 640px) {
+    .plane-slot-1 {
+      margin-top: 28px;
+    }
+    .plane-slot-2 {
+      margin-top: -12px;
+    }
+    .plane-slot-3 {
+      margin-top: 12px;
+    }
+  }
+
+  /* True CSS 3D Z-depth separation on desktop fine-pointer */
+  @media (hover: hover) and (pointer: fine) and (min-width: 1024px) {
+    .plane-slot-0 { transform: translateZ(36px); }
+    .plane-slot-1 { transform: translateZ(18px); }
+    .plane-slot-2 { transform: translateZ(24px); }
+    .plane-slot-3 { transform: translateZ(10px); }
+  }
+
+  .hero-float-wrap {
+    will-change: transform;
+    transform-style: preserve-3d;
+  }
+
+  .hero-photo-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 18px;
+    background: #FFFFFF;
+    border: 1px solid var(--color-gallery-border, #E2E6EF);
+    box-shadow: 0 10px 28px rgba(13, 15, 20, 0.08), 0 1px 2px rgba(13, 15, 20, 0.04);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transform-style: preserve-3d;
+    will-change: transform;
+    transition: border-color 0.22s ease, box-shadow 0.24s ease;
+  }
+
+  .hero-photo-card:hover {
+    border-color: rgba(198, 29, 42, 0.45);
+    box-shadow: 0 20px 40px rgba(13, 15, 20, 0.14);
+  }
+
+  .hero-photo-card.is-lead {
+    border-color: #CBD3E1;
+    box-shadow: 0 16px 38px rgba(13, 15, 20, 0.11);
+  }
+
+  /* Magnetic Crimson Hairline Border Spotlight driven by --glow-x / --glow-y */
+  .hero-card-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.24s ease;
+    background: radial-gradient(
+      180px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+      rgba(198, 29, 42, 0.85),
+      transparent 72%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  .hero-photo-card:hover .hero-card-glow {
+    opacity: 1;
+  }
+
+  /* Prismatic Specular Glass Sweep driven by --sheen-x / --sheen-y */
+  .hero-card-sheen {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 4;
+    opacity: 0;
+    transition: opacity 0.26s ease;
+    background: radial-gradient(
+      circle 210px at var(--sheen-x, 50%) var(--sheen-y, 50%),
+      rgba(198, 29, 42, 0.08),
+      transparent 68%
+    );
+  }
+
+  .hero-photo-card.is-dark-plinth .hero-card-sheen {
+    background: radial-gradient(
+      circle 220px at var(--sheen-x, 50%) var(--sheen-y, 50%),
+      rgba(255, 255, 255, 0.16),
+      transparent 66%
+    );
+  }
+
+  .hero-photo-card:hover .hero-card-sheen {
+    opacity: 1;
+  }
+
+  /* Adaptive Bimodal Plinth inside Hero Collage Card */
+  .hero-card-plinth {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-photo-card.is-lead .hero-card-plinth {
+    aspect-ratio: 10 / 8.2;
+  }
+
+  .hero-card-plinth[data-backdrop='dark'] {
+    background:
+      radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.09), transparent 68%),
+      #050608;
+    border-bottom: 1px solid #1E222E;
+  }
+
+  .hero-card-plinth[data-backdrop='light'] {
+    background: #FFFFFF;
+    border-bottom: 1px solid var(--color-gallery-border, #E2E6EF);
+  }
+
+  .hero-card-top {
+    position: absolute;
+    top: 10px;
+    inset-inline-start: 10px;
+    z-index: 3;
+  }
+
+  .hero-card-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    background: rgba(255, 255, 255, 0.94);
+    color: var(--color-ink-primary, #0D0F14);
+    border: 1px solid var(--color-gallery-border, #E2E6EF);
+  }
+
+  .hero-card-plinth[data-backdrop='dark'] .hero-card-tag:not(.is-crimson) {
+    background: rgba(9, 10, 13, 0.84);
+    color: #FFFFFF;
+    border-color: rgba(255, 255, 255, 0.16);
+  }
+
+  .hero-card-tag.is-crimson {
+    background: var(--color-brand-crimson, #C61D2A);
+    color: #FFFFFF;
+    border-color: var(--color-brand-crimson, #C61D2A);
+  }
+
+  .hero-card-media {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    will-change: transform;
+  }
+
+  .hero-card-media img {
+    max-width: 88%;
+    max-height: 88%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .hero-card-meta {
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: #FFFFFF;
+  }
+
+  .hero-card-name {
+    font-family: var(--font-display, 'Bricolage Grotesque', system-ui, sans-serif);
+    font-size: 0.92rem;
+    font-weight: 800;
+    line-height: 1.28;
+    color: var(--color-ink-primary, #0D0F14);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .hero-card-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--color-ink-muted, #4B5366);
+  }
+
+  .hero-card-box {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .hero-card-arrow {
+    color: var(--color-brand-crimson, #C61D2A);
+  }
+
+  .hero-photo-card:hover .hero-card-arrow {
+    transform: translateX(3px);
+  }
+
+  :global(html[dir='rtl']) .hero-photo-card:hover .hero-card-arrow {
+    transform: scaleX(-1) translateX(3px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-card-sheen,
+    .hero-card-glow {
+      display: none;
+    }
+    .plane-slot-0,
+    .plane-slot-1,
+    .plane-slot-2,
+    .plane-slot-3 {
+      transform: none !important;
+    }
+  }
+</style>

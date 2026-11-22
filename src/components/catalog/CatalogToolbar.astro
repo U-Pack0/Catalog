@@ -1,0 +1,158 @@
+---
+import type { Category } from '../../data/catalog.schema';
+import { getUI } from '../../lib/i18n';
+import type { Lang } from '../../lib/url';
+import Icon from '../icons/Icon.astro';
+
+export interface Props {
+  lang: Lang;
+  categories: Category[];
+  totalProducts: number;
+  activeCategory?: string;
+  showCategoryPills?: boolean;
+}
+
+const {
+  lang,
+  categories,
+  totalProducts,
+  activeCategory = 'all',
+  showCategoryPills = true,
+} = Astro.props;
+
+const ui = getUI(lang);
+
+const materials = [
+  { code: 'all', label: ui.catalog.allMaterials },
+  { code: 'PS', label: 'PS' },
+  { code: 'PET', label: 'PET' },
+  { code: 'PP', label: 'PP' },
+  { code: 'Wood', label: lang === 'ar' ? 'خشب (Wood)' : 'Wood' },
+];
+---
+
+<div
+  class="sticky top-20 z-30 rounded-3xl border border-hairline bg-surface/95 p-4 shadow-sm backdrop-blur-xl sm:p-5"
+  data-catalog-toolbar
+  data-initial-category={activeCategory}
+>
+  <!-- Top Row: Instant Search Input + Active Count -->
+  <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+    <div class="relative flex-1">
+      <label for="catalog-search" class="sr-only">{ui.catalog.searchLabel}</label>
+      <span
+        class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-4 text-ink-subtle"
+      >
+        <Icon name="search" size={18} />
+      </span>
+      <input
+        id="catalog-search"
+        type="search"
+         autocomplete="off"
+        placeholder={ui.catalog.searchPlaceholder}
+        class="w-full rounded-2xl border border-hairline-strong bg-surface-muted py-3 ps-11 pe-11 text-sm text-ink placeholder:text-ink-subtle focus:border-obsidian focus:bg-surface focus:outline-none"
+      />
+      <button
+        id="catalog-search-clear"
+        type="button"
+        hidden
+        class="absolute inset-y-0 end-0 my-auto me-2.5 inline-flex h-8 w-8 items-center justify-center rounded-xl text-ink-muted hover:bg-surface-sunken hover:text-ink"
+        aria-label={ui.catalog.clearSearch}
+      >
+        <Icon name="close" size={16} />
+      </button>
+    </div>
+
+    <!-- Material Filter Chips -->
+    <div class="flex flex-wrap items-center gap-1.5" role="group" aria-label={ui.catalog.materialLabel}>
+      {
+        materials.map((mat) => {
+          const isAll = mat.code === 'all';
+          return (
+            <button
+              type="button"
+              class={`inline-flex items-center rounded-xl border px-3 py-2 text-xs font-bold transition-colors ${
+                isAll
+                  ? 'border-obsidian bg-obsidian text-white'
+                  : 'border-hairline bg-surface text-ink-secondary hover:border-hairline-strong hover:text-ink'
+              }`}
+              data-mat-filter={mat.code}
+              aria-pressed={isAll ? 'true' : 'false'}
+            >
+              <bdi dir={isAll ? undefined : 'ltr'}>{mat.label}</bdi>
+            </button>
+          );
+        })
+      }
+    </div>
+  </div>
+
+  <!-- Category Sliding Pill Rail -->
+  {
+    showCategoryPills && categories.length > 0 && (
+      <div class="mt-3.5 border-t border-hairline pt-3.5">
+        <div
+          class="pill-rail relative max-w-full overflow-x-auto no-scrollbar"
+          data-pill-rail
+          role="tablist"
+          aria-label={ui.catalog.allCategories}
+        >
+          <span
+            class="pill-rail-indicator pointer-events-none z-0"
+            data-pill-indicator
+            aria-hidden="true"
+          ></span>
+
+          <button
+            type="button"
+            role="tab"
+            class={`pill-rail-btn relative z-10 shrink-0 ${
+              activeCategory === 'all' ? 'is-active text-white' : 'text-ink-secondary hover:text-ink'
+            }`}
+            data-cat-filter="all"
+            aria-selected={activeCategory === 'all' ? 'true' : 'false'}
+            aria-pressed={activeCategory === 'all' ? 'true' : 'false'}
+          >
+            {ui.catalog.allCategories}
+          </button>
+
+          {categories.map((cat) => {
+            const isCatActive = activeCategory === cat.slug;
+            return (
+              <button
+                type="button"
+                role="tab"
+                class={`pill-rail-btn relative z-10 shrink-0 ${
+                  isCatActive ? 'is-active text-white' : 'text-ink-secondary hover:text-ink'
+                }`}
+                data-cat-filter={cat.slug}
+                aria-selected={isCatActive ? 'true' : 'false'}
+                aria-pressed={isCatActive ? 'true' : 'false'}
+              >
+                <span>{cat.name[lang]}</span>
+                <span class="pill-count ms-1.5 rounded-full bg-black/10 px-1.5 py-0.5 font-mono text-[10px]">
+                  {cat.count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    )
+  }
+
+  <!-- Status Strip: Visible Product Families Count + Wholesale Banner -->
+  <div class="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-hairline pt-3 text-xs text-ink-muted">
+    <p id="catalog-visible-count" class="font-semibold text-ink-secondary">
+      {ui.catalog.showingProducts(totalProducts)}
+    </p>
+    <p class="flex items-center gap-1.5 font-medium text-ink-muted">
+      <Icon name="truck" size={14} class="text-crimson" />
+      <span>{ui.catalog.soldByBoxBanner}</span>
+    </p>
+  </div>
+</div>
+
+<script>
+  import '../../scripts/catalog-filter';
+</script>

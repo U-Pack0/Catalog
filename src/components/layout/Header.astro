@@ -1,0 +1,216 @@
+---
+import Icon from '../icons/Icon.astro';
+import { alternateLocalePath, localePath, withBase, type Lang } from '../../lib/url';
+import { getUI, UPACK_CONTACT } from '../../lib/i18n';
+
+export interface Props {
+  lang: Lang;
+  currentPath?: string;
+}
+
+const { lang, currentPath = Astro.url.pathname } = Astro.props;
+const ui = getUI(lang);
+const otherLang: Lang = lang === 'en' ? 'ar' : 'en';
+const switchHref = alternateLocalePath(currentPath, otherLang);
+
+const homeHref = localePath(lang);
+const catalogHref = localePath(lang, 'catalog');
+const aboutHref = localePath(lang, 'about');
+const contactHref = localePath(lang, 'contact');
+
+const isHome = currentPath === homeHref || currentPath.endsWith(`/${lang}/`);
+const isCatalog = currentPath.includes(`/${lang}/catalog`);
+const isAbout = currentPath.includes(`/${lang}/about`);
+const isContact = currentPath.includes(`/${lang}/contact`);
+---
+
+<header class="sticky top-0 z-30 px-2.5 pt-2.5 sm:px-6 sm:pt-3">
+  <div class="mx-auto max-w-7xl">
+    <div class="flex h-[64px] items-center justify-between gap-1.5 rounded-2xl border border-hairline bg-white/88 px-2.5 shadow-[var(--shadow-glass)] backdrop-blur-md sm:h-[68px] sm:gap-3 sm:px-5">
+      <!-- Brand Lockup -->
+      <a
+        href={homeHref}
+        class="flex min-h-11 min-w-0 shrink items-center gap-2 rounded-xl pe-1 transition-opacity hover:opacity-90 sm:gap-3 sm:pe-2"
+        aria-label={ui.brandName}
+      >
+        <span class="size-9 shrink-0 overflow-hidden rounded-full border border-hairline-strong bg-obsidian sm:size-10">
+          <img
+            src={withBase('/images/brand/upack-logo.webp')}
+            alt={ui.brandName}
+            width="40"
+            height="40"
+            class="size-full object-cover"
+          />
+        </span>
+        <span class="flex min-w-0 flex-col leading-tight">
+          <span class="truncate font-display text-sm font-extrabold tracking-tight text-ink sm:text-[1.06rem]">
+            <span class="text-crimson">U</span>-PACK
+          </span>
+          <span class="hidden truncate text-[0.72rem] font-semibold text-ink-muted min-[430px]:block">
+            {ui.krnoDistributor}
+          </span>
+        </span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
+        <a
+          href={homeHref}
+          class:list={[
+            'inline-flex min-h-11 items-center rounded-xl px-3.5 text-sm font-semibold transition-colors',
+            isHome ? 'bg-obsidian text-white' : 'text-ink-secondary hover:bg-surface-alt hover:text-ink',
+          ]}
+        >
+          {ui.nav.home}
+        </a>
+
+        <a
+          href={catalogHref}
+          class:list={[
+            'inline-flex min-h-11 items-center rounded-xl px-3.5 text-sm font-semibold transition-colors',
+            isCatalog ? 'bg-obsidian text-white' : 'text-ink-secondary hover:bg-surface-alt hover:text-ink',
+          ]}
+        >
+          {ui.nav.catalog}
+        </a>
+
+        <a
+          href={aboutHref}
+          class:list={[
+            'inline-flex min-h-11 items-center rounded-xl px-3.5 text-sm font-semibold transition-colors',
+            isAbout ? 'bg-obsidian text-white' : 'text-ink-secondary hover:bg-surface-alt hover:text-ink',
+          ]}
+        >
+          {ui.nav.about}
+        </a>
+
+        <a
+          href={contactHref}
+          class:list={[
+            'inline-flex min-h-11 items-center rounded-xl px-3.5 text-sm font-semibold transition-colors',
+            isContact ? 'bg-obsidian text-white' : 'text-ink-secondary hover:bg-surface-alt hover:text-ink',
+          ]}
+        >
+          {ui.nav.contact}
+        </a>
+      </nav>
+
+      <!-- Action Controls -->
+      <div class="flex shrink-0 items-center gap-1.5 sm:gap-2">
+        <a
+          href={UPACK_CONTACT.telHref}
+          class="hidden min-h-11 items-center gap-2 rounded-xl border border-hairline bg-gallery px-3.5 text-sm font-bold text-ink transition-colors hover:border-crimson hover:text-crimson md:inline-flex"
+        >
+          <Icon name="phone" size={16} />
+          <bdi dir="ltr">{UPACK_CONTACT.phone}</bdi>
+        </a>
+
+        <a
+          href={switchHref}
+          data-lang-switch={otherLang}
+          aria-label={ui.switchLangAria}
+          class="inline-flex min-h-10 min-w-10 items-center justify-center rounded-xl border border-input-border bg-white px-2.5 text-xs font-bold text-ink transition-colors hover:border-obsidian hover:bg-surface-alt sm:min-h-11 sm:min-w-11 sm:px-3 sm:text-sm"
+        >
+          {ui.switchLangLabel}
+        </a>
+
+        <button
+          type="button"
+          data-bag-btn
+          aria-haspopup="dialog"
+          aria-controls="quote-bag-drawer"
+          class="inline-flex min-h-10 items-center gap-1.5 rounded-xl bg-crimson px-2.5 text-sm font-bold text-white transition-transform hover:bg-crimson-hover active:scale-[0.97] sm:min-h-11 sm:gap-2 sm:px-3.5"
+        >
+          <Icon name="bag" size={17} />
+          <span class="hidden sm:inline">{ui.actions.quoteBag}</span>
+          <span
+            data-bag-count
+            class="inline-flex h-[21px] min-w-[21px] items-center justify-center rounded-full bg-obsidian px-1.5 text-xs font-extrabold text-white sm:h-[22px] sm:min-w-[22px]"
+          >
+            0
+          </span>
+        </button>
+
+        <button
+          type="button"
+          id="mobile-menu-toggle"
+          aria-expanded="false"
+          aria-controls="mobile-nav-panel"
+          aria-label={ui.nav.openMenu}
+          class="inline-flex size-10 shrink-0 items-center justify-center rounded-xl border border-hairline bg-white text-ink transition-colors hover:bg-surface-alt sm:size-11 lg:hidden"
+        >
+          <Icon name="menu" size={20} />
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Panel -->
+    <div
+      id="mobile-nav-panel"
+      hidden
+      class="mt-2 rounded-2xl border border-hairline bg-white p-3 shadow-[var(--shadow-card-hover)] lg:hidden"
+    >
+      <nav class="flex flex-col gap-1.5" aria-label="Mobile navigation">
+        <a href={homeHref} class="flex min-h-11 items-center rounded-xl px-3.5 text-sm font-bold text-ink hover:bg-surface-alt">
+          {ui.nav.home}
+        </a>
+        <a href={catalogHref} class="flex min-h-11 items-center rounded-xl px-3.5 text-sm font-bold text-ink hover:bg-surface-alt">
+          {ui.nav.catalog}
+        </a>
+        <a href={aboutHref} class="flex min-h-11 items-center rounded-xl px-3.5 text-sm font-bold text-ink hover:bg-surface-alt">
+          {ui.nav.about}
+        </a>
+        <a href={contactHref} class="flex min-h-11 items-center rounded-xl px-3.5 text-sm font-bold text-ink hover:bg-surface-alt">
+          {ui.nav.contact}
+        </a>
+        <div class="mt-2 grid grid-cols-2 gap-2 border-t border-hairline pt-2.5">
+          <a
+            href={UPACK_CONTACT.telHref}
+            class="flex min-h-11 items-center justify-center gap-2 rounded-xl border border-hairline bg-gallery px-3 text-sm font-bold text-ink"
+          >
+            <Icon name="phone" size={16} />
+            <bdi dir="ltr">{UPACK_CONTACT.phone}</bdi>
+          </a>
+          <a
+            href={UPACK_CONTACT.whatsappBase}
+            target="_blank"
+            rel="noopener"
+            class="flex min-h-11 items-center justify-center gap-2 rounded-xl bg-wa px-3 text-sm font-bold text-white"
+          >
+            <Icon name="whatsapp" size={16} />
+            <span>WhatsApp</span>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggleBtn = document.getElementById('mobile-menu-toggle');
+  const panel = document.getElementById('mobile-nav-panel');
+  if (toggleBtn && panel) {
+    toggleBtn.addEventListener('click', () => {
+      const nextOpen = panel.hidden;
+      panel.hidden = !nextOpen;
+      toggleBtn.setAttribute('aria-expanded', String(nextOpen));
+    });
+    panel.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        panel.hidden = true;
+        toggleBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  document.querySelectorAll<HTMLAnchorElement>('[data-lang-switch]').forEach((el) => {
+    el.addEventListener('click', () => {
+      const next = el.dataset.langSwitch;
+      if (next === 'en' || next === 'ar') {
+        try {
+          localStorage.setItem('upack_lang', next);
+        } catch {}
+      }
+    });
+  });
+</script>

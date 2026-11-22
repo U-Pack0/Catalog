@@ -1,0 +1,59 @@
+---
+import Icon from '../icons/Icon.astro';
+import { getUI, UPACK_CONTACT } from '../../lib/i18n';
+import { buildGeneralWhatsAppUrl } from '../../lib/whatsapp';
+import type { Lang } from '../../lib/url';
+
+export interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const ui = getUI(lang);
+const waHref = buildGeneralWhatsAppUrl(lang);
+---
+
+<div class="fixed end-3 bottom-4 z-40 flex flex-col gap-2 sm:end-5 sm:bottom-5 sm:gap-2.5">
+  <button
+    id="back-to-top-btn"
+    type="button"
+    hidden
+    aria-label={ui.actions.backToTop}
+    class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-hairline-strong bg-white text-ink shadow-[var(--shadow-float)] transition-transform hover:-translate-y-0.5 hover:bg-obsidian hover:text-white sm:h-12 sm:w-12"
+  >
+    <Icon name="arrow-up" size={19} />
+  </button>
+
+  <a
+    href={UPACK_CONTACT.telHref}
+    aria-label={ui.actions.callNow}
+    class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-crimson text-white shadow-[var(--shadow-float)] transition-transform hover:-translate-y-0.5 hover:bg-crimson-hover sm:h-12 sm:w-12"
+  >
+    <Icon name="phone" size={20} />
+  </a>
+
+  <a
+    href={waHref}
+    target="_blank"
+    rel="noopener"
+    aria-label={ui.actions.orderWhatsApp}
+    class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-wa text-white shadow-[var(--shadow-float)] transition-transform hover:-translate-y-0.5 hover:bg-wa-hover sm:h-12 sm:w-12"
+  >
+    <Icon name="whatsapp" size={22} />
+  </a>
+</div>
+
+<script>
+  const topBtn = document.getElementById('back-to-top-btn');
+  if (topBtn) {
+    const syncTop = () => {
+      topBtn.hidden = window.scrollY < 460;
+    };
+    window.addEventListener('scroll', syncTop, { passive: true });
+    syncTop();
+    topBtn.addEventListener('click', () => {
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+    });
+  }
+</script>

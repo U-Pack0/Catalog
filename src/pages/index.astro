@@ -1,0 +1,109 @@
+---
+import '../styles/tokens.css';
+import '../styles/global.css';
+import { absUrl, localePath, withBase } from '../lib/url';
+import { UPACK_CONTACT } from '../lib/i18n';
+
+const arPath = localePath('ar');
+const enPath = localePath('en');
+const arAbs = absUrl(arPath, Astro.site);
+const enAbs = absUrl(enPath, Astro.site);
+const ogImg = absUrl('/images/brand/upack-logo.jpg', Astro.site);
+---
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#F5F7FA" />
+    <title>U-Pack for Trading — يو-باك للتجارة | KRNO Distributor</title>
+    <meta
+      name="description"
+      content="U-Pack for Trading (يو-باك للتجارة) — KRNO Distributor in Egypt. Wholesale dessert packaging, crystal PET cups, microwave PP meal containers, and hinged trays sold by the box."
+    />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    <link rel="canonical" href={arAbs} />
+    <link rel="alternate" hreflang="ar-EG" href={arAbs} />
+    <link rel="alternate" hreflang="en-EG" href={enAbs} />
+    <link rel="alternate" hreflang="x-default" href={arAbs} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="U-Pack for Trading — يو-باك للتجارة | KRNO Distributor" />
+    <meta
+      property="og:description"
+      content="KRNO Distributor in Egypt · Sold by Box · Nationwide Egypt Delivery · WhatsApp 01055400404"
+    />
+    <meta property="og:url" content={arAbs} />
+    <meta property="og:image" content={ogImg} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alexandria:wght@700;800&family=Bricolage+Grotesque:wght@700;800&family=Manrope:wght@500;600;700&family=Tajawal:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script is:inline define:vars={{ arPath, enPath }}>
+      (function () {
+        try {
+          var saved = localStorage.getItem('upack_lang');
+          if (saved === 'en') {
+            window.location.replace(enPath);
+            return;
+          }
+          if (saved === 'ar') {
+            window.location.replace(arPath);
+            return;
+          }
+          var navLang = (navigator.language || '').toLowerCase();
+          window.location.replace(navLang.startsWith('en') ? enPath : arPath);
+        } catch (e) {
+          window.location.replace(arPath);
+        }
+      })();
+    </script>
+  </head>
+  <body class="arch-cyclorama flex min-h-dvh items-center justify-center p-6 text-ink">
+    <main class="w-full max-w-lg rounded-3xl border border-hairline bg-white p-8 text-center shadow-[var(--shadow-card-hover)] sm:p-10">
+      <div class="mx-auto mb-5 size-20 overflow-hidden rounded-full border-2 border-hairline-strong bg-obsidian">
+        <img
+          src={withBase('/images/brand/upack-logo.webp')}
+          alt="U-Pack for Trading"
+          width="80"
+          height="80"
+          class="size-full object-cover"
+        />
+      </div>
+
+      <h1 class="font-display text-2xl font-extrabold text-ink sm:text-3xl">
+        يو-باك للتجارة · U-Pack for Trading
+      </h1>
+      <p class="mt-2 text-sm font-semibold text-ink-muted">
+        موزع KRNO · KRNO Distributor · <bdi dir="ltr">{UPACK_CONTACT.phone}</bdi>
+      </p>
+
+      <div class="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <a
+          href={arPath}
+          class="inline-flex min-h-12 items-center justify-center rounded-xl bg-crimson px-5 py-3 text-base font-bold text-white transition-colors hover:bg-crimson-hover"
+        >
+          تصفح بالعربية
+        </a>
+        <a
+          href={enPath}
+          dir="ltr"
+          class="inline-flex min-h-12 items-center justify-center rounded-xl border border-obsidian bg-white px-5 py-3 text-base font-bold text-ink transition-colors hover:bg-obsidian hover:text-white"
+        >
+          Browse in English
+        </a>
+      </div>
+
+      <p class="mt-6 text-xs text-ink-muted">
+        {UPACK_CONTACT.delivery.ar} · {UPACK_CONTACT.delivery.en}
+      </p>
+    </main>
+  </body>
+</html>

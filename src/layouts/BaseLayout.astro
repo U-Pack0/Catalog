@@ -1,0 +1,110 @@
+---
+import '../styles/tokens.css';
+import '../styles/global.css';
+import SeoHead from '../components/seo/SeoHead.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import FloatingActions from '../components/layout/FloatingActions.astro';
+import { getBasePath, DEFAULT_SITE, type Lang } from '../lib/url';
+import { getUI } from '../lib/i18n';
+import { buildOrganizationJsonLd, buildWebSiteJsonLd } from '../lib/seo';
+
+export interface Props {
+  lang: Lang;
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'product';
+  keywords?: string[];
+  jsonLd?: Record<string, unknown>[];
+  noindex?: boolean;
+  includeOrgSchema?: boolean;
+}
+
+const {
+  lang,
+  title,
+  description,
+  canonicalPath,
+  ogImage = '/images/brand/upack-logo.jpg',
+  ogType = 'website',
+  keywords,
+  jsonLd = [],
+  noindex = false,
+  includeOrgSchema = true,
+} = Astro.props;
+
+const ui = getUI(lang);
+const pageTitle = title || ui.seo.siteTitle;
+const pageDesc = description || ui.seo.defaultDescription;
+const siteOrigin = Astro.site?.toString() || DEFAULT_SITE;
+
+const combinedJsonLd: Record<string, unknown>[] = [
+  ...(includeOrgSchema
+    ? [buildOrganizationJsonLd(lang, Astro.site), buildWebSiteJsonLd(lang, Astro.site)]
+    : []),
+  ...jsonLd,
+];
+---
+
+<!DOCTYPE html>
+<html
+  lang={lang}
+  dir={ui.dir}
+  data-base={getBasePath()}
+  data-site={siteOrigin}
+>
+  <head>
+    <SeoHead
+      lang={lang}
+      title={pageTitle}
+      description={pageDesc}
+      canonicalPath={canonicalPath}
+      ogImage={ogImage}
+      ogType={ogType}
+      keywords={keywords}
+      jsonLd={combinedJsonLd}
+      noindex={noindex}
+    />
+    <slot name="head" />
+  </head>
+  <body class="flex min-h-dvh flex-col bg-gallery text-ink antialiased">
+    <a href="#main-content" class="skip-link">{ui.skipToContent}</a>
+
+    <!-- Contextual Live Region for Quote Bag Announcements -->
+    <div id="bag-live-status" class="sr-only" role="status" aria-atomic="true"></div>
+
+    <Header lang={lang} currentPath={canonicalPath ?? Astro.url.pathname} />
+
+    <main id="main-content" class="flex-1">
+      <slot />
+    </main>
+
+    <Footer lang={lang} />
+    <FloatingActions lang={lang} />
+
+    <!-- Named Slot for Track D Slide-Over Quote Bag Drawer -->
+    <slot name="drawer" />
+
+    <!-- Global Toast Notification -->
+    <div id="upack-toast" class="upack-toast" role="status" aria-live="polite"></div>
+
+    <script>
+      import { initMotion } from '../scripts/motion-controller';
+      import { initAnalytics } from '../scripts/analytics';
+
+      const bootMotion = () => {
+        initMotion();
+        initAnalytics();
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', bootMotion, { once: true });
+      } else {
+        bootMotion();
+      }
+      document.addEventListener('astro:page-load', bootMotion);
+    </script>
+  </body>
+</html>
