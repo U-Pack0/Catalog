@@ -1,0 +1,56 @@
+{
+  "clientSlug": "upack-trading",
+  "brandName": "U-Pack Trading",
+  "instagramHandle": "@upacktrading",
+  "visualMode": "Redesign-AR-B2B",
+  "language": "ar",
+  "direction": "rtl",
+  "colors": {
+    "obsidian": "#0D0F14",
+    "surface": "#161A22",
+    "porcelain": "#F5F7FA",
+    "gold": "#F5B731",
+    "goldDark": "#D49B1A",
+    "skuBlue": "#2563EB",
+    "whatsappDark": "#0B0D12"
+  },
+  "fonts": {
+    "arabic": "Cairo",
+    "english": "Plus Jakarta Sans"
+  },
+  "logos": {
+    "agency": "public/images/brand/upack-logo.jpg",
+    "partner": "public/images/brand/krno-logo.png"
+  },
+  "safeZones": {
+    "feed": {
+      "width": 1080,
+      "height": 1350,
+      "gridSafeTop": 108,
+      "gridSafeBottom": 108,
+      "side": 84
+    },
+    "story": {
+      "width": 1080,
+      "height": 1920,
+      "top": 220,
+      "bottom": 250,
+      "side": 76
+    }
+  },
+  "defaults": {
+    "ctaText": "اكتب «كتالوج» في كومنت لأسعار الجملة",
+    "whatsappText": "01055400404",
+    "catalogUrl": "https://u-pack0.github.io/Catalog/",
+    "logoPosition": "top-right",
+    "scrimOpacity": 0.45
+  },
+  "bannedWords": [
+    "صينية",
+    "صواني",
+    "الوكيل المعتمد",
+    "الموزع المعتمد",
+    "—",
+    "–"
+  ]
+}

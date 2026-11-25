@@ -1,0 +1,41 @@
+name: Agency Headless Chromium Slide Renderer
+
+on:
+  repository_dispatch:
+    types: [agency_render_job]
+  workflow_dispatch:
+    inputs:
+      render_job_json:
+        description: "Render job JSON payload"
+        required: true
+        type: string
+
+jobs:
+  render-slides:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Render slides and run Gemini Vision QC
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          APPS_SCRIPT_CALLBACK_SECRET: ${{ secrets.APPS_SCRIPT_CALLBACK_SECRET }}
+          CALLBACK_URL: ${{ github.event.client_payload.callbackUrl || '' }}
+          RENDER_JOB_JSON: ${{ github.event.inputs.render_job_json || toJson(github.event.client_payload) }}
+        run: |
+          node automation/renderer/render.mjs --out automation/renderer/out
+
+      - name: Upload rendered slides artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: rendered-slides-${{ github.run_id }}
+          path: automation/renderer/out
+          retention-days: 7

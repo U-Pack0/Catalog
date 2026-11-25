@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 1080px;
+      height: 1350px;
+      overflow: hidden;
+      background: #0D0F14;
+      font-family: 'Cairo', 'Plus Jakarta Sans', 'Segoe UI', Tahoma, sans-serif;
+      color: #FFFFFF;
+    }
+    body.is-story {
+      height: 1920px;
+    }
+
+    .canvas {
+      position: relative;
+      width: 1080px;
+      height: 1350px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 108px 84px;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(245, 183, 49, 0.14), rgba(13, 15, 20, 0) 62%),
+        linear-gradient(180deg, #12151D 0%, #0D0F14 55%, #090B0F 100%);
+    }
+    body.is-story .canvas {
+      height: 1920px;
+      padding: 220px 76px 250px 76px;
+    }
+
+    /* Subtle dark luxury border guide inside 3:4 grid safe zone */
+    .canvas::before {
+      content: '';
+      position: absolute;
+      inset: 34px;
+      border: 1px solid rgba(245, 183, 49, 0.18);
+      border-radius: 28px;
+      pointer-events: none;
+    }
+
+    /* Logo bar supports top or bottom positions cleanly without colliding */
+    .logo-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      width: 100%;
+      z-index: 4;
+    }
+    .brand-slot {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(13, 15, 20, 0.86);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+      padding: 8px 18px 8px 10px;
+    }
+    .brand-slot.krno-pill {
+      background: #FFFFFF;
+      border: none;
+      padding: 10px 22px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+    .brand-slot img.upack-mark {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #F5B731;
+    }
+    .brand-slot img.krno-mark {
+      height: 44px;
+      width: auto;
+      display: block;
+    }
+    .brand-label {
+      display: flex;
+      flex-direction: column;
+      text-align: right;
+      line-height: 1.2;
+    }
+    .brand-label .b-title {
+      font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: #FFFFFF;
+      letter-spacing: 0.4px;
+    }
+    .brand-label .b-sub {
+      font-size: 15px;
+      font-weight: 700;
+      color: #F5B731;
+    }
+
+    /* Stage area holds untouched real product photograph */
+    .photo-stage {
+      position: relative;
+      flex: 1 1 auto;
+      min-height: 400px;
+      max-height: 560px;
+      margin: 18px 0;
+      border-radius: 26px;
+      background: radial-gradient(circle at 50% 55%, #1E2430 0%, #11151D 78%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 24px;
+      z-index: 2;
+    }
+    body.is-story .photo-stage {
+      max-height: 760px;
+      margin: 26px 0;
+    }
+    .photo-stage img#product-photo {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      /* Zero CSS filters so product color stays 100% authentic */
+      filter: none;
+    }
+    .slide-pill {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(13, 15, 20, 0.85);
+      border: 1px solid rgba(245, 183, 49, 0.55);
+      color: #F5B731;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 999px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Typography block with anti-collision variable scale */
+    .copy-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 14px;
+      z-index: 4;
+    }
+    .headline {
+      font-size: calc(50px * var(--title-scale, 1));
+      line-height: 1.25;
+      font-weight: 900;
+      color: #F5B731;
+      text-shadow: 0 4px 18px rgba(0, 0, 0, 0.65);
+      max-width: 100%;
+      word-wrap: break-word;
+    }
+    .subheadline {
+      font-size: calc(28px * var(--title-scale, 1));
+      line-height: 1.35;
+      font-weight: 700;
+      color: #F5F7FA;
+      max-width: 96%;
+    }
+    .specs-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    .spec-pill {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #FFFFFF;
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: 20px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .spec-pill.sku-pill {
+      background: #2563EB;
+      border-color: #3B82F6;
+      font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif;
+      font-weight: 800;
+    }
+
+    /* Footer CTA + WhatsApp */
+    .footer-bar {
+      width: 100%;
+      background: linear-gradient(90deg, #F5B731 0%, #E5A620 100%);
+      color: #0D0F14;
+      border-radius: 20px;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+      z-index: 4;
+    }
+    .cta-text {
+      font-size: 24px;
+      font-weight: 900;
+      color: #0D0F14;
+      line-height: 1.25;
+      text-align: right;
+    }
+    .wa-badge {
+      background: #0D0F14;
+      color: #FFFFFF;
+      border-radius: 14px;
+      padding: 10px 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      flex-shrink: 0;
+    }
+    .wa-badge .wa-lbl {
+      font-size: 13px;
+      font-weight: 700;
+      color: #F5B731;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+    .wa-badge .wa-num {
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    /* Layout order shifts cleanly when logoPosition = bottom-* */
+    .canvas.logo-bottom .photo-stage { order: 1; }
+    .canvas.logo-bottom .copy-block { order: 2; }
+    .canvas.logo-bottom .footer-bar { order: 3; }
+    .canvas.logo-bottom .logo-bar { order: 4; margin-top: 14px; }
+
+    .canvas.logo-top .logo-bar { order: 1; }
+    .canvas.logo-top .photo-stage { order: 2; }
+    .canvas.logo-top .copy-block { order: 3; }
+    .canvas.logo-top .footer-bar { order: 4; margin-top: 14px; }
+
+    .canvas.logo-left .logo-bar { flex-direction: row-reverse; }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+  <div id="canvas" class="canvas logo-top">
+    <header id="logo-bar" class="logo-bar">
+      <div class="brand-slot">
+        <img id="upack-logo" class="upack-mark" src="" alt="U-Pack Trading" />
+        <div class="brand-label">
+          <span class="b-title">U-PACK TRADING</span>
+          <span class="b-sub">توريد تغليف المطاعم والكافيهات</span>
+        </div>
+      </div>
+      <div class="brand-slot krno-pill">
+        <img id="krno-logo" class="krno-mark" src="" alt="KRNO" />
+      </div>
+    </header>
+
+    <main id="photo-stage" class="photo-stage">
+      <span id="slide-pill" class="slide-pill hidden" dir="ltr"></span>
+      <img id="product-photo" src="" alt="U-Pack Product" style="border-radius: 16px;" />
+    </main>
+
+    <section id="copy-block" class="copy-block">
+      <h1 id="headline" class="headline"></h1>
+      <p id="subheadline" class="subheadline hidden"></p>
+      <div id="specs-row" class="specs-row"></div>
+    </section>
+
+    <footer id="footer-bar" class="footer-bar">
+      <div id="cta-text" class="cta-text"></div>
+      <div class="wa-badge">
+        <span class="wa-lbl">WhatsApp</span>
+        <span id="wa-num" class="wa-num"></span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    function rectsOverlap(a, b) {
+      return !(a.right <= b.left + 2 || a.left >= b.right - 2 || a.bottom <= b.top + 2 || a.top >= b.bottom - 2);
+    }
+
+    function measureCollisions() {
+      const canvasRect = document.getElementById('canvas').getBoundingClientRect();
+      const blocks = ['logo-bar', 'photo-stage', 'copy-block', 'footer-bar']
+        .map(id => {
+          const el = document.getElementById(id);
+          return el && !el.classList.contains('hidden') ? { id, r: el.getBoundingClientRect() } : null;
+        })
+        .filter(Boolean);
+
+      const issues = [];
+      for (let i = 0; i < blocks.length; i++) {
+        for (let j = i + 1; j < blocks.length; j++) {
+          if (rectsOverlap(blocks[i].r, blocks[j].r)) {
+            issues.push(`overlap:${blocks[i].id}:${blocks[j].id}`);
+          }
+        }
+        if (blocks[i].r.bottom > canvasRect.bottom + 2 || blocks[i].r.top < canvasRect.top - 2) {
+          issues.push(`vertical_clip:${blocks[i].id}`);
+        }
+      }
+      return issues;
+    }
+
+    function waitImg(img) {
+      if (!img.getAttribute('src')) return Promise.resolve();
+      if (img.complete && img.naturalWidth > 0) return img.decode ? img.decode().catch(() => {}) : Promise.resolve();
+      return new Promise(res => {
+        img.addEventListener('load', () => res(), { once: true });
+        img.addEventListener('error', () => res(), { once: true });
+      });
+    }
+
+    window.__renderSlide = async function (payload) {
+      const isStory = payload.format === 'story';
+      document.body.classList.toggle('is-story', isStory);
+
+      const canvas = document.getElementById('canvas');
+      const logoPos = payload.logoPosition || 'top-right';
+      canvas.classList.remove('logo-top', 'logo-bottom', 'logo-left');
+      canvas.classList.add(logoPos.startsWith('bottom') ? 'logo-bottom' : 'logo-top');
+      if (logoPos.endsWith('left')) canvas.classList.add('logo-left');
+
+      document.getElementById('upack-logo').src = payload.upackLogoUrl || '/brand/upack-logo.jpg';
+      document.getElementById('krno-logo').src = payload.krnoLogoUrl || '/brand/krno-logo.png';
+      document.getElementById('product-photo').src = payload.photoUrl || '';
+
+      const slidePill = document.getElementById('slide-pill');
+      if (payload.slideTotal && payload.slideTotal > 1) {
+        slidePill.textContent = `${payload.slideIndex || 1} / ${payload.slideTotal}`;
+        slidePill.classList.remove('hidden');
+      } else {
+        slidePill.classList.add('hidden');
+      }
+
+      document.getElementById('headline').textContent = payload.headline || '';
+      const subEl = document.getElementById('subheadline');
+      if (payload.subheadline) {
+        subEl.textContent = payload.subheadline;
+        subEl.classList.remove('hidden');
+      } else {
+        subEl.classList.add('hidden');
+      }
+
+      const specsRow = document.getElementById('specs-row');
+      specsRow.innerHTML = '';
+      if (payload.skuBadge) {
+        const sku = document.createElement('span');
+        sku.className = 'spec-pill sku-pill';
+        sku.textContent = `SKU: ${payload.skuBadge}`;
+        specsRow.appendChild(sku);
+      }
+      for (const item of (payload.specPills || [])) {
+        const sp = document.createElement('span');
+        sp.className = 'spec-pill';
+        sp.textContent = item;
+        specsRow.appendChild(sp);
+      }
+
+      const footer = document.getElementById('footer-bar');
+      if (payload.showFooter === false) {
+        footer.classList.add('hidden');
+      } else {
+        footer.classList.remove('hidden');
+        document.getElementById('cta-text').textContent = payload.ctaText || 'اكتب «كتالوج» في كومنت لأسعار الجملة';
+        document.getElementById('wa-num').textContent = payload.whatsappText || '01055400404';
+      }
+
+      let scale = Number(payload.titleScale || 1);
+      document.documentElement.style.setProperty('--title-scale', String(scale));
+
+      await document.fonts.ready;
+      await Promise.all([
+        waitImg(document.getElementById('upack-logo')),
+        waitImg(document.getElementById('krno-logo')),
+        waitImg(document.getElementById('product-photo'))
+      ]);
+      await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+
+      let collisions = measureCollisions();
+      let attempts = 0;
+      while (collisions.length > 0 && scale > 0.62 && attempts < 8) {
+        scale = Math.max(0.62, Number((scale - 0.05).toFixed(2)));
+        document.documentElement.style.setProperty('--title-scale', String(scale));
+        await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+        collisions = measureCollisions();
+        attempts += 1;
+      }
+
+      return { collisions, finalTitleScale: scale, logoPosition: logoPos };
+    };
+  </script>
+</body>
+</html>
